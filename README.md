@@ -28,6 +28,16 @@ Washington, DC 20001, United States
 |:------------|:------------------------------------------------------|
 | 08:30-17:00 | TODO                                                  |
 
+
+## Getting started
+
+### Quickstart
+
+Launch on regular [Binder](https://mybinder.readthedocs.io/en/latest/index.html).
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main)
+
+
 ## Code of Conduct
 
 All involved individuals must follow the
