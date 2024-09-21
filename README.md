@@ -1,5 +1,7 @@
 # AGU24 workshop: Mastering Geospatial Visualizations with GMT/PyGMT
 
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://www.generic-mapping-tools.org/agu24workshop)
+
 Material for the
 [GMT](https://www.generic-mapping-tools.org)/[PyGMT](https://www.pygmt.org)
 pre-conference workshop at the
