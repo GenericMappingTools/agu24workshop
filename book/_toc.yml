@@ -3,7 +3,13 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+parts:
+- caption: Details
+  chapters:
+    - title: AGU24 Homepage
+      url: https://www.agu.org/annual-meeting
+- caption: Tutorials
+  chapters:
+  - file: markdown
+  - file: notebooks
+  - file: markdown-notebooks
