@@ -2,7 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Mastering Geospatial Visualizations with GMT/PyGMT
-author: The PyGMT Team
+author: The GMT and PyGMT Teams
 logo: logo.webp
 
 # Force re-execution of notebooks on each build.
