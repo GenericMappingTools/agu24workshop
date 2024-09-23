@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: ee492e7be91d9f4495e3832d297b799cecaf1059f6c692038b9510064a89e90c
+    linux-64: d408b6889af00f244c260afe045eec67484ac93f7980726dc3654b2bc58fd957
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -44,6 +44,31 @@ package:
   hash:
     md5: 73aaf86a425cc6e73fcf236a5a46396d
     sha256: fbe2c5e56a653bebb982eda4876a9178aedfc2b545f25d0ce9c4c0b508253d22
+  category: main
+  optional: false
+- name: accessible-pygments
+  version: 0.0.5
+  manager: conda
+  platform: linux-64
+  dependencies:
+    pygments: ''
+    python: '>=3.9'
+  url: https://conda.anaconda.org/conda-forge/noarch/accessible-pygments-0.0.5-pyhd8ed1ab_0.conda
+  hash:
+    md5: 1bb1ef9806a9a20872434f58b3e7fc1a
+    sha256: 712c1875bcd32674e8ce2f418f0b2875ecb98e6bcbb21ec7502dae8ff4b0f73c
+  category: main
+  optional: false
+- name: alabaster
+  version: 0.7.16
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+  url: https://conda.anaconda.org/conda-forge/noarch/alabaster-0.7.16-pyhd8ed1ab_0.conda
+  hash:
+    md5: def531a3ac77b7fb8c21d17bb5d0badb
+    sha256: fd39ad2fabec1569bbb0dfdae34ab6ce7de6ec09dcec8638f83dad0373594069
   category: main
   optional: false
 - name: anyio
@@ -711,6 +736,31 @@ package:
     sha256: 20cae47d31fdd58d99c4d2e65fbdcefa0b0de0c84e455ba9d6356a4bdbc4b5b9
   category: main
   optional: false
+- name: click
+  version: 8.1.7
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __unix: ''
+    python: '>=3.8'
+  url: https://conda.anaconda.org/conda-forge/noarch/click-8.1.7-unix_pyh707e725_0.conda
+  hash:
+    md5: f3ad426304898027fc619827ff428eca
+    sha256: f0016cbab6ac4138a429e28dbcb904a90305b34b3fe41a9b89d697c90401caec
+  category: main
+  optional: false
+- name: colorama
+  version: 0.4.6
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.7'
+  url: https://conda.anaconda.org/conda-forge/noarch/colorama-0.4.6-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 3faab06a954c2a04039983f2c4a50d99
+    sha256: 2c1b2e9755ce3102bca8d69e8f26e4f087ece73f50418186aee7c74bef8e1698
+  category: main
+  optional: false
 - name: comm
   version: 0.2.2
   manager: conda
@@ -821,6 +871,19 @@ package:
   hash:
     md5: 961b3a227b437d82ad7054484cfa71b2
     sha256: 9717a059677553562a8f38ff07f3b9f61727bd614f505658b0a5ecbcf8df89be
+  category: main
+  optional: false
+- name: docutils
+  version: 0.20.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+  url: https://conda.anaconda.org/conda-forge/linux-64/docutils-0.20.1-py312h7900ff3_3.conda
+  hash:
+    md5: 1b90835ae26b9b8250b302649359a989
+    sha256: b9fb75d806afc53d9d7b98edb0c45ac38a3cc983916b8dac4ad7ddac5c18a024
   category: main
   optional: false
 - name: entrypoints
@@ -1209,6 +1272,22 @@ package:
     sha256: 04e8bbd4956d6b354326a92518eca9e9415b10ce23cd370513508bd8dd12f750
   category: main
   optional: false
+- name: greenlet
+  version: 3.1.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    libgcc: '>=13'
+    libstdcxx: '>=13'
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+  url: https://conda.anaconda.org/conda-forge/linux-64/greenlet-3.1.0-py312h2ec8cdc_2.conda
+  hash:
+    md5: 8ca26bbb0260f5e88616daee2f762f00
+    sha256: 5bcdb8f092b0aa8139df5868581d9782258a142fcc30cd94aacd0c330b1f7038
+  category: main
+  optional: false
 - name: gshhg-gmt
   version: 2.3.7
   manager: conda
@@ -1363,6 +1442,18 @@ package:
   hash:
     md5: 7ba2ede0e7c795ff95088daf0dc59753
     sha256: 8c57fd68e6be5eecba4462e983aed7e85761a519aab80e834bbd7794d4b545b2
+  category: main
+  optional: false
+- name: imagesize
+  version: 1.4.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.4'
+  url: https://conda.anaconda.org/conda-forge/noarch/imagesize-1.4.1-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 7de5386c8fea29e76b303f37dde4c352
+    sha256: c2bfd7043e0c4c12d8b5593de666c1e81d67b83c474a0a79282cc5c4ef845460
   category: main
   optional: false
 - name: importlib-metadata
@@ -1594,6 +1685,57 @@ package:
     sha256: 007a0a506a0d1805b099629cb0ee743ad0afe7d9749e57339f32c168119e0139
   category: main
   optional: false
+- name: jupyter-book
+  version: 1.0.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    click: '>=7.1,<9'
+    importlib-metadata: '>=4.8.3'
+    jinja2: ''
+    jsonschema: <5
+    linkify-it-py: '>=2,<3'
+    myst-nb: '>=1,<3'
+    myst-parser: '>=1,<3'
+    python: '>=3.9'
+    pyyaml: ''
+    sphinx: '>=5,<8'
+    sphinx-book-theme: '>=1.1.0,<2'
+    sphinx-comments: ''
+    sphinx-copybutton: ''
+    sphinx-design: '>=0.5,<1'
+    sphinx-external-toc: '>=1.0.1,<2'
+    sphinx-jupyterbook-latex: '>=1,<2'
+    sphinx-multitoc-numbering: '>=0.1.3,<1'
+    sphinx-thebe: '>=0.3,<1'
+    sphinx-togglebutton: ''
+    sphinxcontrib-bibtex: '>=2.5.0,<3'
+  url: https://conda.anaconda.org/conda-forge/noarch/jupyter-book-1.0.2-pyhd8ed1ab_0.conda
+  hash:
+    md5: e4a36396e4705c2d845ae07d34b16a1d
+    sha256: eb699f63791b989fb1ae8113643096253906483dc0672b4c7077c779ddeef9a8
+  category: main
+  optional: false
+- name: jupyter-cache
+  version: 1.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    attrs: ''
+    click: ''
+    importlib-metadata: ''
+    nbclient: '>=0.2'
+    nbformat: ''
+    python: '>=3.9'
+    pyyaml: ''
+    sqlalchemy: '>=1.3.12,<3'
+    tabulate: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/jupyter-cache-1.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: b667cf7b57baa559f628d374f017fa32
+    sha256: 16dd4d3601d0532bbe755267486d62f7c77e099d0f0517e20ef635f836425d57
+  category: main
+  optional: false
 - name: jupyter-lsp
   version: 2.2.5
   manager: conda
@@ -1821,6 +1963,19 @@ package:
   hash:
     md5: 3f43953b7d3fb3aaa1d0d0723d91e368
     sha256: 99df692f7a8a5c27cd14b5fb1374ee55e756631b9c3d659ed3ee60830249b238
+  category: main
+  optional: false
+- name: latexcodec
+  version: 2.0.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: ''
+    six: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/latexcodec-2.0.1-pyh9f0ad1d_0.tar.bz2
+  hash:
+    md5: 8d67904973263afd2985ba56aa2d6bb4
+    sha256: 5210d31c8f2402dd1ad1b3edcf7a53292b9da5de20cd14d9c243dbf9278b1c4f
   category: main
   optional: false
 - name: lcms2
@@ -2895,6 +3050,19 @@ package:
     sha256: adf6096f98b537a11ae3729eaa642b0811478f0ea0402ca67b5108fe2cb0010d
   category: main
   optional: false
+- name: linkify-it-py
+  version: 2.0.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.7'
+    uc-micro-py: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/linkify-it-py-2.0.3-pyhd8ed1ab_0.conda
+  hash:
+    md5: f1b64ca4faf563605cf6f6ca93f9ff3f
+    sha256: aa99d44e8c83865026575a8af253141c53e0b3ab05f053befaa7757c8525064f
+  category: main
+  optional: false
 - name: lz4-c
   version: 1.9.4
   manager: conda
@@ -2935,6 +3103,19 @@ package:
   hash:
     md5: 61730f7e741f2d98441bfa44979f2a33
     sha256: e24778b8e965ae188ef268c52f4b55e340b6a194db57481f640f7d2b0a6e57a2
+  category: main
+  optional: false
+- name: markdown-it-py
+  version: 3.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    mdurl: '>=0.1,<1'
+    python: '>=3.8'
+  url: https://conda.anaconda.org/conda-forge/noarch/markdown-it-py-3.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 93a8e71256479c62074356ef6ebf501b
+    sha256: c041b0eaf7a6af3344d5dd452815cdc148d6284fec25a4fa3f4263b3a021e962
   category: main
   optional: false
 - name: markupsafe
@@ -2994,6 +3175,31 @@ package:
     sha256: 7ea68676ea35fbb095420bbcc1c82c4767b8be7bb56abb6989b7f89d957a3bab
   category: main
   optional: false
+- name: mdit-py-plugins
+  version: 0.4.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    markdown-it-py: '>=1.0.0,<4.0.0'
+    python: '>=3.8'
+  url: https://conda.anaconda.org/conda-forge/noarch/mdit-py-plugins-0.4.2-pyhd8ed1ab_0.conda
+  hash:
+    md5: 5387f2cfa28f8a3afa3368bb4ba201e8
+    sha256: 5cedc99412278b37e9596f1f991d49f5a1663fe79767cf814a288134a1400ba9
+  category: main
+  optional: false
+- name: mdurl
+  version: 0.1.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.6'
+  url: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_0.conda
+  hash:
+    md5: 776a8dd9e824f77abac30e6ef43a8f7a
+    sha256: 64073dfb6bb429d52fff30891877b48c7ec0f89625b1bf844905b66a81cce6e1
+  category: main
+  optional: false
 - name: minizip
   version: 4.0.7
   manager: conda
@@ -3035,6 +3241,46 @@ package:
   hash:
     md5: 2ba8498c1018c1e9c61eb99b973dfe19
     sha256: f86fb22b58e93d04b6f25e0d811b56797689d598788b59dcb47f59045b568306
+  category: main
+  optional: false
+- name: myst-nb
+  version: 1.1.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    importlib-metadata: ''
+    ipykernel: ''
+    ipython: ''
+    jupyter-cache: '>=0.5'
+    myst-parser: '>=1.0.0'
+    nbclient: ''
+    nbformat: '>=5.0'
+    python: '>=3.9'
+    pyyaml: ''
+    sphinx: '>=5'
+    typing_extensions: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/myst-nb-1.1.1-pyhd8ed1ab_0.conda
+  hash:
+    md5: b64c4473b48dd13ac9af794121488fa4
+    sha256: 9af9e6d66260064f2d47453df53174c0060bd30a967e38f8299cf770537b8929
+  category: main
+  optional: false
+- name: myst-parser
+  version: 2.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    docutils: '>=0.16,<0.21'
+    jinja2: ''
+    markdown-it-py: '>=3.0.0,<4.0.0'
+    mdit-py-plugins: '>=0.4,<1'
+    python: '>=3.8'
+    pyyaml: ''
+    sphinx: '>=6,<8'
+  url: https://conda.anaconda.org/conda-forge/noarch/myst-parser-2.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 70699181909e468875f12076e1b0a8a9
+    sha256: 59cdc52d9875f623a4df82896d80f304e436138f8410cbef969a7e4452c6bab7
   category: main
   optional: false
 - name: nbclient
@@ -3588,6 +3834,38 @@ package:
     sha256: dcfcb3cee1ae0a89729601582cc3edea20ba13c9493967a03a693c67567af0c8
   category: main
   optional: false
+- name: pybtex
+  version: 0.24.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    latexcodec: '>=1.0.4'
+    python: '>=3.6'
+    pyyaml: '>=3.01'
+    setuptools: ''
+    six: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/pybtex-0.24.0-pyhd8ed1ab_2.tar.bz2
+  hash:
+    md5: 2099b86a7399c44c0c61cdb6de6915ba
+    sha256: 258fbf46050bbd51fbaa504116e56e8f3064156f0e08cad4e2fec97f5f29e6dc
+  category: main
+  optional: false
+- name: pybtex-docutils
+  version: 1.0.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    docutils: '>=0.14'
+    pybtex: '>=0.16'
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+    setuptools: ''
+  url: https://conda.anaconda.org/conda-forge/linux-64/pybtex-docutils-1.0.3-py312h7900ff3_2.conda
+  hash:
+    md5: 0472f87b9dc0b1db7b501f4d814ba90b
+    sha256: bf9c8f4c5282d46ce54bd2c6837fa5ff7a1c112382be3d13a7a0ae038d92b7c7
+  category: main
+  optional: false
 - name: pycparser
   version: '2.22'
   manager: conda
@@ -3598,6 +3876,26 @@ package:
   hash:
     md5: 844d9eb3b43095b031874477f7d70088
     sha256: 406001ebf017688b1a1554b49127ca3a4ac4626ec0fd51dc75ffa4415b720b64
+  category: main
+  optional: false
+- name: pydata-sphinx-theme
+  version: 0.15.4
+  manager: conda
+  platform: linux-64
+  dependencies:
+    accessible-pygments: ''
+    babel: ''
+    beautifulsoup4: ''
+    docutils: '!=0.17.0'
+    packaging: ''
+    pygments: '>=2.7'
+    python: '>=3.9'
+    sphinx: '>=5.0'
+    typing_extensions: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/pydata-sphinx-theme-0.15.4-pyhd8ed1ab_0.conda
+  hash:
+    md5: c7c50dd5192caa58a05e6a4248a27acb
+    sha256: 5ec877142ded763061e114e787a4e201c2fb3f0b1db2f04ace610a1187bb34ae
   category: main
   optional: false
 - name: pygments
@@ -4072,6 +4370,18 @@ package:
     sha256: bc12100b2d8836b93c55068b463190505b8064d0fc7d025e89f20ebf22fe6c2b
   category: main
   optional: false
+- name: snowballstemmer
+  version: 2.2.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=2'
+  url: https://conda.anaconda.org/conda-forge/noarch/snowballstemmer-2.2.0-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 4d22a9315e78c6827f806065957d566e
+    sha256: a0fd916633252d99efb6223b1050202841fa8d2d53dacca564b0ed77249d3228
+  category: main
+  optional: false
 - name: soupsieve
   version: '2.5'
   manager: conda
@@ -4097,6 +4407,269 @@ package:
   hash:
     md5: 909188c8979846bac8e586908cf1ca6a
     sha256: 0c604fe3f78ddb2b612841722bd9b5db24d0484e30ced89fac78c0a3f524dfd6
+  category: main
+  optional: false
+- name: sphinx
+  version: 7.4.7
+  manager: conda
+  platform: linux-64
+  dependencies:
+    alabaster: '>=0.7.14,<0.8.dev0'
+    babel: '>=2.13'
+    colorama: '>=0.4.6'
+    docutils: '>=0.20,<0.22'
+    imagesize: '>=1.3'
+    importlib-metadata: '>=6.0'
+    jinja2: '>=3.1'
+    packaging: '>=23.0'
+    pygments: '>=2.17'
+    python: '>=3.9'
+    requests: '>=2.30.0'
+    snowballstemmer: '>=2.2'
+    sphinxcontrib-applehelp: ''
+    sphinxcontrib-devhelp: ''
+    sphinxcontrib-htmlhelp: '>=2.0.0'
+    sphinxcontrib-jsmath: ''
+    sphinxcontrib-qthelp: ''
+    sphinxcontrib-serializinghtml: '>=1.1.9'
+    tomli: '>=2.0'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-7.4.7-pyhd8ed1ab_0.conda
+  hash:
+    md5: c568e260463da2528ecfd7c5a0b41bbd
+    sha256: 0de25d561b20dd06982df45a2c3cef490e45b0d4bae8d2c290030721bdadecd6
+  category: main
+  optional: false
+- name: sphinx-book-theme
+  version: 1.1.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    pydata-sphinx-theme: '>=0.15.2'
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-book-theme-1.1.3-pyhd8ed1ab_0.conda
+  hash:
+    md5: 54e574ecd914ea059b29887a93463d79
+    sha256: 300aacc36eb33502f640398b83a50a878c869c4fbd6a713d89e04234da8c8bba
+  category: main
+  optional: false
+- name: sphinx-comments
+  version: 0.0.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: ''
+    sphinx: '>=1.8'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-comments-0.0.3-pyh9f0ad1d_0.tar.bz2
+  hash:
+    md5: 2ae3ce35de0c1cec45c94182694f8d1b
+    sha256: 2578e9a84f3d4435ad1065daa55ad22a401968c09842220337e8195336f94839
+  category: main
+  optional: false
+- name: sphinx-copybutton
+  version: 0.5.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3'
+    sphinx: '>=1.8'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-copybutton-0.5.2-pyhd8ed1ab_0.conda
+  hash:
+    md5: ac832cc43adc79118cf6e23f1f9b8995
+    sha256: 7ea21f009792e7c69612ddba367afe0412b3fdff2e92f439e8cd222de4b40bfe
+  category: main
+  optional: false
+- name: sphinx-design
+  version: 0.6.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=6,<9'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-design-0.6.1-pyhd8ed1ab_1.conda
+  hash:
+    md5: db0f1eb28b6df3a11e89437597309009
+    sha256: 3db5d78271e3b0761db591111153f80428733972cab0bfdcf24b352133c85de9
+  category: main
+  optional: false
+- name: sphinx-external-toc
+  version: 1.0.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    click: '>=7.1'
+    python: '>=3.9'
+    pyyaml: ''
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-external-toc-1.0.1-pyhd8ed1ab_0.conda
+  hash:
+    md5: 7a8b55d920fa30a68a2da808abf57291
+    sha256: 1436741a948742862e69554f02b855cada81643b10c7dd632c29b1b28aa0ce96
+  category: main
+  optional: false
+- name: sphinx-jupyterbook-latex
+  version: 1.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    packaging: ''
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-jupyterbook-latex-1.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 90b6071fb02e56a1aafc85e52721fa0e
+    sha256: 648307f83e8843b9685a6d979e6bffd7cb0a0d6b81d62b64cbd7c843f87abeb6
+  category: main
+  optional: false
+- name: sphinx-multitoc-numbering
+  version: 0.1.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.6'
+    sphinx: '>=3'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-multitoc-numbering-0.1.3-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 40749a4d0f0d2e11c65fb26c1cd16a90
+    sha256: 6c8241fdb4222799c04677b06b2e1f480a6c11f27c8fccc9f73f98798d3c44d8
+  category: main
+  optional: false
+- name: sphinx-thebe
+  version: 0.3.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.8'
+    sphinx: '>=4'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-thebe-0.3.1-pyhd8ed1ab_0.conda
+  hash:
+    md5: c7895f70474a3883c9ff75c290dff551
+    sha256: a6c9c15b59edcf957cc6e6122269c07164a08d71754852f65819375844fd843d
+  category: main
+  optional: false
+- name: sphinx-togglebutton
+  version: 0.3.2
+  manager: conda
+  platform: linux-64
+  dependencies:
+    docutils: ''
+    python: '>=3.6'
+    sphinx: ''
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinx-togglebutton-0.3.2-pyhd8ed1ab_0.tar.bz2
+  hash:
+    md5: 382738101934261ea7931d1460e64868
+    sha256: 0dcee238aae6337fae5eaf1f9a29b0c51ed9834ae501fccb2cde0fed8dae1a88
+  category: main
+  optional: false
+- name: sphinxcontrib-applehelp
+  version: 2.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-applehelp-2.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: 9075bd8c033f0257122300db914e49c9
+    sha256: 8ac476358cf26098e3a360b2a9037bd809243f72934c103953e25f4fda4b9f31
+  category: main
+  optional: false
+- name: sphinxcontrib-bibtex
+  version: 2.6.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    docutils: '>=0.8,!=0.18.*,!=0.19.*'
+    importlib-metadata: '>=3.6'
+    pybtex: '>=0.24'
+    pybtex-docutils: '>=1.0.0'
+    python: '>=3.7'
+    sphinx: '>=3.5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-bibtex-2.6.3-pyhd8ed1ab_0.conda
+  hash:
+    md5: 2925be8d19542dd116775f1b9c55bb50
+    sha256: 49bac08adb8ae32197c7b9b13219f91332b60e69771122f870c79abcf5611a55
+  category: main
+  optional: false
+- name: sphinxcontrib-devhelp
+  version: 2.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-devhelp-2.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: b3bcc38c471ebb738854f52a36059b48
+    sha256: 6790efe55f168816dfc9c14235054d5156e5150d28546c5baf2ff4973eff8f6b
+  category: main
+  optional: false
+- name: sphinxcontrib-htmlhelp
+  version: 2.1.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-htmlhelp-2.1.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: e25640d692c02e8acfff0372f547e940
+    sha256: 55e14b77ed786ab6ff752b8d75f8448536f385ed250f432bd408d2eff5ea4a9e
+  category: main
+  optional: false
+- name: sphinxcontrib-jsmath
+  version: 1.0.1
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-jsmath-1.0.1-pyhd8ed1ab_0.conda
+  hash:
+    md5: da1d979339e2714c30a8e806a33ec087
+    sha256: d4337d83b8edba688547766fc80f1ac86d6ec86ceeeda93f376acc04079c5ce2
+  category: main
+  optional: false
+- name: sphinxcontrib-qthelp
+  version: 2.0.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-qthelp-2.0.0-pyhd8ed1ab_0.conda
+  hash:
+    md5: d6e5ea5fe00164ac6c2dcc5d76a42192
+    sha256: 7ae639b729844de2ec74dbaf1acccc14843868a82fa46cd2ceb735bc8266af5b
+  category: main
+  optional: false
+- name: sphinxcontrib-serializinghtml
+  version: 1.1.10
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.9'
+    sphinx: '>=5'
+  url: https://conda.anaconda.org/conda-forge/noarch/sphinxcontrib-serializinghtml-1.1.10-pyhd8ed1ab_0.conda
+  hash:
+    md5: e507335cb4ca9cff4c3d0fa9cdab255e
+    sha256: bf80e4c0ff97d5e8e5f6db0831ba60007e820a3a438e8f1afd868aa516d67d6f
+  category: main
+  optional: false
+- name: sqlalchemy
+  version: 2.0.35
+  manager: conda
+  platform: linux-64
+  dependencies:
+    __glibc: '>=2.17,<3.0.a0'
+    greenlet: '!=0.4.17'
+    libgcc: '>=13'
+    python: '>=3.12,<3.13.0a0'
+    python_abi: 3.12.*
+    typing-extensions: '>=4.6.0'
+  url: https://conda.anaconda.org/conda-forge/linux-64/sqlalchemy-2.0.35-py312h66e93f0_0.conda
+  hash:
+    md5: 9821abaefc619a87de4a41086dde2c00
+    sha256: 4a352a9f1a6747ce1fe61a1722bf428e02364810a78919dae5acfa44b8fc510b
   category: main
   optional: false
 - name: sqlite
@@ -4129,6 +4702,18 @@ package:
   hash:
     md5: e7df0fdd404616638df5ece6e69ba7af
     sha256: a58433e75229bec39f3be50c02efbe9b7083e53a1f31d8ee247564f370191eec
+  category: main
+  optional: false
+- name: tabulate
+  version: 0.9.0
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.7'
+  url: https://conda.anaconda.org/conda-forge/noarch/tabulate-0.9.0-pyhd8ed1ab_1.tar.bz2
+  hash:
+    md5: 4759805cce2d914c38472f70bf4d8bcb
+    sha256: f6e4a0dd24ba060a4af69ca79d32361a6678e61d78c73eb5e357909b025b4620
   category: main
   optional: false
 - name: terminado
@@ -4325,6 +4910,18 @@ package:
   hash:
     md5: 8bfdead4e0fff0383ae4c9c50d0531bd
     sha256: 7d21c95f61319dba9209ca17d1935e6128af4235a67ee4e57a00908a1450081e
+  category: main
+  optional: false
+- name: uc-micro-py
+  version: 1.0.3
+  manager: conda
+  platform: linux-64
+  dependencies:
+    python: '>=3.6'
+  url: https://conda.anaconda.org/conda-forge/noarch/uc-micro-py-1.0.3-pyhd8ed1ab_0.conda
+  hash:
+    md5: 3b7fc78d7be7b450952aaa916fb78877
+    sha256: 54293cd94da3a6b978b353eb7897555055d925ad0008bc73e85cca19e2587ed0
   category: main
   optional: false
 - name: uri-template
