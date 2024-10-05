@@ -5,7 +5,7 @@
 
 Material for the
 [GMT](https://www.generic-mapping-tools.org)/[PyGMT](https://www.pygmt.org)
-pre-conference workshop at the
+pre-conference workshop (PREWS9) at the
 [AGU24 Annual Meeting](https://www.agu.org/annual-meeting).
 
 **Presenters**
@@ -20,10 +20,10 @@ pre-conference workshop at the
 - Sunday 8 December 2024, 8:30-17:00 (EST) / 13:10-22:00 (UTC)
 - [Event Time Zone Converter](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AGU24+workshop%3A+Mastering+Geospatial+Visualizations+with+GMT%2FPyGMT&iso=20241208T0830&p1=263&ah=8&am=30)
 
-**Where**: Walter E. Washington Convention Center, 801 Allen Y. Lew Place NW,
+**Where**: Liberty N-P (Marriott Marquis), 901 Massachusetts Avenue NW,
 Washington, DC 20001, United States
 
-**Website**: TODO
+**Website**: https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736
 
 ## Schedule
 
