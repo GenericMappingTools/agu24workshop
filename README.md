@@ -27,9 +27,20 @@ Washington, DC 20001, United States
 
 ## Schedule
 
-|  Time (EST) | Event                                                 |
-|:------------|:------------------------------------------------------|
-| 08:30-17:00 | TODO                                                  |
+|  Time (EST) | Topic                                                   |
+|:-----------:|:-------------------------------------------------------:|
+| 08:30-08:40 | Introduction to GMT/PyGMT                               |
+| 08:40-08:55 | Installation                                            |
+| 08:55-09:45 | Tutorial 1 - First figure + Subplots/layout             |
+| 09:45-10:15 | **Break**                                               |
+| 10:15-11:00 | Tutorial 2 - Integration with Scientific Python Ecosystem: Pandas/Geopandas |
+| 11:00-11:45 | Tutorial 3 - Integration with Scientific Python Ecosystem: Xarray (grids)   |
+| 11:45-12:45 | **Lunch**                                               |
+| 12:45-13:30 | Tutorial 4 - Geophysics (Seismology)                    |
+| 13:30-14:15 | Tutorial 5 - 3D Topography (Planetary / Antarctic Maps) |
+| 14:15-14:45 | **Break**                                               |
+| 14:45-15:30 | Tutorial 6 - Animations with GMT                        |
+| 15:30-17:00 | Final exercises / mini-project                          |
 
 
 ## Getting started
