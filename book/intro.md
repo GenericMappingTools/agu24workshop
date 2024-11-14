@@ -6,8 +6,76 @@ This Jupyter book 📖 contains [GMT](https://docs.generic-mapping-tools.org/6.5
 [PyGMT](https://www.pygmt.org/v0.13.0) tutorials for producing maps 🗺️ and doing
 geospatial data processing 🌐
 
-```{tableofcontents}
-```
+::::{grid} 3
+
+:::{grid-item-card} Tutorial 1 - First figure + Subplots / layout
+:link: ./first-figure.html
+by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
++++
+{bdg-primary}`pygmt`
+{bdg-primary-line}`coast`
+{bdg-primary-line}`grdimage`
+{bdg-primary-line}`makecpt`
+{bdg-primary-line}`colorbar`
+{bdg-primary-line}`subplot`
+{bdg-secondary-line}`earth_relief`
+{bdg-secondary-line}`earth_age`
+:::
+
+:::{grid-item-card} Tutorial 2 - Integration with the Scientific Python Ecosystem: Pandas / GeoPandas
+:link: ./tut2_spec_pd_gpd.ipynb.html
+by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
++++
+{bdg-primary}`pygmt`
+{bdg-primary-line}`histogram`
+{bdg-primary-line}`legend`
+{bdg-primary-line}`plot`
+{bdg-secondary-line}`japan_quakes`
+{bdg-info}`pandas`
+{bdg-info}`geopandas`
+{bdg-info-line}`airbnb`
+:::
+
+:::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
+:link: ./tut3.html
+by [Max Jones](https://orcid.org/0000-0003-0180-8928)
++++
+{bdg-primary}`pygmt`
+{bdg-info}`xarray`
+:::
+
+:::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
+:link: ./tut4_geophysics.html
+by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
+and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
++++
+{bdg-primary}`pygmt`
+{bdg-primary-line}`xyz2grd`
+{bdg-primary-line}`grdcontour`
+{bdg-primary-line}`grdproject`
+{bdg-primary-line}`grdtrack`
+:::
+
+:::{grid-item-card} Tutorial 5 - Topography (Planetary Maps / 3-D Antarctic Maps)
+:link: ./tut5.html
+by [Wei Ji Leong](https://orcid.org/0000-0003-2354-1988)
+and [André Belém](https://orcid.org/0000-0002-8865-6180)
++++
+{bdg-primary}`pygmt`
+{bdg-primary-line}`grdview`
+{bdg-secondary-line}`earth_relief`
+:::
+
+:::{grid-item-card} Tutorial 6 - Animations
+:link: ./tut6.html
+by [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
++++
+{bdg-primary}`gmt`
+{bdg-primary-line}`movie`
+{bdg-info}`bash`
+:::
+
+::::
 
 Each tutorial is rendered on this website for easy viewing 👀, but they are all Jupyter
 notebooks designed to be ran interactively 💫. See the instructions below on how you can
