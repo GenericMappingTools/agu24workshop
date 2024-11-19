@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-# 3D Topography
+# 3D Topography 🏔️
 
 In this tutorial, let's use PyGMT to create 3D perspective plots of Digital Elevation
 Models (DEM) over Mars (the planet) and Antarctica (the continent)!
@@ -26,6 +26,8 @@ Models (DEM) over Mars (the planet) and Antarctica (the continent)!
 
 ```{code-cell}
 import pygmt
+import rioxarray
+import rioxarray.merge
 ```
 
 # 0️⃣ Mars relief data
@@ -81,6 +83,7 @@ fig.colorbar(frame=["a5000", "x+lElevation", "y+lm"])
 fig.show()
 ```
 
+
 # 1️⃣ Using `grdview` for 3D Visualization
 
 The [`grdview`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html)
@@ -130,3 +133,118 @@ Note that there are other things we have configured such as:
 - **frame** - A proper 3D map frame that consists of:
   - automatic tick marks on x and y axis (e.g. `xaf` and `yaf`)
   - z-axis tick marks every 5000m, plus a label (`z5000+lLabel`)
+
+
+# 2️⃣ Antarctic Digital Elevation Model
+
+For the next exercise, we'll pay a visit to the Antarctic continent, specifically,
+looking at Ross Island where the McMurdo Station (US) and Scott Base (NZ) is located.
+We'll learn how to drape some RGB imagery from Sentinel-2 onto some DEM tiles from the
+Reference Elevation Model of Antarctica (REMA).
+
+🔖 References:
+- https://www.pgc.umn.edu/data/rema/
+- {cite:t}`HowatReferenceElevationModel2019`
+
+## Getting a DEM mosaic
+
+The REMA tiles are distributed as several GeoTIFF files. Our area of interest over Ross
+Island spans two tiles, so we'll need to retrieve them both an mosaic them. There are
+several sources for REMA, but we'll use one sourced from
+https://registry.opendata.aws/pgc-rema/. The two specific tiles we'll get can be
+previewed at:
+
+- https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_33/17_33_32m_v2.0.json
+- https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_34/17_34_32m_v2.0.json
+
+```{tip}
+To find the tile number, go to https://rema.apps.pgc.umn.edu/ and zoom/pan to the area
+on the map you're interested in getting a DEM for. Click on the 'Identify' button on the
+bottom left, and a pop-up will tell you the tile ID number.
+```
+
+To open the GeoTIFF files, we can use
+[`rioxarray.open_rasterio`](https://corteva.github.io/rioxarray/stable/rioxarray.html#rioxarray.open_rasterio)
+which load the data into an `xarray.DataArray`.
+
+```{code-cell}
+tile_17_33 = rioxarray.open_rasterio(
+    filename="https://pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_33/17_33_32m_v2.0_dem.tif"
+)
+tile_17_34 = rioxarray.open_rasterio(
+    filename="https://pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_34/17_34_32m_v2.0_dem.tif"
+)
+```
+
+Next, we'll use
+[`rioxarray.merge.merge_arrays`](https://corteva.github.io/rioxarray/stable/rioxarray.html#rioxarray.merge.merge_arrays)
+to mosaic the two tiles together, and clip it to the spatial extent of Ross Island.
+
+```{code-cell}
+dem_mosaic = rioxarray.merge.merge_arrays(
+    dataarrays=[tile_17_33, tile_17_34],
+    bounds=(250_000, -1_370_000, 330_000, -1_300_000),  # xmin, ymin, xmax, ymax
+).isel(band=0)
+```
+
+Preview the DEM using
+[`pygmt.Figure.grdimage`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage)
+
+```{code-cell}
+fig = pygmt.Figure()
+fig.grdimage(grid=dem_mosaic, cmap="oleron", frame=True, shading=True)
+fig.colorbar()
+fig.show()
+```
+
+## Getting RGB imagery
+
+Next, let's get some Sentinel-2 optical satellite imagery, which we'll use to drape
+on top of the DEM later. We'll find some relatively cloud-free imagery that was taken on
+31 Oct 2024, specifically these ones that can be previewed at:
+
+- https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEU_20241109_0_L2A?.asset=asset-visual
+- https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEV_20241109_0_L2A?.asset=asset-visual
+
+```{tip}
+There are several online viewers based on Spatiotemporal Asset Catalog (STAC) APIs that
+allow you to search for satellite imagery. Some examples used here were:
+
+- EO Browser: https://apps.sentinel-hub.com/eo-browser/?zoom=10&lat=-77.05481&lng=167.27783&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX1%2Btyu1tAfovEieshimr1kMCjLpUXj8Xj1Se6ZoskUOY9xy0WSJyoWvbaHR3C7efJLFsAYvknrfc4Ofb3zqo9bjWhhIUGdtgIp6bitruPIvShiqwMbLG05FK&datasetId=S2L2A&fromTime=2024-11-09T00:00:00.000Z&toTime=2024-11-09T23:59:59.999Z&layerId=2_TONEMAPPED_NATURAL_COLOR&demSource3D=%22MAPZEN%22
+- Planetary Computer: https://planetarycomputer.microsoft.com/explore?c=167.8417%2C-77.5520&z=7.66&v=2&d=sentinel-2-l2a&m=cql%3A0bbe8c2e6820a52f6d134152bbbc4a3c&r=Natural+color&s=false%3A%3A100%3A%3Atrue&sr=desc&ae=0
+```
+
+We'll use `rioxarray` again to open the GeoTIFF files (using `overview_level=1` means
+we can get a lower resolution version), and to mosaic the two image tiles together.
+
+```{code-cell}
+tile_58CEU = rioxarray.open_rasterio(
+    filename="https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/58/C/EU/2024/11/S2B_58CEU_20241109_0_L2A/TCI.tif",
+    overview_level=1,
+)
+tile_58CEV = rioxarray.open_rasterio(
+    filename="https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/58/C/EV/2024/11/S2B_58CEV_20241109_0_L2A/TCI.tif",
+    overview_level=1,
+)
+
+rgb_mosaic = rioxarray.merge.merge_arrays(dataarrays=[tile_58CEU, tile_58CEV])
+rgb_image = rgb_mosaic.rio.reproject_match(match_data_array=dem_mosaic)
+rgb_image
+```
+
+# 3️⃣ Draping RGB image on 3D topography
+
+```{code-cell}
+fig = pygmt.Figure()
+with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
+    fig.grdview(
+        grid=dem_mosaic,  # DEM layer
+        drapegrid=rgb_image,  # Sentinel-2 image layer
+        surftype="i600",  # image draping with 600dpi resolution
+        perspective=[170, 20],  # view azimuth and angle
+        zscale="0.0005",  # vertical exaggeration
+        shading=True,  # hillshading
+        # frame="af",
+    )
+fig.show()
+```

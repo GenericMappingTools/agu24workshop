@@ -10,3 +10,4 @@ dependencies:
   # Optional dependencies
   - geopandas=1.0.1
   - jupyter-book=1.0.2
+  - rioxarray=0.17.0
