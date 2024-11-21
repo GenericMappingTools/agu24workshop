@@ -83,7 +83,6 @@ fig.colorbar(frame=["a5000", "x+lElevation", "y+lm"])
 fig.show()
 ```
 
-
 # 1️⃣ Using `grdview` for 3D Visualization
 
 The [`grdview`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html)
@@ -134,6 +133,9 @@ Note that there are other things we have configured such as:
   - automatic tick marks on x and y axis (e.g. `xaf` and `yaf`)
   - z-axis tick marks every 5000m, plus a label (`z5000+lLabel`)
 
+```{tip}
+ When choosing azimuth and elevation, always consider how the scene is illuminated. Azimuth angles that align with typical light directions (e.g., from the northwest) often provide the most natural and visually appealing shadows. Elevations between 20° and 45° typically create a good balance, highlighting terrain features without flattening or obscuring them. You can experiment with different combinations to best reveal the data's structure.
+```
 
 # 2️⃣ Antarctic Digital Elevation Model
 
@@ -231,6 +233,9 @@ rgb_mosaic = rioxarray.merge.merge_arrays(dataarrays=[tile_58CEU, tile_58CEV])
 rgb_image = rgb_mosaic.rio.reproject_match(match_data_array=dem_mosaic)
 rgb_image
 ```
+```{tip}
+When working with DEM mosaics and optical imagery, carefully consider the size and resolution of the data. High-resolution DEMs combined with complex topographies can demand substantial computational resources for processing and visualization. A practical tip is to start with lower resolutions to experiment with and refine the scene geometry (e.g., azimuth, elevation, and perspective). Once you are satisfied with the visualization setup, switch to higher-resolution data for the final rendering. This approach helps optimize computational efficiency while maintaining the quality of your analysis.
+```
 
 # 3️⃣ Draping RGB image on 3D topography
 
@@ -248,3 +253,6 @@ with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
     )
 fig.show()
 ```
+
+When setting the `zscale` for vertical exaggeration, choose a value that balances clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller `zscale` values) can emphasize elevation differences, making features more visible. However, for steep terrains, lower exaggeration helps maintain a natural appearance. You may use `shading=True` to add hillshading, which enhances the 3D effect by simulating light and shadows, making terrain features easier to interpret. Experiment with both parameters to find the best combination for your dataset and visualization goals.
+
