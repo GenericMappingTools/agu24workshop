@@ -12,9 +12,9 @@ kernelspec:
   name: python3
 ---
 
-# 3D Topography 🏔️
+# 3-D Topography 🏔️
 
-In this tutorial, let's use PyGMT to create 3D perspective plots of Digital Elevation
+In this tutorial, let's use PyGMT to create 3-D perspective plots of Digital Elevation
 Models (DEM) over Mars (the planet) and Antarctica (the continent)!
 
 🔖 References:
@@ -43,7 +43,7 @@ da_mars = pygmt.datasets.load_mars_relief(resolution="01d")
 da_mars
 ```
 
-## 2D map view
+## 2-D map view
 
 Here we can create a map of the entire Martian surface, using a
 [Mollweide projection](https://www.pygmt.org/v0.13.0/projections/misc/misc_mollweide.html).
@@ -66,7 +66,7 @@ A very interesting feature is [Olympus Mons](https://en.wikipedia.org/wiki/Olymp
 centered at approximately 19°N and 133°W, with a height of 22 km (14 miles) and
 approximately 700 km (435 miles) in diameter.
 
-Let's grab a higher resolution map over the volcano, and plot another 2D map!
+Let's grab a higher resolution map over the volcano, and plot another 2-D map!
 
 ```{code-cell}
 da_olympus = pygmt.datasets.load_mars_relief(
@@ -83,10 +83,10 @@ fig.colorbar(frame=["a5000", "x+lElevation", "y+lm"])
 fig.show()
 ```
 
-# 1️⃣ Using `grdview` for 3D Visualization
+# 1️⃣ Using `grdview` for 3-D Visualization
 
 The [`grdview`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html)
-function in PyGMT is a powerful tool for creating 3D perspective views of gridded data.
+method in PyGMT is a powerful tool for creating 3-D perspective views of gridded data.
 By adjusting azimuth and elevation parameters, you can change the viewpoint, helping you
 to highlight specific terrain features or data patterns. Let’s go through how these
 parameters affect the visualization.
@@ -99,7 +99,7 @@ parameters affect the visualization.
   with azimuth can help showcase specific aspects of the data from different angles.
 - **Elevation** (`elevation`): Controls the vertical angle of the view, with 90°
   representing a top-down perspective and lower values providing more of a side view.
-  Typically, values between 20° and 60° create a balanced 3D effect.
+  Typically, values between 20° and 60° create a balanced 3-D effect.
 
 **Example**: Using `perspective=[150, 45]` means `azimuth=150` and `elevation=45`, which
 gives you a southeast view, tilted at a moderate angle to capture both horizontal and
@@ -129,7 +129,7 @@ Note that there are other things we have configured such as:
 - **zsize** - vertical exaggeration as z-axis size, we used `4c` here for 4 centimeters
 - **surftype** - using `s` will just create a regular surface
 - **shading** - set to `True` to get the default hillshading effect
-- **frame** - A proper 3D map frame that consists of:
+- **frame** - A proper 3-D map frame that consists of:
   - automatic tick marks on x and y axis (e.g. `xaf` and `yaf`)
   - z-axis tick marks every 5000m, plus a label (`z5000+lLabel`)
 
@@ -237,7 +237,7 @@ rgb_image
 When working with DEM mosaics and optical imagery, carefully consider the size and resolution of the data. High-resolution DEMs combined with complex topographies can demand substantial computational resources for processing and visualization. A practical tip is to start with lower resolutions to experiment with and refine the scene geometry (e.g., azimuth, elevation, and perspective). Once you are satisfied with the visualization setup, switch to higher-resolution data for the final rendering. This approach helps optimize computational efficiency while maintaining the quality of your analysis.
 ```
 
-# 3️⃣ Draping RGB image on 3D topography
+# 3️⃣ Draping RGB image on 3-D topography
 
 ```{code-cell}
 fig = pygmt.Figure()
@@ -254,5 +254,5 @@ with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
 fig.show()
 ```
 
-When setting the `zscale` for vertical exaggeration, choose a value that balances clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller `zscale` values) can emphasize elevation differences, making features more visible. However, for steep terrains, lower exaggeration helps maintain a natural appearance. You may use `shading=True` to add hillshading, which enhances the 3D effect by simulating light and shadows, making terrain features easier to interpret. Experiment with both parameters to find the best combination for your dataset and visualization goals.
+When setting the `zscale` for vertical exaggeration, choose a value that balances clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller `zscale` values) can emphasize elevation differences, making features more visible. However, for steep terrains, lower exaggeration helps maintain a natural appearance. You may use `shading=True` to add hillshading, which enhances the 3-D effect by simulating light and shadows, making terrain features easier to interpret. Experiment with both parameters to find the best combination for your dataset and visualization goals.
 
