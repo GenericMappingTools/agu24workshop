@@ -239,6 +239,33 @@ When working with DEM mosaics and optical imagery, carefully consider the size a
 
 # 3️⃣ Draping RGB image on 3-D topography
 
+We have our RGB imagery from Sentinel-2, and a DEM from REMA, and now we can learn how
+to render the colour image on top of the 3-D topography! Once again, we will be using
+[`grdview`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html), but
+pass in some extra arguments:
+
+- **drapegrid**: This is the image that will be overlaid on top of the relief **grid**.
+- **surftype**: We are plotting an RGB image with 3-bands, so we will use `i` for an
+  image plot. It is also possible to append a number (e.g. `600`) as the dots-per-unit
+  resolution for the rasterization
+- **zscale**: vertical exaggeration factor, usually given as a fractional number.
+
+```{tip}
+When setting the `zscale` for vertical exaggeration, choose a value that balances
+clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller
+`zscale` values) can emphasize elevation differences, making features more visible.
+However, for steep terrains, lower exaggeration helps maintain a natural appearance. You
+may use `shading=True` to add hillshading, which enhances the 3-D effect by simulating
+light and shadows, making terrain features easier to interpret. Experiment with both
+parameters to find the best combination for your dataset and visualization goals.
+```
+
+This is how the code will look like. We'll also use
+[`pygmt.config`](https://www.pygmt.org/v0.13.0/api/generated/pygmt.config.html) to set
+[`PS_PAGE_COLOR`](https://docs.generic-mapping-tools.org/6.5/gmt.conf.html#term-PS_PAGE_COLOR)
+(the background colour) to an off-white colour instead of the default black to better
+match the polar landscape.
+
 ```{code-cell}
 fig = pygmt.Figure()
 with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
@@ -253,6 +280,3 @@ with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
     )
 fig.show()
 ```
-
-When setting the `zscale` for vertical exaggeration, choose a value that balances clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller `zscale` values) can emphasize elevation differences, making features more visible. However, for steep terrains, lower exaggeration helps maintain a natural appearance. You may use `shading=True` to add hillshading, which enhances the 3-D effect by simulating light and shadows, making terrain features easier to interpret. Experiment with both parameters to find the best combination for your dataset and visualization goals.
-
