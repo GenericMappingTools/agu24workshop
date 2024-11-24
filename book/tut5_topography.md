@@ -130,7 +130,7 @@ Note that there are other things we have configured such as:
 - **surftype** - using `s` will just create a regular surface
 - **shading** - set to `True` to get the default hillshading effect
 - **frame** - A proper 3-D map frame that consists of:
-  - automatic tick marks on x and y axis (e.g. `xaf` and `yaf`)
+  - automatic tick marks on x and y axis (e.g., `xaf` and `yaf`)
   - z-axis tick marks every 5000m, plus a label (`z5000+lLabel`)
 
 ```{tip}
