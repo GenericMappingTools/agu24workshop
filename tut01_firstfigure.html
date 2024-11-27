@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PyGMT - first figure and subplot &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut01_firstfigure';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <script>document.write(`<img src="_static/logo.webp" class="logo__image only-dark" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyGMT - first figure and subplot</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main?urlpath=lab/tree/book/tut01_firstfigure.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut01_firstfigure.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut01_firstfigure.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut01_firstfigure.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>PyGMT - first figure and subplot</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jing-hui-tong">Jing-Hui Tong</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#liam-toney-2021-iris-roses-unit05">Liam Toney, 2021 IRIS ROSES unit05</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">Coloring and add map element (frame and ticks)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">Basic projection types:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pygmt-first-figure-and-subplot">
+<h1>PyGMT - first figure and subplot<a class="headerlink" href="#pygmt-first-figure-and-subplot" title="Link to this heading">#</a></h1>
+<section id="preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">
+<h2>Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States<a class="headerlink" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states" title="Link to this heading">#</a></h2>
+<section id="jing-hui-tong">
+<h3>Jing-Hui Tong<a class="headerlink" href="#jing-hui-tong" title="Link to this heading">#</a></h3>
+<section id="reference">
+<h4>Reference:<a class="headerlink" href="#reference" title="Link to this heading">#</a></h4>
+</section>
+<section id="liam-toney-2021-iris-roses-unit05">
+<h4>Liam Toney, <a class="reference external" href="https://github.com/roseseismo/roses2021/blob/main/unit05/roses_mapping_lecture.ipynb">2021 IRIS ROSES unit05</a><a class="headerlink" href="#liam-toney-2021-iris-roses-unit05" title="Link to this heading">#</a></h4>
+</section>
+<section id="chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">
+<h4>Chih-Ming Lin, GMT courses for 2019 NTNUES summer program<a class="headerlink" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program" title="Link to this heading">#</a></h4>
+<hr class="docutils" />
+<p>This tutorial will cover the fundamental concepts behind making figures with PyGMT:</p>
+<ul class="simple">
+<li><p>drawing coastlines</p></li>
+<li><p>drawing a map frame</p></li>
+<li><p>choosing a projection</p></li>
+<li><p>downloading remote dataset</p></li>
+<li><p>imaging Earth’s relief</p></li>
+<li><p>creating colorbar</p></li>
+<li><p>subplot in a figure</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In Jupyter, some shortcut key will increase your learning curve!</p>
+<ul class="simple">
+<li><p>Run cell: <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">Enter</span></code></p></li>
+<li><p>Code indentation: <code class="docutils literal notranslate"><span class="pre">TAB</span></code></p></li>
+<li><p>Code dedenting: <code class="docutils literal notranslate"><span class="pre">Shift</span></code>+<code class="docutils literal notranslate"><span class="pre">TAB</span></code></p></li>
+<li><p>Writing single-line comments: beginning with <strong>#</strong> or <code class="docutils literal notranslate"><span class="pre">Command</span></code>+<code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p>Auto-completion: <code class="docutils literal notranslate"><span class="pre">TAB</span></code> while you writing some code</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="importing">
+<h2>Importing<a class="headerlink" href="#importing" title="Link to this heading">#</a></h2>
+<p>First thing to do is load PyGMT (<code class="docutils literal notranslate"><span class="pre">import</span></code>) so that we can access its functionality.</p>
+<p>PyGMT has a flat package layout, meaning that you can access everything in it with a single <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="starting-your-first-figure-pygmt-figure">
+<h2>Starting your first figure – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><a class="headerlink" href="#starting-your-first-figure-pygmt-figure" title="Link to this heading">#</a></h2>
+<p>Every figure must start with the creation of a pygmt.Figure</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have blank canvas in the <code class="docutils literal notranslate"><span class="pre">fig</span></code> variable now, we will overlay elements and show it on same <code class="docutils literal notranslate"><span class="pre">fig</span></code>.</p>
+</section>
+<section id="drawing-coastline-pygmt-figure-coast">
+<h2>Drawing coastline – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.coast.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><a class="headerlink" href="#drawing-coastline-pygmt-figure-coast" title="Link to this heading">#</a></h2>
+<p>Before plotting, you need to define</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Controlling the geographic or Cartesian extent of the figure. Regions are specified as lists of <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">xmax,</span> <span class="pre">ymin,</span> <span class="pre">ymax]</span></code>. Another shortcut, <code class="docutils literal notranslate"><span class="pre">region=&quot;g&quot;</span></code>, which specifies a <strong>global</strong> domain.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">projection</span></code>: Controlling the map projection. GMT (and therefore PyGMT) supports 31 different map projections, from basic Cartesian axes to <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/gallery/ex26.html">arbitrary vertical perspectives</a>.</p></li>
+</ol>
+<blockquote>
+<div><p>Determining the size of your images <code class="docutils literal notranslate"><span class="pre">10c</span></code>, the size will affect how large of your following fontsize and markersize</p>
+<blockquote>
+<div><p><strong>length unit</strong> <code class="docutils literal notranslate"><span class="pre">c</span></code>: centimeter (default)</p>
+</div></blockquote>
+</div></blockquote>
+<blockquote>
+<div><p>More projections please click <a class="reference external" href="https://www.pygmt.org/v0.13.0/projections/index.html">https://www.pygmt.org/v0.13.0/projections/index.html</a></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">65</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> 
+          <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
+          <span class="n">shorelines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># To see the figure looks like</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/13f0b994a9ed46393bf80406f01993b274dd37a147cee7ff87dc3557564e2586.png"><img alt="_images/13f0b994a9ed46393bf80406f01993b274dd37a147cee7ff87dc3557564e2586.png" src="_images/13f0b994a9ed46393bf80406f01993b274dd37a147cee7ff87dc3557564e2586.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>On Jupyter, <code class="docutils literal notranslate"><span class="pre">show</span></code> will embed a PNG of the figure directly into the notebook. But it can also open a PDF in an external viewer, which is probably what you want if you’re using a plain Python script. See the documentation for <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.show.html#pygmt.Figure.show"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.show</span></code></a> for more information.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>If the image size is too small, the default annotation fonts may appear disproportionately large, impacting the overall visual balance and readability.</p>
+</div>
+<section id="coloring-and-add-map-element-frame-and-ticks">
+<h3>Coloring and add map element (frame and ticks)<a class="headerlink" href="#coloring-and-add-map-element-frame-and-ticks" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>axis labels <code class="docutils literal notranslate"><span class="pre">WSne</span></code>: If an upper-case letter (W, S, N, E) is passed, the axis is plotted with tick marks and annotations. The lower-case version (w, s, n, e) plots the axis only with tick marks. To only plot the axis pass (l, b, t, r).</p></li>
+<li><p>annotations <code class="docutils literal notranslate"><span class="pre">a</span></code>: tick labels</p></li>
+<li><p>frame <code class="docutils literal notranslate"><span class="pre">f</span></code>: ticks</p></li>
+<li><p>grid <code class="docutils literal notranslate"><span class="pre">g</span></code>: grid line in the figure.
+<img alt="image.png" src="attachment:8fe9e8b5-1a79-4e94-97a1-ef674ce63807.png" /></p></li>
+</ol>
+<blockquote>
+<div><p>More detail for frame <a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/basics/frames.html">https://www.pygmt.org/v0.13.0/tutorials/basics/frames.html</a></p>
+</div></blockquote>
+<blockquote>
+<div><p>More colors <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/gmtcolors.html#list-of-colors">https://docs.generic-mapping-tools.org/6.5/gmtcolors.html#list-of-colors</a></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span><span class="n">water</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> 
+          <span class="n">land</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span>
+          <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne&quot;</span><span class="p">,</span><span class="s2">&quot;a10f5g5&quot;</span><span class="p">])</span> 
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/863cc90e60d69e0edf6f3996bbb6dcd12786ffbaa18c6713ac3b2268855236c3.png"><img alt="_images/863cc90e60d69e0edf6f3996bbb6dcd12786ffbaa18c6713ac3b2268855236c3.png" src="_images/863cc90e60d69e0edf6f3996bbb6dcd12786ffbaa18c6713ac3b2268855236c3.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="note">
+<h3>NOTE<a class="headerlink" href="#note" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>In GMT/PyGMT, plotting is achieved by layering new elements, meaning that each new element is stacked on top of the previous layers.
+Therefore, if you draw a black line in an earlier layer and then add a new layer (such as color filling), these new layers might cover the original black line, making it invisible.</p></li>
+<li><p>In a <strong>same figure</strong>, once you define region/projection before, you don’t need to define again.</p></li>
+</ol>
+</section>
+</section>
+<section id="downloading-global-dataset-pygmt-datasets">
+<h2>Downloading global dataset – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/index.html#datasets"><code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a><a class="headerlink" href="#downloading-global-dataset-pygmt-datasets" title="Link to this heading">#</a></h2>
+<p>Before you access remote dataset from PyGMT, you need to define</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Region of interest, format is [xmin, xmax, ymin, ymax]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resolution</span></code>: Grid resolution. The suffix <strong>d</strong> (arc-degrees), <strong>m</strong> (arc-minutes), and <strong>s</strong> (arc-seconds).</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;03m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+
+<span class="c1"># You also can access then cut the grid</span>
+<span class="c1"># and this way can save grid (outgrid) as a file in your folder. </span>
+<span class="c1"># https://www.generic-mapping-tools.org/remote-datasets/</span>
+
+<span class="c1"># pygmt.grdcut(grid=&quot;@earth_relief_03m&quot;,  </span>
+<span class="c1">#              region=region,</span>
+<span class="c1">#              outgrid=&quot;Alaska.grd&quot;, </span>
+<span class="c1">#              ) </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: SRTM15 Earth Relief v2.6 at 03x03 arc minutes reduced by Gaussian Cartesian filtering (15.7 km fullwidth) [Tozer et al., 2019].
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]:   -&gt; Download 90x90 degree grid tile (earth_relief_03m_g): N00W180
+</pre></div>
+</div>
+</div>
+</div>
+<p>A way to confirm your grid information <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdinfo.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdinfo</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pygmt</span><span class="o">.</span><span class="n">grdinfo</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>: Title: 
+: Command: 
+: Remark: 
+: Gridline node registration used [Geographic grid]
+: Grid file format: nf = GMT netCDF format (32-bit float), CF-1.7
+: x_min: -180 x_max: -150 x_inc: 0.05 (3 min) name: x n_columns: 601
+: y_min: 50 y_max: 65 y_inc: 0.05 (3 min) name: y n_rows: 301
+: v_min: -7521.5 v_max: 4634 name: z
+: scale_factor: 1 add_offset: 0
+: format: classic
+: Default CPT: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-grid-pygmt-figure-grdimage">
+<h2>Visualizing grid – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a><a class="headerlink" href="#visualizing-grid-pygmt-figure-grdimage" title="Link to this heading">#</a></h2>
+<p>Project and plot grids or images</p>
+<p>Now, we start with a new canvas. So you need to set up region/projection again!</p>
+<p>Before imaging, you need to define</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>: Specifies the grid file (e.g., a topographic grid) from which data will be sampled.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+             <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> 
+             <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span><span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1p,black&quot;</span><span class="p">,</span>
+          <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne&quot;</span><span class="p">,</span> <span class="s2">&quot;a5f2.5&quot;</span><span class="p">])</span> 
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png"><img alt="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png" src="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="customizing-colorbar-pygmt-makecpt">
+<h2>Customizing colorbar – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.makecpt.html"><code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a><a class="headerlink" href="#customizing-colorbar-pygmt-makecpt" title="Link to this heading">#</a></h2>
+<p>Making GMT color palette tables (CPT).</p>
+<p>You need to define:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmap</span></code>: Choosing a colormap to image your grid/dataset.</p></li>
+</ol>
+<blockquote>
+<div><p>More colormap resources <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/_images/GMT_App_M_1a.png">https://docs.generic-mapping-tools.org/6.5/_images/GMT_App_M_1a.png</a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">series</span></code>: Defining the range of the CPT by giving the lowest and highest z-value. e.g., [0, 500] (without interval) or [0, 500, 10] (defining the interval)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;geo&quot;</span><span class="p">,</span> 
+              <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span>
+              <span class="n">continuous</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="c1"># The file name with extension .cpt to store the generated CPT file</span>
+              <span class="n">output</span><span class="o">=</span><span class="s2">&quot;eleva.cpt&quot;</span><span class="p">)</span> 
+                
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, re-plot the figure with new colormap and …</p>
+</section>
+<section id="adding-pygmt-figure-colorbar">
+<h2>Adding <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.colorbar.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a><a class="headerlink" href="#adding-pygmt-figure-colorbar" title="Link to this heading">#</a></h2>
+<p>Plot a gray or color scale-bar on maps.</p>
+<p>You need to define,</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmap</span></code>: File name of a CPT file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: Setting color bar boundary frame, labels, and axes attributes</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>+l</strong> given colorbar title</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position</span></code>: Defining the reference point on the map for the color scale</p>
+<blockquote>
+<div><p>Four coordinate systems:</p>
+<ul class="simple">
+<li><p><strong>g</strong> for map (user) coordinates</p></li>
+<li><p><strong>j</strong> or <strong>J</strong> for setting reference point via a 2-character justification code</p></li>
+<li><p><strong>x</strong> for plot coordinates: x/y (specific position)</p></li>
+<li><p><strong>n</strong> for normalized (0-1) coordinates</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><p>Others</p>
+<ul class="simple">
+<li><p><strong>+w</strong> for length and width of the color bar. e.g., +w10c/0.5c</p></li>
+<li><p><strong>+h</strong> horizontal colorbar, if you want to plot vertical one, use <strong>+v</strong></p></li>
+<li><p><strong>+m</strong> for colorbar title position</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p><img alt="image.png" src="attachment:a957cbf2-7879-4ae6-aa08-d8c734642874.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+             <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> 
+             <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
+             <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;eleva.cpt&quot;</span><span class="p">)</span> 
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span><span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1p,black&quot;</span><span class="p">,</span>
+          <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne&quot;</span><span class="p">,</span> <span class="s2">&quot;a5f2.5&quot;</span><span class="p">])</span> 
+
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;eleva.cpt&quot;</span><span class="p">,</span> 
+             <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a2000f500+lElevation (m)&quot;</span><span class="p">,</span>
+             <span class="n">position</span><span class="o">=</span><span class="s2">&quot;JBC+w10c/0.4c+mc+h&quot;</span><span class="p">,)</span> 
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/d9e3a5b11d774ff087afeb95b8bfd3e7974afe8b1e8f51d12a4736419cdc6974.png"><img alt="_images/d9e3a5b11d774ff087afeb95b8bfd3e7974afe8b1e8f51d12a4736419cdc6974.png" src="_images/d9e3a5b11d774ff087afeb95b8bfd3e7974afe8b1e8f51d12a4736419cdc6974.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">
+<h2>Creating multi-panel figures in a canvas – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.subplot.html#pygmt.Figure.subplot"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.set_panel.html#pygmt.Figure.set_panel"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><a class="headerlink" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel" title="Link to this heading">#</a></h2>
+<p>You need to define the figure layout with figure.subplot:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nrows</span></code>: Number of vertical rows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncols</span></code>: Number of horizontal columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">figsize</span></code> or <code class="docutils literal notranslate"><span class="pre">subsize</span></code>: Entire figure dimensions, e.g., [width, height]</p></li>
+</ol>
+<p>Second, setting each plot with figure.set_panel:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">panel</span></code>: Setting the current subplot panel to plot on. e.g., <strong>index</strong> or [<strong>row</strong>, <strong>col</strong>]</p></li>
+</ol>
+<p><img alt="image.png" src="attachment:0572d821-8214-4ebf-8b1f-f521ffdd201d.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">grid_crust_age</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_age</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;30m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">210</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">65</span><span class="p">])</span>
+
+<span class="k">with</span> <span class="n">fig</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;18c&quot;</span><span class="p">,</span><span class="s2">&quot;12c&quot;</span><span class="p">]</span>
+<span class="p">):</span>
+
+    <span class="k">with</span> <span class="n">fig</span><span class="o">.</span><span class="n">set_panel</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+        <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+                     <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> 
+                     <span class="c1"># &quot;?&quot; means that map width automatically determined from the subplot width.</span>
+                     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M?&quot;</span><span class="p">,</span> 
+                     <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;eleva.cpt&quot;</span><span class="p">)</span> 
+        <span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span><span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1p,black&quot;</span><span class="p">,</span>
+                  <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne&quot;</span><span class="p">,</span> <span class="s2">&quot;a5f2.5&quot;</span><span class="p">])</span> 
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;eleva.cpt&quot;</span><span class="p">,</span> 
+                     <span class="n">position</span><span class="o">=</span><span class="s2">&quot;JBC+w8c/0.3c+mc+h&quot;</span><span class="p">,</span> 
+                     <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a2000f500+lElevation (m)&quot;</span><span class="p">)</span> 
+
+    <span class="k">with</span> <span class="n">fig</span><span class="o">.</span><span class="n">set_panel</span><span class="p">(</span><span class="n">panel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+
+        <span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;@earth_age.cpt&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">340</span><span class="p">])</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid_crust_age</span><span class="p">,</span>
+                     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">210</span><span class="p">,</span> <span class="o">-</span><span class="mi">150</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> 
+                     <span class="c1"># changing projection method</span>
+                     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;L-180/55/35/65/?&quot;</span><span class="p">,</span>
+                     <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a5f2.5&quot;</span><span class="p">,</span><span class="s2">&quot;SEnw&quot;</span><span class="p">],</span>
+                     <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+        
+        <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;JBC+w6c/0.3c+mc+h&quot;</span><span class="p">,</span> 
+                     <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a40f20+lSeafloor crustal asge (Ma)&quot;</span><span class="p">)</span> 
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]: EarthByte Earth Seafloor Age at 30x30 arc minutes reduced by Gaussian Cartesian filtering (157.3 km fullwidth) [Seton et al., 2020].
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]:   -&gt; Download grid file [205K]: earth_age_30m_g.grd
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png"><img alt="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" src="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" style="width: 500px;" /></a>
+</div>
+</div>
+<section id="basic-projection-types">
+<h3>Basic projection types:<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h3>
+<p><img alt="image.png" src="attachment:4cb14ffd-1415-4ab6-ac30-408a1f5913be.png" /></p>
+<p>By default, PyGMT will use an equidistant cylindrical projection if the region seems to be geographic longitude and latitude.</p>
+<ol class="arabic simple">
+<li><p>Mercator Projection – mapping the Earth onto a cylinder, preserving angles, making it useful for navigational purposes.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Use Case: Ideal for world maps where direction needs to be preserved, such as marine navigation. This projection distorts size, especially near the poles.</p></li>
+<li><p>GMT Command: <strong>M[lon]/[lat]</strong>, specifying the central longitude and latitude.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Conic Projection – projecting the Earth onto a cone.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Use Case: for regional maps, especially in mid-latitude countries, where distortion of shapes and areas is minimized within specific latitude ranges.</p></li>
+<li><p>GMT Command: <strong>L[lon0]/[lat0]/[lat1]/[lat2]</strong>, where lon0 and lat0 define the <strong>projection center</strong> and lat1/lat2 define the <strong>standard parallels</strong>.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Azimuthal Projection – projecting the Earth onto a plane, preserving directions from a central point.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Use Case: Suitable for mapping polar regions or any area where direction from a central point is essential.</p></li>
+<li><p>GMT Command: <strong>E[lon]/[lat]</strong>, with lon and lat defining the central point.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jing-hui-tong">Jing-Hui Tong</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#liam-toney-2021-iris-roses-unit05">Liam Toney, 2021 IRIS ROSES unit05</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">Coloring and add map element (frame and ticks)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">Basic projection types:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
