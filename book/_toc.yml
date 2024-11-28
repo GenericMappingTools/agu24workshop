@@ -13,4 +13,5 @@ parts:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
-  - file: tut4_geophysics
+  - file: tut01_firstfigure
+  - file: tut04_geophysics
