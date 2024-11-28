@@ -1,0 +1,1309 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 2 - scientific Python ecosystem: pandas and GeoPandas &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut02_spec_pd_gpd';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="PyGMT - first figure and subplot" href="tut01_firstfigure.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <script>document.write(`<img src="_static/logo.webp" class="logo__image only-dark" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main?urlpath=lab/tree/book/tut02_spec_pd_gpd.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut02_spec_pd_gpd.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut02_spec_pd_gpd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut02_spec_pd_gpd.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 2 - scientific Python ecosystem: pandas and GeoPandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">1. <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-pandas-dataframe">1.1 Tabular data - <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-histogram">1.2 Create a Cartesian histogram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geographical-map-of-the-earthquakes">1.3 Create a geographical map of the earthquakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geopandas">2. <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-geometry">2.1 Line geometry</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aspatial-data-geopandas-geodataframe-with-line-geometry">2.1.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with line geometry</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geographical-map-of-the-rivers">2.1.2 Create a geographical map of the rivers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-subsets-of-the-rivers-differently">2.1.3 Plot subsets of the rivers differently</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-rivers-with-color-coding-for-the-river-length">2.1.4 Plot the rivers with color-coding for the river length</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-geometry">2.2 Polygon geometry</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aspatial-data-geopandas-geodataframe-with-polygon-geometry">2.2.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with polygon geometry</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-choropleth-map">2.2.2 Create a choropleth map</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">3. Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-2-1-4-plot-the-rivers-with-color-coding-for-the-river-length">4. Orientation / suggestion for “2.1.4 Plot the rivers with color-coding for the river length”</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-2-scientific-python-ecosystem-pandas-and-geopandas">
+<h1><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code><a class="headerlink" href="#tutorial-2-scientific-python-ecosystem-pandas-and-geopandas" title="Link to this heading">#</a></h1>
+<p>In this tutorial we will learn using</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/"><strong>pandas</strong></a>: <strong>tabular data</strong> stored in <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>s</p></li>
+<li><p><a class="reference external" href="https://geopandas.org/en/stable/docs.html"><strong>GeoPandas</strong></a>: <strong>aspatial data</strong> stored in <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>s</p></li>
+</ol>
+<p>within <a class="reference external" href="https://www.pygmt.org"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> to create histograms and different maps.</p>
+<hr class="docutils" />
+<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<ul class="simple">
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
+<li><p>Recommended version: PyGMT v0.13.0 with GMT 6.5.0</p></li>
+</ul>
+<section id="general-stuff">
+<h2>0. General stuff<a class="headerlink" href="#general-stuff" title="Link to this heading">#</a></h2>
+<p>Import the required packages, besides <a class="reference external" href="https://www.pygmt.org"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> itself, we use <a class="reference external" href="https://pandas.pydata.org/docs/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> and <a class="reference external" href="https://geopandas.org/en/stable/docs.html"><code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+
+<span class="c1"># Use a resolution of only 150 dpi for the images within the Jupyter notebook, to keep the file small</span>
+<span class="n">img_dpi</span> <span class="o">=</span> <span class="mi">150</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pandas">
+<h2>1. <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#pandas" title="Link to this heading">#</a></h2>
+<section id="tabular-data-pandas-dataframe">
+<h3>1.1 Tabular data - <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code><a class="headerlink" href="#tabular-data-pandas-dataframe" title="Link to this heading">#</a></h3>
+<p>Use an example dataset with tabular data provided by <code class="docutils literal notranslate"><span class="pre">PyGMT</span></code> and load it into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. This dataset contains earthquakes in the area of Japan.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_jp_eqs</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;japan_quakes&quot;</span><span class="p">)</span>
+<span class="n">df_jp_eqs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>depth_km</th>
+      <th>magnitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>4</td>
+      <td>49.77</td>
+      <td>149.29</td>
+      <td>489</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>9</td>
+      <td>39.90</td>
+      <td>141.68</td>
+      <td>67</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>9</td>
+      <td>39.82</td>
+      <td>141.64</td>
+      <td>84</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>14</td>
+      <td>42.56</td>
+      <td>142.85</td>
+      <td>102</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>16</td>
+      <td>42.79</td>
+      <td>145.10</td>
+      <td>54</td>
+      <td>5.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="create-a-cartesian-histogram">
+<h3>1.2 Create a Cartesian histogram<a class="headerlink" href="#create-a-cartesian-histogram" title="Link to this heading">#</a></h3>
+<p>First we create a Cartesian histogram for the moment magnitude distribution of all earthquakes in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_min</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">mag_min</span><span class="p">)</span>
+<span class="n">mag_max</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">mag_max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+6.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Choose the bin width of the bars; feel free to play around with this value</span>
+<span class="n">step_histo</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">],</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;X10c&quot;</span><span class="p">,</span>
+    <span class="c1"># Determine y range automatically</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="n">mag_min</span> <span class="o">-</span> <span class="n">step_histo</span><span class="p">,</span> <span class="n">mag_max</span> <span class="o">+</span> <span class="n">step_histo</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="c1"># Define the frame, add labels to the x-axis and y-axis</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne&quot;</span><span class="p">,</span> <span class="s2">&quot;x+lmoment magnitude&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lcounts&quot;</span><span class="p">],</span>
+    <span class="c1"># Generate evenly spaced bins</span>
+    <span class="n">series</span><span class="o">=</span><span class="n">step_histo</span><span class="p">,</span>
+    <span class="c1"># Fill bars with color &quot;orange&quot;</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+    <span class="c1"># Draw gray outlines with a width of 1 point</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;1p,gray&quot;</span><span class="p">,</span>
+    <span class="c1"># Choose histogram type 0, i.e., counts [Default]</span>
+    <span class="n">histtype</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png"><img alt="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png" src="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png" style="width: 500px;" /></a>
+</div>
+</div>
+<p>Use code example above as orientation, and create a similar histogram showing the hypocentral depth distribution for all earthquakes in the dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code (:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For details on creating Cartesian histograms you may find the tutorial <a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/advanced/cartesian_histograms.html"><strong>Cartesian histograms</strong></a> helpful.</p>
+</section>
+<section id="create-a-geographical-map-of-the-earthquakes">
+<h3>1.3 Create a geographical map of the earthquakes<a class="headerlink" href="#create-a-geographical-map-of-the-earthquakes" title="Link to this heading">#</a></h3>
+<p>Now it’s time to create a geographical map showing the earthquakes. You can start with using <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.coast.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.plot.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.plot</span></code></a>. For plotting the earthquakes as size (moment magnitude) and color (hypocentral depth) coded circles on top of the map please follow the tutorial <a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/basics/plot.html"><strong>Plotting data points</strong></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code (:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="geopandas">
+<h2>2. <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code><a class="headerlink" href="#geopandas" title="Link to this heading">#</a></h2>
+<section id="line-geometry">
+<h3>2.1 Line geometry<a class="headerlink" href="#line-geometry" title="Link to this heading">#</a></h3>
+<p>Features which can be represented as a <strong>line geometry</strong> are for example rivers, roads, national boundaries, shorlines, and any kind of profiles.</p>
+<section id="aspatial-data-geopandas-geodataframe-with-line-geometry">
+<h4>2.1.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with line geometry<a class="headerlink" href="#aspatial-data-geopandas-geodataframe-with-line-geometry" title="Link to this heading">#</a></h4>
+<p>First we download some data into in a <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>. This dataset contains European rivers with its length and name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+    <span class="s2">&quot;https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/&quot;</span> <span class="o">+</span> \
+    <span class="s2">&quot;zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/&quot;</span> <span class="o">+</span> \
+    <span class="s2">&quot;at_download/file/wise_large_rivers.zip&quot;</span>
+<span class="p">)</span>
+<span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NAME</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Danube</td>
+      <td>2.770357e+06</td>
+      <td>MULTILINESTRING ((4185683.29 2775788.04, 41861...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Douro</td>
+      <td>8.162452e+05</td>
+      <td>MULTILINESTRING ((2764963.81 2199037.624, 2766...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ebro</td>
+      <td>8.269909e+05</td>
+      <td>MULTILINESTRING ((3178371.814 2315100.781, 317...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elbe</td>
+      <td>1.087288e+06</td>
+      <td>MULTILINESTRING ((4235352.373 3422319.986, 423...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Guadalquivir</td>
+      <td>5.997583e+05</td>
+      <td>MULTILINESTRING ((2859329.283 1682737.074, 286...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Have a look at the values in the geometry column. The coordinates are currently not given in the geographic coordinate reference system (longitude/latitude) and have to be converted. This can be done directly with <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">crs</span>
+<span class="n">gpd_rivers</span> <span class="o">=</span> <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span>
+<span class="n">gpd_rivers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NAME</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Danube</td>
+      <td>2.770357e+06</td>
+      <td>MULTILINESTRING ((8.1846 48.0807, 8.19049 48.0...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Douro</td>
+      <td>8.162452e+05</td>
+      <td>MULTILINESTRING ((-8.67141 41.14934, -8.64362 ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ebro</td>
+      <td>8.269909e+05</td>
+      <td>MULTILINESTRING ((-4.05971 42.97715, -4.06841 ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elbe</td>
+      <td>1.087288e+06</td>
+      <td>MULTILINESTRING ((8.69715 53.90109, 8.72716 53...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Guadalquivir</td>
+      <td>5.997583e+05</td>
+      <td>MULTILINESTRING ((-6.37899 36.80363, -6.34806 ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="create-a-geographical-map-of-the-rivers">
+<h4>2.1.2 Create a geographical map of the rivers<a class="headerlink" href="#create-a-geographical-map-of-the-rivers" title="Link to this heading">#</a></h4>
+<p>Let’s plot the rivers represented on top of a map. The <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code> can be directly passed to the <code class="docutils literal notranslate"><span class="pre">data</span></code> parameter of <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.plot.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.plot</span></code></a>. Use the <code class="docutils literal notranslate"><span class="pre">pen</span></code> parameter to adjust the lines. The string argument has the form “<em>width</em>,<em>color</em>,<em>style</em>”. Different line styles are explained in the Gallery example <a class="reference external" href="https://www.pygmt.org/v0.13.0/gallery/lines/linestyles.html"><strong>Line styles</strong></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">57</span><span class="p">],</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
+    <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,steelblue,solid&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png"><img alt="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png" src="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="plot-subsets-of-the-rivers-differently">
+<h4>2.1.3 Plot subsets of the rivers differently<a class="headerlink" href="#plot-subsets-of-the-rivers-differently" title="Link to this heading">#</a></h4>
+<p>Now we want to filter the dataset based on the river length and plot the subsets differently.</p>
+<p>To indicate the different subsets adding a legend to the plot is helpful. Therefore, we specify the text for the legend entries via the <code class="docutils literal notranslate"><span class="pre">label</span></code> parameter of <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.plot.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.plot</span></code></a>. Note, that for the first plotted element, additionally the heading (<strong>+H</strong>) and the font size of the heading (<strong>+f</strong>) are specified. Placing the legend on the figure is done via the <code class="docutils literal notranslate"><span class="pre">position</span></code> parameter of <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.legend.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.legend</span></code></a>. A box can be added via the <code class="docutils literal notranslate"><span class="pre">box</span></code> parameter. For further explanation feel free to look at our gallery example <a class="reference external" href="https://www.pygmt.org/v0.13.0/gallery/embellishments/legend.html"><strong>Legend</strong></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the dataset into two subsets of shorter and longer rivers</span>
+<span class="c1"># Feel free to play around with the limit</span>
+<span class="n">len_limit</span> <span class="o">=</span> <span class="mi">700000</span>  <span class="c1"># in meters</span>
+<span class="n">gpd_rivers_short</span> <span class="o">=</span> <span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">len_limit</span><span class="p">]</span>
+<span class="n">gpd_rivers_long</span> <span class="o">=</span> <span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">len_limit</span><span class="p">]</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
+    <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot the subsets differently and specify the text for the legend entries</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_short</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;shorter </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m+Hriver length+f9p&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_long</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,darkred&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;longer </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+
+<span class="c1"># Place the legend at the Top Left corner with an offset of 0.1 centimeters from the map frame</span>
+<span class="c1"># Add a box with semi-transparent (@30) white fill (+g) and a 0.1-points thick gray outline (+p)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;jTL+o0.1c&quot;</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="s2">&quot;+gwhite@30+p0.1p,gray&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png"><img alt="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png" src="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="plot-the-rivers-with-color-coding-for-the-river-length">
+<h4>2.1.4 Plot the rivers with color-coding for the river length<a class="headerlink" href="#plot-the-rivers-with-color-coding-for-the-river-length" title="Link to this heading">#</a></h4>
+<p>Use the gallery example <a class="reference external" href="https://www.pygmt.org/v0.13.0/gallery/lines/line_custom_cpt.html"><strong>Line colors with a custom CPT</strong></a> to plot the rivers with color-coding for the river length.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code (:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="polygon-geometry">
+<h3>2.2 Polygon geometry<a class="headerlink" href="#polygon-geometry" title="Link to this heading">#</a></h3>
+<p>Any kind of areas, like continents, countries, and states can be stored as <strong>polygon geometry</strong>.</p>
+<section id="aspatial-data-geopandas-geodataframe-with-polygon-geometry">
+<h4>2.2.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with polygon geometry<a class="headerlink" href="#aspatial-data-geopandas-geodataframe-with-polygon-geometry" title="Link to this heading">#</a></h4>
+<p>Again we download some data into in a <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code>. This dataset contains information regarding airbnb rentals, socioeconomics, and crime in Chicagos.
+This time we are lucky and the data is directly provided in the geographic coordinate reference system (longitude/latitude) and no further coordinate transformation is needed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_airbnb</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;https://geodacenter.github.io/data-and-lab/data/airbnb.zip&quot;</span><span class="p">)</span>
+<span class="n">gdf_airbnb</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>community</th>
+      <th>shape_area</th>
+      <th>shape_len</th>
+      <th>AREAID</th>
+      <th>response_r</th>
+      <th>accept_r</th>
+      <th>rev_rating</th>
+      <th>price_pp</th>
+      <th>room_type</th>
+      <th>num_spots</th>
+      <th>...</th>
+      <th>crowded</th>
+      <th>dependency</th>
+      <th>without_hs</th>
+      <th>unemployed</th>
+      <th>income_pc</th>
+      <th>harship_in</th>
+      <th>num_crimes</th>
+      <th>num_theft</th>
+      <th>population</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DOUGLAS</td>
+      <td>46004621.1581</td>
+      <td>31027.0545098</td>
+      <td>35</td>
+      <td>98.771429</td>
+      <td>94.514286</td>
+      <td>87.777778</td>
+      <td>78.157895</td>
+      <td>1.789474</td>
+      <td>38</td>
+      <td>...</td>
+      <td>1.8</td>
+      <td>30.7</td>
+      <td>14.3</td>
+      <td>18.2</td>
+      <td>23791</td>
+      <td>47</td>
+      <td>5013</td>
+      <td>1241</td>
+      <td>18238</td>
+      <td>POLYGON ((-87.60914 41.84469, -87.60915 41.844...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>OAKLAND</td>
+      <td>16913961.0408</td>
+      <td>19565.5061533</td>
+      <td>36</td>
+      <td>99.200000</td>
+      <td>90.105263</td>
+      <td>88.812500</td>
+      <td>53.775000</td>
+      <td>1.850000</td>
+      <td>20</td>
+      <td>...</td>
+      <td>1.3</td>
+      <td>40.4</td>
+      <td>18.4</td>
+      <td>28.7</td>
+      <td>19252</td>
+      <td>78</td>
+      <td>1306</td>
+      <td>311</td>
+      <td>5918</td>
+      <td>POLYGON ((-87.59215 41.81693, -87.59231 41.816...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>FULLER PARK</td>
+      <td>19916704.8692</td>
+      <td>None</td>
+      <td>37</td>
+      <td>68.000000</td>
+      <td>NaN</td>
+      <td>91.750000</td>
+      <td>84.000000</td>
+      <td>1.833333</td>
+      <td>6</td>
+      <td>...</td>
+      <td>3.2</td>
+      <td>44.9</td>
+      <td>26.6</td>
+      <td>33.9</td>
+      <td>10432</td>
+      <td>97</td>
+      <td>1764</td>
+      <td>383</td>
+      <td>2876</td>
+      <td>POLYGON ((-87.6288 41.80189, -87.62879 41.8017...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>GRAND BOULEVARD</td>
+      <td>48492503.1554</td>
+      <td>28196.8371573</td>
+      <td>38</td>
+      <td>94.037037</td>
+      <td>83.615385</td>
+      <td>92.750000</td>
+      <td>119.533333</td>
+      <td>1.533333</td>
+      <td>30</td>
+      <td>...</td>
+      <td>3.3</td>
+      <td>39.5</td>
+      <td>15.9</td>
+      <td>24.3</td>
+      <td>23472</td>
+      <td>57</td>
+      <td>6416</td>
+      <td>1428</td>
+      <td>21929</td>
+      <td>POLYGON ((-87.60671 41.81681, -87.6067 41.8165...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KENWOOD</td>
+      <td>29071741.9283</td>
+      <td>23325.1679062</td>
+      <td>39</td>
+      <td>92.542857</td>
+      <td>88.142857</td>
+      <td>90.656250</td>
+      <td>77.991453</td>
+      <td>1.615385</td>
+      <td>39</td>
+      <td>...</td>
+      <td>2.4</td>
+      <td>35.4</td>
+      <td>11.3</td>
+      <td>15.7</td>
+      <td>35911</td>
+      <td>26</td>
+      <td>2713</td>
+      <td>654</td>
+      <td>17841</td>
+      <td>POLYGON ((-87.59215 41.81693, -87.59215 41.816...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="create-a-choropleth-map">
+<h4>2.2.2 Create a choropleth map<a class="headerlink" href="#create-a-choropleth-map" title="Link to this heading">#</a></h4>
+<p>Here we are going to create a so-called <strong>choropleth map</strong>. Such a visualization is helpful to show a quantity which vary between subregions of a study area, e.g., countries or states. The dataset contains several columns, here we will focus on the column <code class="docutils literal notranslate"><span class="pre">&quot;population&quot;</span></code>, but feel free to modify the code below and use another quantity for the color-coding!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popul_min</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">popul_min</span><span class="p">)</span>
+<span class="n">popul_max</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">popul_max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2876
+98514
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># frame=True adds a frame using the default settings</span>
+<span class="c1"># Use &quot;rltb&quot; (right, left, top, bottom) to plot no frame at all which</span>
+<span class="c1"># can be useful when inserting the figure within a document</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">88</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.5</span><span class="p">,</span> <span class="mf">41.62</span><span class="p">,</span> <span class="mf">42.05</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Set up colormap</span>
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/bilbao&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">popul_min</span><span class="p">,</span> <span class="n">popul_max</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="c1"># Add vertical colorbar at left side</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="s2">&quot;x+lpopulation&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;jLM+v&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the polygons with color-coding for the population</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">gdf_airbnb</span><span class="p">,</span> 
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.2p,gray10&quot;</span><span class="p">,</span> 
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;+z&quot;</span><span class="p">,</span> 
+    <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">aspatial</span><span class="o">=</span><span class="s2">&quot;Z=population&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png"><img alt="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png" src="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="additional-comments">
+<h2>3. Additional comments<a class="headerlink" href="#additional-comments" title="Link to this heading">#</a></h2>
+<p>Some helpful and interesting aspects:</p>
+<ul class="simple">
+<li><p>Use suitable colormaps for your data: <a class="reference external" href="https://www.fabiocrameri.ch/colourmaps/"><strong>Scientific colourmaps by Fabio Crameri</strong></a>, see also the publications <a class="reference external" href="https://doi.org/10.1002/cpz1.1126">Crameri et al. 2024</a> and <a class="reference external" href="https://doi.org/10.1038/s41467-020-19160-7">Crameri et al. 2020</a></p></li>
+<li><p>Datasets provided by <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>: Checkout the <a class="reference external" href="https://geodatasets.readthedocs.io"><strong>geodatasets</strong></a> libaray</p></li>
+<li><p>Convert other objects to <code class="docutils literal notranslate"><span class="pre">pandas</span></code> or <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> objects to make them usable in <code class="docutils literal notranslate"><span class="pre">PyGMT</span></code>: For example, convert <a class="reference external" href="https://osmnx.readthedocs.io"><strong>OSMnx</strong></a>’s <code class="docutils literal notranslate"><span class="pre">MultiDiGraph</span></code> to a <code class="docutils literal notranslate"><span class="pre">geopandas.DataFrame</span></code></p></li>
+<li><p>Create more complex geometries: Combine <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> with <a class="reference external" href="https://shapely.readthedocs.io"><strong>shapely</strong></a> (i.e., <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">shapely.geometry</span> <span class="pre">import</span> <span class="pre">Polygon</span></code>)</p></li>
+<li><p>Support of OGR formats: Use <a class="reference external" href="https://geopandas.org/en/v1.0.1/docs/reference/api/geopandas.read_file.html"><code class="docutils literal notranslate"><span class="pre">geopandas.read_file</span></code></a> to load data provided as shapefile (.shp), GeoJSON (.geojson), geopackage (.gpkg), etc.</p></li>
+</ul>
+</section>
+<section id="orientation-suggestion-for-2-1-4-plot-the-rivers-with-color-coding-for-the-river-length">
+<h2>4. Orientation / suggestion for “2.1.4 Plot the rivers with color-coding for the river length”<a class="headerlink" href="#orientation-suggestion-for-2-1-4-plot-the-rivers-with-color-coding-for-the-river-length" title="Link to this heading">#</a></h2>
+<p>Below you find a rough code shipset for plotting the rives with color-coding in section 2.1.4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
+    <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
+    <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oslo&quot;</span><span class="p">,</span><span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">Shape_Leng</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1500000</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x+lriver length&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;+ef0.2c&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i_river</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gpd_rivers</span><span class="p">)):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">index</span><span class="o">==</span><span class="n">i_river</span><span class="p">],</span>
+        <span class="n">zvalue</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_river</span><span class="p">,</span> <span class="s2">&quot;Shape_Leng&quot;</span><span class="p">],</span>
+        <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p&quot;</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png"><img alt="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png" src="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tut01_firstfigure.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">PyGMT - first figure and subplot</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas">1. <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-pandas-dataframe">1.1 Tabular data - <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-histogram">1.2 Create a Cartesian histogram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geographical-map-of-the-earthquakes">1.3 Create a geographical map of the earthquakes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geopandas">2. <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#line-geometry">2.1 Line geometry</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aspatial-data-geopandas-geodataframe-with-line-geometry">2.1.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with line geometry</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-geographical-map-of-the-rivers">2.1.2 Create a geographical map of the rivers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-subsets-of-the-rivers-differently">2.1.3 Plot subsets of the rivers differently</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-rivers-with-color-coding-for-the-river-length">2.1.4 Plot the rivers with color-coding for the river length</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polygon-geometry">2.2 Polygon geometry</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#aspatial-data-geopandas-geodataframe-with-polygon-geometry">2.2.1 Aspatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with polygon geometry</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-choropleth-map">2.2.2 Create a choropleth map</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">3. Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-2-1-4-plot-the-rivers-with-color-coding-for-the-river-length">4. Orientation / suggestion for “2.1.4 Plot the rivers with color-coding for the river length”</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
