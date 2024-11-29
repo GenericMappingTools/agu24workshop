@@ -15,3 +15,6 @@ parts:
   - file: markdown-notebooks
   - file: tut01_firstfigure
   - file: tut02_spec_pd_gpd
+  - file: tut06_animation
+      sections:
+        - file: tut06_animation_extended
