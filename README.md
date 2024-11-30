@@ -33,7 +33,7 @@ Washington, DC 20001, United States
 | 08:40-08:55 | Installation                                            |
 | 08:55-09:45 | Tutorial 1 - First figure + Subplots / layout           |
 | 09:45-10:15 | **Break**                                               |
-| 10:15-11:00 | Tutorial 2 - Integration with scientific Python ecosystem: Pandas / GeoPandas |
+| 10:15-11:00 | Tutorial 2 - Integration with scientific Python ecosystem: pandas / GeoPandas |
 | 11:00-11:45 | Tutorial 3 - Integration with scientific Python ecosystem: Xarray (grids)     |
 | 11:45-12:45 | **Lunch**                                               |
 | 12:45-13:30 | Tutorial 4 - Geophysics (Seismology)                    |
