@@ -11,8 +11,9 @@ dependencies:
   - xarray=2024.10.0
   - gcsfs=2024.10.0
   - zarr=2.18.3
-  # Optional dependencies
+  # Tutorial 2 - pandas and GeoPandas, Tutorial 4 - Geophysics (Seismology)
+  - pandas=2.2.2
   - geopandas=1.0.1
-  - jupyter-book=1.0.2
   # Optional dev dependencies
   - pre-commit
+  - jupyter-book=1.0.2

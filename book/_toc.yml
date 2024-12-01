@@ -13,3 +13,5 @@ parts:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
+  - file: tut01_firstfigure
+  - file: tut02_spec_pd_gpd
