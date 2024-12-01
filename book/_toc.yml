@@ -14,4 +14,4 @@ parts:
   - file: notebooks
   - file: markdown-notebooks
   - file: tut01_firstfigure
-  - file: tut02_spec_pd_gpd
+  - file: tut02_spe_pd_gpd
