@@ -45,3 +45,9 @@ sphinx:
   config:
     bibtex_reference_style: author_year
     html_show_copyright: false
+    extlinks:
+      gmt-module:
+        - "https://docs.generic-mapping-tools.org/6.5/%s"
+        - "%s"
+  extra_extensions:
+    - sphinx.ext.extlinks
