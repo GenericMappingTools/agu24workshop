@@ -7,7 +7,13 @@ dependencies:
   - jupyterlab=4.2.5
   - pygmt=0.13.0
   - python=3.12
-  - jupyter-book=1.0.2
   # Tutorial 2 - pandas and GeoPandas, Tutorial 4 - Geophysics (Seismology)
   - pandas=2.2.2
   - geopandas=1.0.1
+  # Tutorial 3 - Xarray
+  - gcsfs=2024.10.0
+  - xarray=2024.10.0
+  - zarr=2.18.3
+  # Optional dev dependencies
+  - pre-commit
+  - jupyter-book=1.0.2
