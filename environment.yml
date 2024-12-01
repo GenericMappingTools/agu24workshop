@@ -17,4 +17,5 @@ dependencies:
   # Optional dev dependencies
   - jupyter-book=1.0.2
   - pre-commit
+  - sphinx_gmt
   - sphinxcontrib-youtube
