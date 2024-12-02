@@ -13,4 +13,10 @@ parts:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
-  - file: tut4_geophysics
+  - file: tut01_firstfigure
+  - file: tut02_spe_pd_gpd
+  - file: tut03_spe_xarray
+  - file: tut04_geophysics
+  - file: tut06_animation
+    sections:
+      - file: tut06_animation_extended
