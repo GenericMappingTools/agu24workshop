@@ -38,9 +38,6 @@ The following command will load the MOLA dataset into an
 [`xarray.DataArray`](https://docs.xarray.dev/en/v2024.09.0/generated/xarray.DataArray.html)
 grid, and we'll set the `resolution` parameter to `01d` (1 arc-degree) for now.
 
- the mola32.nc file using xarray. Note the longitudes are from 0-360°, latitudes are distributed from North to South and the altvariable is the MOLA Topography at 32 pixels/degree built from original MOLA file megt90n000fb.img. The source is the Mars Climate Database from the European Space Agency.
-
-
 ```{code-cell}
 da_mars = pygmt.datasets.load_mars_relief(resolution="01d")
 da_mars
@@ -109,22 +106,22 @@ gives you a southeast view, tilted at a moderate angle to capture both horizonta
 vertical details.
 
 ```{code-cell}
-# fig = pygmt.Figure()
-#
-# fig.grdview(
-#     grid=da_olympus,
-#     cmap="SCM/managua+h0",
-#     region=[-151, -117, 12, 25, -5000, 23000],  # xmin, xmax, ymin, ymax, zmin, zmax
-#     projection="M12c",
-#     perspective=[150, 45],  # azimuth bearing, and elevation angle
-#     zsize="4c",  # vertical exaggeration
-#     surftype="s",  # surface plot
-#     shading=True,
-#     frame=["xaf", "yaf", "z5000+lmeters"],
-# )
-#
-# fig.colorbar(frame=["a5000", "x+lElevation", "y+lm"], perspective=True, shading=True)
-# fig.show()
+fig = pygmt.Figure()
+
+fig.grdview(
+   grid=da_olympus,
+   cmap="SCM/managua+h0",
+   region=[-151, -117, 12, 25, -5000, 23000],  # xmin, xmax, ymin, ymax, zmin, zmax
+   projection="M12c",
+   perspective=[150, 45],  # azimuth bearing, and elevation angle
+   zsize="4c",  # vertical exaggeration
+   surftype="s",  # surface plot
+   shading=True,
+   frame=["xaf", "yaf", "z5000+lmeters"],
+)
+
+fig.colorbar(frame=["a5000", "x+lElevation", "y+lm"], perspective=True, shading=True)
+fig.show()
 ```
 
 Note that there are other things we have configured such as:
@@ -293,6 +290,5 @@ with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
         shading=True,  # hillshading
         # frame="af",
     )
-fig.savefig(fname="ross_island.png")
 fig.show()
 ```
