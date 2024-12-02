@@ -137,7 +137,12 @@ Note that there are other things we have configured such as:
   - z-axis tick marks every 5000m, plus a label (`z5000+lLabel`)
 
 ```{tip}
- When choosing azimuth and elevation, always consider how the scene is illuminated. Azimuth angles that align with typical light directions (e.g., from the northwest) often provide the most natural and visually appealing shadows. Elevations between 20° and 45° typically create a good balance, highlighting terrain features without flattening or obscuring them. You can experiment with different combinations to best reveal the data's structure.
+When choosing azimuth and elevation, always consider how the scene is illuminated.
+Azimuth angles that align with typical light directions (e.g., from the northwest)
+often provide the most natural and visually appealing shadows. Elevations between 20°
+and 45° typically create a good balance, highlighting terrain features without
+flattening or obscuring them. You can experiment with different combinations to best
+reveal the data's structure.
 ```
 
 # 2️⃣ Antarctic Digital Elevation Model
@@ -237,7 +242,14 @@ rgb_image = rgb_mosaic.rio.reproject_match(match_data_array=dem_mosaic)
 rgb_image
 ```
 ```{tip}
-When working with DEM mosaics and optical imagery, carefully consider the size and resolution of the data. High-resolution DEMs combined with complex topographies can demand substantial computational resources for processing and visualization. A practical tip is to start with lower resolutions to experiment with and refine the scene geometry (e.g., azimuth, elevation, and perspective). Once you are satisfied with the visualization setup, switch to higher-resolution data for the final rendering. This approach helps optimize computational efficiency while maintaining the quality of your analysis.
+When working with DEM mosaics and optical imagery, carefully consider the size and
+resolution of the data. High-resolution DEMs combined with complex topographies can
+demand substantial computational resources for processing and visualization. A practical
+tip is to start with lower resolutions to experiment with and refine the scene geometry
+(e.g., azimuth, elevation, and perspective). Once you are satisfied with the
+visualization setup, switch to higher-resolution data for the final rendering. This
+approach helps optimize computational efficiency while maintaining the quality of your
+analysis.
 ```
 
 # 3️⃣ Draping RGB image on 3-D topography
