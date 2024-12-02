@@ -1,0 +1,992 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Making animations (extended) &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut06_animation_extended';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Making animations" href="tut06_animation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <img src="_static/logo.webp" class="logo__image only-dark pst-js-only" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html">3-D Topography 🏔️</a></li>
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="tut06_animation.html">Making animations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Making animations (extended)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut06_animation_extended.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut06_animation_extended.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut06_animation_extended.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Making animations (extended)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">3.1. Goals of the Tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-image">3.2 Make image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-master-frame">3.3. Make master frame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt-first-frame">3.3.1. First attempt (first frame)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-events-module">3.3.2. The events module</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-first-frame-with-events">3.3.3. Second attempt (first frame with events)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#third-attempt-last-frame-with-events">3.3.4. Third attempt (last frame with events)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-draft-animation">3.4. Make draft animation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt">3.4.1. First attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-background-script">3.4.2. The background script</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-with-background-script">3.4.3. Second attempt (with background script)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">3.5. Make full animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation-with-enhancement">3.6. Make full animation with enhancement</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-enhance-symbols-with-events">3.6.1. How to enhance symbols with events</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.6.2. Make full animation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="making-animations-extended">
+<h1>Making animations (extended)<a class="headerlink" href="#making-animations-extended" title="Link to this heading">#</a></h1>
+<p>By F. Esteban (&#64;esteban82)</p>
+<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong>
+- Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a>
+- GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a>
+- Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p>
+<section id="tutorial-2-earthquakes">
+<h2>3. Tutorial 2. Earthquakes<a class="headerlink" href="#tutorial-2-earthquakes" title="Link to this heading">#</a></h2>
+<p>Here I explain how to make an animation with appearing objects.
+This is more complex and requires the use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> modules.
+In this example, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).
+Note that the earthquakes are drawn as they occur and remain visible until the end of the animation.</p>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/dbOjYqWzGi0" style="border: 0; height: 430px; width: 800px">
+</iframe></div><p>For this tutorial I follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Make image</p></li>
+<li><p>Make master frame</p></li>
+<li><p>Make draft animation</p></li>
+<li><p>Make animation without enhancement</p></li>
+<li><p>Make animation with enhancement</p></li>
+</ol>
+<section id="goals-of-the-tutorial">
+<h3>3.1. Goals of the Tutorial<a class="headerlink" href="#goals-of-the-tutorial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is gmt <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a>.</p></li>
+<li><p>How to use a background script for a movie.</p></li>
+<li><p>How to enhance symbols with <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a>.</p></li>
+</ul>
+</section>
+<section id="make-image">
+<h3>3.2 Make image<a class="headerlink" href="#make-image" title="Link to this heading">#</a></h3>
+<p>In this step I plot a map of the earth with all the quakes from 2018.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>Earth<span class="w"> </span>png
+<span class="w">    </span><span class="c1"># Set parameters and position</span>
+<span class="w">    </span>gmt<span class="w"> </span>basemap<span class="w"> </span>-Rg<span class="w"> </span>-JN14c<span class="w"> </span>-B+n
+<span class="w">    </span><span class="c1"># Plot relief grid</span>
+<span class="w">    </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@earth_relief_06m<span class="w"> </span>-I
+<span class="w">    </span><span class="c1"># Create cpt for the earthquakes</span>
+<span class="w">    </span>gmt<span class="w"> </span>makecpt<span class="w"> </span>-Cred,green,blue<span class="w"> </span>-T0,70,300,10000
+<span class="w">    </span><span class="c1"># Plot quakes</span>
+<span class="w">    </span>gmt<span class="w"> </span>plot<span class="w"> </span>@quakes_2018.txt<span class="w"> </span>-SE-<span class="w"> </span>-C
+gmt<span class="w"> </span>end
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-ac1f4bddcb2d1e7c7e8c61b7461f3ddb">
+<a class="reference internal image-reference" href="_images/ac1f4bddcb2d1e7c7e8c61b7461f3ddb.png"><img alt="_images/ac1f4bddcb2d1e7c7e8c61b7461f3ddb.png" src="_images/ac1f4bddcb2d1e7c7e8c61b7461f3ddb.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p>I use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/makecpt">makecpt</a> to create a <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/reference/cpts.html#of-colors-and-color-legends">CPT</a> to color the earthquakes.</p></li>
+<li><p>I used the earthquakes from the file <a class="reference external" href="https://github.com/GenericMappingTools/gmtserver-admin/blob/master/cache/quakes_2018.txt">quakes_2018.txt</a> which has 5 columns.</p></li>
+</ul>
+<blockquote>
+<div><div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Longitude</p></th>
+<th class="head"><p>Latitude</p></th>
+<th class="head"><p>Depth</p></th>
+<th class="head"><p>Magnitude (x50)</p></th>
+<th class="head"><p>Date</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>46.4223</p></td>
+<td><p>-38.9126</p></td>
+<td><p>10</p></td>
+<td><p>260</p></td>
+<td><p>2018-01-02T02:16:18.11</p></td>
+</tr>
+<tr class="row-odd"><td><p>169.3488</p></td>
+<td><p>-18.8355</p></td>
+<td><p>242.77</p></td>
+<td><p>260</p></td>
+<td><p>2018-01-02T08:10:00.06</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>Note that the input file has the columns sorted as will be required by the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/plot">plot</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules. It was also used for <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5//animations/anim08.html">animation 08</a>.</p></li>
+</ul>
+<p>Check it to see how it was downloaded and processed.</p>
+</div>
+</section>
+<section id="make-master-frame">
+<h3>3.3. Make master frame<a class="headerlink" href="#make-master-frame" title="Link to this heading">#</a></h3>
+<p>In this step I create the master frame of the animation similar to the previous image.</p>
+<section id="first-attempt-first-frame">
+<h4>3.3.1. First attempt (first frame)<a class="headerlink" href="#first-attempt-first-frame" title="Link to this heading">#</a></h4>
+<p>In this first attempt I create the first frame (<code class="docutils literal notranslate"><span class="pre">-Mf,png</span></code>) of the animation.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Set parameters and position</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -B+n -X0 -Y0</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000</span>
+<span class="s">  gmt plot @quakes_2018.txt -SE- -C</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Mf,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-4efd84b8bb06debc91d27f36c38f433f">
+<a class="reference internal image-reference" href="_images/4efd84b8bb06debc91d27f36c38f433f.png"><img alt="_images/4efd84b8bb06debc91d27f36c38f433f.png" src="_images/4efd84b8bb06debc91d27f36c38f433f.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p>I use <code class="docutils literal notranslate"><span class="pre">-T2018-01-01T/2018-12-31T/1d</span></code> to create a one-column data set with all days in 2018.</p></li>
+<li><p>I use <code class="docutils literal notranslate"><span class="pre">-Lc0</span></code> to add a label with the first column (i.e. the dates).</p></li>
+<li><p><strong>–FONT_TAG=18p,Helvetica,white</strong>: This sets the font for the label.</p></li>
+<li><p><strong>–FORMAT_CLOCK_MAP=-</strong>: to NOT include the hours in the date and only plot year, month and day in the label.</p></li>
+<li><p>I use a custom canvas of 24 x 12 cm with a resolution of 80 DPC (<code class="docutils literal notranslate"><span class="pre">-C24cx12cx80</span></code>).</p></li>
+</ul>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<ul class="simple">
+<li><p>The first frame contains all the quakes when none of them should be plotted. I must use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> instead.</p></li>
+</ul>
+</div>
+</section>
+<section id="the-events-module">
+<h4>3.3.2. The events module<a class="headerlink" href="#the-events-module" title="Link to this heading">#</a></h4>
+<p>In the previous figure, I use the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/plot">plot</a> module to draw the symbols. This results that the symbols appear on all frames.
+However if I want to plot quakes as they unfold, I have to use the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> instead.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p><a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> requires a time column in the input data and will use it and the animation time to determine when symbols should be plotted.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-T</span></code> is a required argument and is used to set the current plot time.</p></li>
+</ul>
+</div>
+</section>
+<section id="second-attempt-first-frame-with-events">
+<h4>3.3.3. Second attempt (first frame with events)<a class="headerlink" href="#second-attempt-first-frame-with-events" title="Link to this heading">#</a></h4>
+<p>Now, in this attempt I use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> with <code class="docutils literal notranslate"><span class="pre">-T${MOVIE_COL0}</span></code> to plot the quakes as dates progresses</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Set parameters and position</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -B+n -X0 -Y0</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -C -T${MOVIE_COL0}</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Mf,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-766009993fb8ac5fe771d2e99174efa0">
+<a class="reference internal image-reference" href="_images/766009993fb8ac5fe771d2e99174efa0.png"><img alt="_images/766009993fb8ac5fe771d2e99174efa0.png" src="_images/766009993fb8ac5fe771d2e99174efa0.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The map shows NO earthquakes. This is expected because there are no quakes (in the data file) before January first.
+However, this could also be due to an error in the command.
+I must plot the frame from another date to see if the quakes appear.</p>
+</div>
+</section>
+<section id="third-attempt-last-frame-with-events">
+<h4>3.3.4. Third attempt (last frame with events)<a class="headerlink" href="#third-attempt-last-frame-with-events" title="Link to this heading">#</a></h4>
+<p>Now, I also plot the last frame (<code class="docutils literal notranslate"><span class="pre">-Ml</span></code>).</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Set parameters and position</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -B+n -X0 -Y0</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -C -T${MOVIE_COL0}</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Ml,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-98e45dd03e4db1e5750a500ea0a81455">
+<a class="reference internal image-reference" href="_images/98e45dd03e4db1e5750a500ea0a81455.png"><img alt="_images/98e45dd03e4db1e5750a500ea0a81455.png" src="_images/98e45dd03e4db1e5750a500ea0a81455.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+</section>
+</section>
+<section id="make-draft-animation">
+<h3>3.4. Make draft animation<a class="headerlink" href="#make-draft-animation" title="Link to this heading">#</a></h3>
+<p>In this step, we can make a draft animation. For this example, I recommend making a low quality (with 30 DPC) video to see if the quakes appear correctly.</p>
+<section id="first-attempt">
+<h4>3.4.1. First attempt<a class="headerlink" href="#first-attempt" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Set parameters and position</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -B+n -X0 -Y0</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -C -T${MOVIE_COL0}</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Ml,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx30<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-<span class="w"> </span>-Fmp4
+</pre></div>
+</div>
+</div></blockquote>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/TH4moYCHRT8" style="border: 0; height: 430px; width: 800px">
+</iframe></div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>The above script works well but it can be more efficient if a background script is used as well.</p></li>
+</ul>
+</div>
+</section>
+<section id="the-background-script">
+<h4>3.4.2. The background script<a class="headerlink" href="#the-background-script" title="Link to this heading">#</a></h4>
+<p>Within <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module, there is an optional background (<a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/movie.html#sb">-Sb</a>) script that it is used for two purposes:</p>
+<ol class="arabic simple">
+<li><p>Create files that will be needed by the main script to make the movie.</p></li>
+<li><p>Make a static background plot that should form the background for all frames.</p></li>
+</ol>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<p>The background script is run only once.</p>
+</div>
+</section>
+<section id="second-attempt-with-background-script">
+<h4>3.4.3. Second attempt (with background script)<a class="headerlink" href="#second-attempt-with-background-script" title="Link to this heading">#</a></h4>
+<p>In this step, instead of creating just the main script as before, I now create both a background script and a main script.
+The background script (<code class="docutils literal notranslate"><span class="pre">pre.sh</span></code>) is used to:</p>
+<ol class="arabic simple">
+<li><p>create a CPT file that will be used to color the quakes.</p></li>
+<li><p>make a <strong>static</strong> worldwide background map.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>The animation created is identical to the previous one.</p></li>
+<li><p>The use of a background script allows the creation of the animation much faster because the CPT and the <strong>static</strong> background map will be created only once (instead of 365 times).</p></li>
+</ul>
+</div>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Set parameters and position</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -X0 -Y0 -B+n</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000 -H &gt; quakes.cpt</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -X0 -Y0 -B+n</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -Cquakes.cpt -T${MOVIE_COL0}</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-Sbpre.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Ml,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12x80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p>For the CPT, I must use <a class="reference external" href="https://docs.generic-mapping-tools.org/latest/makecpt.html#h">-H</a> and give it a name, and then use that name in <code class="docutils literal notranslate"><span class="pre">main.sh</span></code>.</p></li>
+<li><p>I add <code class="docutils literal notranslate"><span class="pre">-Sbpre.sh</span></code> within the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module to use the background script.</p></li>
+<li><p>I repeat the <code class="docutils literal notranslate"><span class="pre">basemap</span></code> command in the main and background scripts so both have the same positioning (i.e., <code class="docutils literal notranslate"><span class="pre">-X</span></code> and <code class="docutils literal notranslate"><span class="pre">-Y</span></code>) and parameters (i.e. <code class="docutils literal notranslate"><span class="pre">-R</span></code> and <code class="docutils literal notranslate"><span class="pre">-J</span></code>).</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="make-full-animation">
+<h3>3.5. Make full animation<a class="headerlink" href="#make-full-animation" title="Link to this heading">#</a></h3>
+<p>Now I make the final high-quality animation (i.e. 80 DPC).</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I -JN${MOVIE_WIDTH} -Rg -X0 -Y0</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000 -H &gt; quakes.cpt</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -X0 -Y0 -B+n</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -Cquakes.cpt -T${MOVIE_COL0}</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-Sbpre.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Ml,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span>-Fmp4<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+</div></blockquote>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/dbOjYqWzGi0" style="border: 0; height: 430px; width: 800px">
+</iframe></div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="make-full-animation-with-enhancement">
+<h3>3.6. Make full animation with enhancement<a class="headerlink" href="#make-full-animation-with-enhancement" title="Link to this heading">#</a></h3>
+<p>In the previous animation, the earthquakes appear but it is hard to see when they do it.
+With <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> it is possible to draw attention to the arrival of a new event.</p>
+<section id="how-to-enhance-symbols-with-events">
+<h4>3.6.1. How to enhance symbols with events<a class="headerlink" href="#how-to-enhance-symbols-with-events" title="Link to this heading">#</a></h4>
+<p>The idea is to change the default behavior of the symbols to enhance their appearance as shown in the following video:</p>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/77a2XrfWsHM" style="border: 0; height: 430px; width: 711px">
+</iframe></div><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This can be done by using <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/events.html#m">-M</a> and <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/events.html#e">-E</a> arguments.
+The -M arguments allows to temporarily change attributes of the symbol like:</p>
+<ul class="simple">
+<li><p>-Ms: Provide a factor to modify the size.</p></li>
+<li><p>-Mc: Provide a value to brighten (up to 1) or darken (up to -1) the <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/reference/colorspace.html#artificial-illumination">color intensity</a>.</p></li>
+<li><p>-Mt: Transparency. Set a value between 100 (invisible) to 0 (opaque).</p></li>
+</ul>
+<p>The duration of the temporary changes is controlled via the <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/events.html#e">-E</a> argument.</p>
+<ul class="simple">
+<li><p>-Er: rise phase. It takes place before the start of the event.</p></li>
+<li><p>-Ep: plateau phase. It takes place after the start of the event.</p></li>
+<li><p>-Ed: decay phase. It develops after the plateau phase. If the plateau phase does not occur, then it takes place after the start of the event.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>For finite symbols there are also <em>normal</em> and <em>fade</em> phases.</p></li>
+<li><p>It is also possible to change the data value with <code class="docutils literal notranslate"><span class="pre">-Mv</span></code>.</p></li>
+</ul>
+</div>
+</section>
+<section id="id2">
+<h4>3.6.2. Make full animation<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>In this step I announce each quake by magnifying size and whitening the color for a little bit (during the rise phase).
+Later the symbols return to their original properties during the decay phase.
+The plateau phase is not used.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; pre.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  # Create background map</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I -JN${MOVIE_WIDTH} -Rg -X0 -Y0</span>
+<span class="s">  # Create cpt for the earthquakes</span>
+<span class="s">  gmt makecpt -Cred,green,blue -T0,70,300,10000 -H &gt; quakes.cpt</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt basemap -Rg -JN${MOVIE_WIDTH} -X0 -Y0 -B+n</span>
+<span class="s">  gmt events @quakes_2018.txt -SE- -Cquakes.cpt -T${MOVIE_COL0} -Es+r2+d6 -Ms5+c1 -Mi1+c0 -Mt+c0 --TIME_UNIT=d</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-Sbpre.sh<span class="w"> </span>-NQuakes<span class="w"> </span>-Ml,png<span class="w"> </span>-Zs<span class="w"> </span>-V<span class="w"> </span>-C24cx12cx80<span class="w"> </span>-T2018-01-01T/2018-12-31T/1d<span class="w"> </span>-Gblack<span class="w"> </span>-Fmp4<span class="w"> </span><span class="se">\</span>
+-Lc0<span class="w"> </span>--FONT_TAG<span class="o">=</span>18p,Helvetica,white<span class="w"> </span>--FORMAT_CLOCK_MAP<span class="o">=</span>-
+</pre></div>
+</div>
+</div></blockquote>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/rmPhIVzhIgY" style="border: 0; height: 430px; width: 800px">
+</iframe></div><div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p>--TIME_UNIT=d: This sets that the values of -E are in days (d).</p></li>
+<li><p>-Es+r2+d6: This sets the duration of the rise phase and the decay phase.</p></li>
+<li><p>-Ms5+c1: modify the size. The size will increase 5 times during the rise phase and then reduce to the original size in the coda phase.</p></li>
+<li><p>-Mt+c0: modify the transparency. The transparency will remain to 0 at the coda phase. This allows it to be seen after its occurrence.</p></li>
+<li><p>-Mi1+c0: modify the intensity of the color. It gets lighter during the rise phase and then returns to its original color in the coda phase.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+<section id="see-also">
+<h2>4. See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The paper about animations which include explanation and examples (<a class="reference external" href="https://doi.org/10.1029/2024GC011545">Wessel et al. 2024</a>).</p></li>
+<li><p>Check the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules documentation for full technical information.</p></li>
+<li><p>See the <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/animations.html">GMT animation gallery</a> for more examples.</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>5. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., &amp; Tian, D. (2019). The Generic Mapping Tools Version 6. Geochemistry, Geophysics, Geosystems, 20(11), 5556–5564. <a class="reference external" href="https://doi.org/10.1029/2019GC008515">https://doi.org/10.1029/2019GC008515</a></p></li>
+<li><p>Wessel, P., Esteban, F., &amp; Delaviel-Anger, G. (2024). The Generic Mapping Tools and animations for the masses. Geochemistry, Geophysics, Geosystems, 25, e2024GC011545. <a class="reference external" href="https://doi.org/10.1029/2024GC011545">https://doi.org/10.1029/2024GC011545</a>.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tut06_animation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Making animations</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">3.1. Goals of the Tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-image">3.2 Make image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-master-frame">3.3. Make master frame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt-first-frame">3.3.1. First attempt (first frame)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-events-module">3.3.2. The events module</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-first-frame-with-events">3.3.3. Second attempt (first frame with events)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#third-attempt-last-frame-with-events">3.3.4. Third attempt (last frame with events)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-draft-animation">3.4. Make draft animation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt">3.4.1. First attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-background-script">3.4.2. The background script</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-with-background-script">3.4.3. Second attempt (with background script)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">3.5. Make full animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation-with-enhancement">3.6. Make full animation with enhancement</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-enhance-symbols-with-events">3.6.1. How to enhance symbols with events</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.6.2. Make full animation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

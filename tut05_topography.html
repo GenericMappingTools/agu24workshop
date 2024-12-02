@@ -1,0 +1,922 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3-D Topography 🏔️ &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut05_topography';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Making animations" href="tut06_animation.html" />
+    <link rel="prev" title="Tutorial 3 - scientific Python ecosystem: Xarray" href="tut03_spe_xarray.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <img src="_static/logo.webp" class="logo__image only-dark pst-js-only" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3-D Topography 🏔️</a></li>
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html">Making animations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main?urlpath=lab/tree/book/tut05_topography.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut05_topography.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut05_topography.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut05_topography.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3-D Topography 🏔️</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3-D Topography 🏔️</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mars-relief-data">0️⃣ Mars relief data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-map-view">2-D map view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zoomed-in-view">Zoomed in view</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-grdview-for-3-d-visualization">1️⃣ Using <code class="docutils literal notranslate"><span class="pre">grdview</span></code> for 3-D Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctic-digital-elevation-model">2️⃣ Antarctic Digital Elevation Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-a-dem-mosaic">Getting a DEM mosaic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-rgb-imagery">Getting RGB imagery</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#draping-rgb-image-on-3-d-topography">3️⃣ Draping RGB image on 3-D topography</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="d-topography">
+<h1>3-D Topography 🏔️<a class="headerlink" href="#d-topography" title="Link to this heading">#</a></h1>
+<p>In this tutorial, let’s use PyGMT to create 3-D perspective plots of Digital Elevation
+Models (DEM) over Mars (the planet) and Antarctica (the continent)!</p>
+<p>🔖 References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.generic-mapping-tools.org/remote-datasets/mars-relief.html">https://www.generic-mapping-tools.org/remote-datasets/mars-relief.html</a></p></li>
+<li><p><a class="github reference external" href="https://github.com/andrebelem/PlanetaryMaps">andrebelem/PlanetaryMaps</a></p></li>
+<li><p><span id="id1">Neumann <em>et al.</em> [<a class="reference internal" href="markdown.html#id4" title="G. A. Neumann, J. B. Abshire, O. Aharonson, J. B. Garvin, X. Sun, and M. T. Zuber. Mars Orbiter Laser Altimeter pulse width measurements and footprint-scale roughness. Geophysical Research Letters, 30(11):2003GL017048, June 2003. doi:10.1029/2003GL017048.">2003</a>]</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="kn">import</span> <span class="nn">rioxarray</span>
+<span class="kn">import</span> <span class="nn">rioxarray.merge</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">rioxarray</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">rioxarray.merge</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;rioxarray&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="mars-relief-data">
+<h1>0️⃣ Mars relief data<a class="headerlink" href="#mars-relief-data" title="Link to this heading">#</a></h1>
+<p>First, we’ll load the Mars Orbiter Laser Altimeter (MOLA) dataset using
+<a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.datasets.load_mars_relief.html"><code class="docutils literal notranslate"><span class="pre">pygmt.datasets.load_mars_relief</span></code></a>.
+The following command will load the MOLA dataset into an
+<a class="reference external" href="https://docs.xarray.dev/en/v2024.09.0/generated/xarray.DataArray.html"><code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>
+grid, and we’ll set the <code class="docutils literal notranslate"><span class="pre">resolution</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">01d</span></code> (1 arc-degree) for now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_mars</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_mars_relief</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;01d&quot;</span><span class="p">)</span>
+<span class="n">da_mars</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="d-map-view">
+<h2>2-D map view<a class="headerlink" href="#d-map-view" title="Link to this heading">#</a></h2>
+<p>Here we can create a map of the entire Martian surface, using a
+<a class="reference external" href="https://www.pygmt.org/v0.13.0/projections/misc/misc_mollweide.html">Mollweide projection</a>.
+To get a reddish hue, we’ll use a
+<a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/reference/cpts.html">colormap</a>
+called <code class="docutils literal notranslate"><span class="pre">SCM/managua</span></code> which comes with a soft hinge
+(see <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/makecpt.html#c"><code class="docutils literal notranslate"><span class="pre">makecpt</span> <span class="pre">-C</span></code></a>)
+that can be set at elevation 0 meter by appending <code class="docutils literal notranslate"><span class="pre">+h0</span></code> to the <code class="docutils literal notranslate"><span class="pre">cmap</span></code> parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">da_mars</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W12c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/managua+h0&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a5000&quot;</span><span class="p">,</span> <span class="s2">&quot;x+lElevation&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="zoomed-in-view">
+<h2>Zoomed in view<a class="headerlink" href="#zoomed-in-view" title="Link to this heading">#</a></h2>
+<p>A very interesting feature is <a class="reference external" href="https://en.wikipedia.org/wiki/Olympus_Mons">Olympus Mons</a>
+centered at approximately 19°N and 133°W, with a height of 22 km (14 miles) and
+approximately 700 km (435 miles) in diameter.</p>
+<p>Let’s grab a higher resolution map over the volcano, and plot another 2-D map!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">da_olympus</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_mars_relief</span><span class="p">(</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;30s&quot;</span><span class="p">,</span>  <span class="c1"># 30 arc-seconds</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">151</span><span class="p">,</span> <span class="o">-</span><span class="mi">117</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>  <span class="c1"># xmin, xmax, ymin, ymax</span>
+<span class="p">)</span>
+<span class="n">da_olympus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">da_olympus</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSne+tOlympus Mons&quot;</span><span class="p">,</span> <span class="s2">&quot;af&quot;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/managua+h0&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a5000&quot;</span><span class="p">,</span> <span class="s2">&quot;x+lElevation&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-grdview-for-3-d-visualization">
+<h1>1️⃣ Using <code class="docutils literal notranslate"><span class="pre">grdview</span></code> for 3-D Visualization<a class="headerlink" href="#using-grdview-for-3-d-visualization" title="Link to this heading">#</a></h1>
+<p>The <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html"><code class="docutils literal notranslate"><span class="pre">grdview</span></code></a>
+method in PyGMT is a powerful tool for creating 3-D perspective views of gridded data.
+By adjusting azimuth and elevation parameters, you can change the viewpoint, helping you
+to highlight specific terrain features or data patterns. Let’s go through how these
+parameters affect the visualization.</p>
+<p><strong>Setting the Perspective: Azimuth and Elevation</strong></p>
+<ul class="simple">
+<li><p><strong>Azimuth</strong> (<code class="docutils literal notranslate"><span class="pre">azimuth</span></code>): Controls the horizontal rotation of the view, ranging from 0°
+to 360°. Lower values (close to 0°) represent a viewpoint from the north, while 90°
+gives a view from the east, 180° from the south, and 270° from the west. Experimenting
+with azimuth can help showcase specific aspects of the data from different angles.</p></li>
+<li><p><strong>Elevation</strong> (<code class="docutils literal notranslate"><span class="pre">elevation</span></code>): Controls the vertical angle of the view, with 90°
+representing a top-down perspective and lower values providing more of a side view.
+Typically, values between 20° and 60° create a balanced 3-D effect.</p></li>
+</ul>
+<p><strong>Example</strong>: Using <code class="docutils literal notranslate"><span class="pre">perspective=[150,</span> <span class="pre">45]</span></code> means <code class="docutils literal notranslate"><span class="pre">azimuth=150</span></code> and <code class="docutils literal notranslate"><span class="pre">elevation=45</span></code>, which
+gives you a southeast view, tilted at a moderate angle to capture both horizontal and
+vertical details.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdview</span><span class="p">(</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">da_olympus</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/managua+h0&quot;</span><span class="p">,</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">151</span><span class="p">,</span> <span class="o">-</span><span class="mi">117</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">23000</span><span class="p">],</span>  <span class="c1"># xmin, xmax, ymin, ymax, zmin, zmax</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M12c&quot;</span><span class="p">,</span>
+    <span class="n">perspective</span><span class="o">=</span><span class="p">[</span><span class="mi">150</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>  <span class="c1"># azimuth bearing, and elevation angle</span>
+    <span class="n">zsize</span><span class="o">=</span><span class="s2">&quot;4c&quot;</span><span class="p">,</span>  <span class="c1"># vertical exaggeration</span>
+    <span class="n">surftype</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span>  <span class="c1"># surface plot</span>
+    <span class="n">shading</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;xaf&quot;</span><span class="p">,</span> <span class="s2">&quot;yaf&quot;</span><span class="p">,</span> <span class="s2">&quot;z5000+lmeters&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a5000&quot;</span><span class="p">,</span> <span class="s2">&quot;x+lElevation&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">],</span> <span class="n">perspective</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that there are other things we have configured such as:</p>
+<ul class="simple">
+<li><p><strong>zsize</strong> - vertical exaggeration as z-axis size, we used <code class="docutils literal notranslate"><span class="pre">4c</span></code> here for 4 centimeters</p></li>
+<li><p><strong>surftype</strong> - using <code class="docutils literal notranslate"><span class="pre">s</span></code> will just create a regular surface</p></li>
+<li><p><strong>shading</strong> - set to <code class="docutils literal notranslate"><span class="pre">True</span></code> to get the default hillshading effect</p></li>
+<li><p><strong>frame</strong> - A proper 3-D map frame that consists of:</p>
+<ul>
+<li><p>automatic tick marks on x and y axis (e.g., <code class="docutils literal notranslate"><span class="pre">xaf</span></code> and <code class="docutils literal notranslate"><span class="pre">yaf</span></code>)</p></li>
+<li><p>z-axis tick marks every 5000m, plus a label (<code class="docutils literal notranslate"><span class="pre">z5000+lLabel</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When choosing azimuth and elevation, always consider how the scene is illuminated.
+Azimuth angles that align with typical light directions (e.g., from the northwest)
+often provide the most natural and visually appealing shadows. Elevations between 20°
+and 45° typically create a good balance, highlighting terrain features without
+flattening or obscuring them. You can experiment with different combinations to best
+reveal the data’s structure.</p>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="antarctic-digital-elevation-model">
+<h1>2️⃣ Antarctic Digital Elevation Model<a class="headerlink" href="#antarctic-digital-elevation-model" title="Link to this heading">#</a></h1>
+<p>For the next exercise, we’ll pay a visit to the Antarctic continent, specifically,
+looking at Ross Island where the McMurdo Station (US) and Scott Base (NZ) is located.
+We’ll learn how to drape some RGB imagery from Sentinel-2 onto some DEM tiles from the
+Reference Elevation Model of Antarctica (REMA).</p>
+<p>🔖 References:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.pgc.umn.edu/data/rema/">https://www.pgc.umn.edu/data/rema/</a></p></li>
+<li><p><span id="id2">Howat <em>et al.</em> [<a class="reference internal" href="markdown.html#id3" title="Ian M. Howat, Claire Porter, Benjamin E. Smith, Myoung-Jong Noh, and Paul Morin. The Reference Elevation Model of Antarctica. The Cryosphere, 13(2):665–674, February 2019. doi:10.5194/tc-13-665-2019.">2019</a>]</span></p></li>
+</ul>
+<section id="getting-a-dem-mosaic">
+<h2>Getting a DEM mosaic<a class="headerlink" href="#getting-a-dem-mosaic" title="Link to this heading">#</a></h2>
+<p>The REMA tiles are distributed as several GeoTIFF files. Our area of interest over Ross
+Island spans two tiles, so we’ll need to retrieve them both an mosaic them. There are
+several sources for REMA, but we’ll use one sourced from
+<a class="reference external" href="https://registry.opendata.aws/pgc-rema/">https://registry.opendata.aws/pgc-rema/</a>. The two specific tiles we’ll get can be
+previewed at:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_33/17_33_32m_v2.0.json">https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_33/17_33_32m_v2.0.json</a></p></li>
+<li><p><a class="reference external" href="https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_34/17_34_32m_v2.0.json">https://polargeospatialcenter.github.io/stac-browser/#/external/pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_34/17_34_32m_v2.0.json</a></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To find the tile number, go to <a class="reference external" href="https://rema.apps.pgc.umn.edu/">https://rema.apps.pgc.umn.edu/</a> and zoom/pan to the area
+on the map you’re interested in getting a DEM for. Click on the ‘Identify’ button on the
+bottom left, and a pop-up will tell you the tile ID number.</p>
+</div>
+<p>To open the GeoTIFF files, we can use
+<a class="reference external" href="https://corteva.github.io/rioxarray/stable/rioxarray.html#rioxarray.open_rasterio"><code class="docutils literal notranslate"><span class="pre">rioxarray.open_rasterio</span></code></a>
+which load the data into an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tile_17_33</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;https://pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_33/17_33_32m_v2.0_dem.tif&quot;</span>
+<span class="p">)</span>
+<span class="n">tile_17_34</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;https://pgc-opendata-dems.s3.us-west-2.amazonaws.com/rema/mosaics/v2.0/32m/17_34/17_34_32m_v2.0_dem.tif&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll use
+<a class="reference external" href="https://corteva.github.io/rioxarray/stable/rioxarray.html#rioxarray.merge.merge_arrays"><code class="docutils literal notranslate"><span class="pre">rioxarray.merge.merge_arrays</span></code></a>
+to mosaic the two tiles together, and clip it to the spatial extent of Ross Island.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dem_mosaic</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">merge</span><span class="o">.</span><span class="n">merge_arrays</span><span class="p">(</span>
+    <span class="n">dataarrays</span><span class="o">=</span><span class="p">[</span><span class="n">tile_17_33</span><span class="p">,</span> <span class="n">tile_17_34</span><span class="p">],</span>
+    <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="mi">250_000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1_370_000</span><span class="p">,</span> <span class="mi">330_000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1_300_000</span><span class="p">),</span>  <span class="c1"># xmin, ymin, xmax, ymax</span>
+<span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">band</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Preview the DEM using
+<a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">dem_mosaic</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;oleron&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="getting-rgb-imagery">
+<h2>Getting RGB imagery<a class="headerlink" href="#getting-rgb-imagery" title="Link to this heading">#</a></h2>
+<p>Next, let’s get some Sentinel-2 optical satellite imagery, which we’ll use to drape
+on top of the DEM later. We’ll find some relatively cloud-free imagery that was taken on
+31 Oct 2024, specifically these ones that can be previewed at:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEU_20241109_0_L2A?.asset=asset-visual">https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEU_20241109_0_L2A?.asset=asset-visual</a></p></li>
+<li><p><a class="reference external" href="https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEV_20241109_0_L2A?.asset=asset-visual">https://radiantearth.github.io/stac-browser/#/external/earth-search.aws.element84.com/v1/collections/sentinel-2-l2a/items/S2B_58CEV_20241109_0_L2A?.asset=asset-visual</a></p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>There are several online viewers based on Spatiotemporal Asset Catalog (STAC) APIs that
+allow you to search for satellite imagery. Some examples used here were:</p>
+<ul class="simple">
+<li><p>EO Browser: <a class="reference external" href="https://apps.sentinel-hub.com/eo-browser/?zoom=10&amp;amp;lat=-77.05481&amp;amp;lng=167.27783&amp;amp;themeId=DEFAULT-THEME&amp;amp;visualizationUrl=U2FsdGVkX1%2Btyu1tAfovEieshimr1kMCjLpUXj8Xj1Se6ZoskUOY9xy0WSJyoWvbaHR3C7efJLFsAYvknrfc4Ofb3zqo9bjWhhIUGdtgIp6bitruPIvShiqwMbLG05FK&amp;amp;datasetId=S2L2A&amp;amp;fromTime=2024-11-09T00:00:00.000Z&amp;amp;toTime=2024-11-09T23:59:59.999Z&amp;amp;layerId=2_TONEMAPPED_NATURAL_COLOR&amp;amp;demSource3D=%22MAPZEN%22">https://apps.sentinel-hub.com/eo-browser/?zoom=10&amp;lat=-77.05481&amp;lng=167.27783&amp;themeId=DEFAULT-THEME&amp;visualizationUrl=U2FsdGVkX1%2Btyu1tAfovEieshimr1kMCjLpUXj8Xj1Se6ZoskUOY9xy0WSJyoWvbaHR3C7efJLFsAYvknrfc4Ofb3zqo9bjWhhIUGdtgIp6bitruPIvShiqwMbLG05FK&amp;datasetId=S2L2A&amp;fromTime=2024-11-09T00:00:00.000Z&amp;toTime=2024-11-09T23:59:59.999Z&amp;layerId=2_TONEMAPPED_NATURAL_COLOR&amp;demSource3D=”MAPZEN”</a></p></li>
+<li><p>Planetary Computer: <a class="reference external" href="https://planetarycomputer.microsoft.com/explore?c=167.8417%2C-77.5520&amp;amp;z=7.66&amp;amp;v=2&amp;amp;d=sentinel-2-l2a&amp;amp;m=cql%3A0bbe8c2e6820a52f6d134152bbbc4a3c&amp;amp;r=Natural+color&amp;amp;s=false%3A%3A100%3A%3Atrue&amp;amp;sr=desc&amp;amp;ae=0">https://planetarycomputer.microsoft.com/explore?c=167.8417%2C-77.5520&amp;z=7.66&amp;v=2&amp;d=sentinel-2-l2a&amp;m=cql%3A0bbe8c2e6820a52f6d134152bbbc4a3c&amp;r=Natural+color&amp;s=false%3A%3A100%3A%3Atrue&amp;sr=desc&amp;ae=0</a></p></li>
+</ul>
+</div>
+<p>We’ll use <code class="docutils literal notranslate"><span class="pre">rioxarray</span></code> again to open the GeoTIFF files (using <code class="docutils literal notranslate"><span class="pre">overview_level=1</span></code> means
+we can get a lower resolution version), and to mosaic the two image tiles together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tile_58CEU</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/58/C/EU/2024/11/S2B_58CEU_20241109_0_L2A/TCI.tif&quot;</span><span class="p">,</span>
+    <span class="n">overview_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">tile_58CEV</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">open_rasterio</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/58/C/EV/2024/11/S2B_58CEV_20241109_0_L2A/TCI.tif&quot;</span><span class="p">,</span>
+    <span class="n">overview_level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">rgb_mosaic</span> <span class="o">=</span> <span class="n">rioxarray</span><span class="o">.</span><span class="n">merge</span><span class="o">.</span><span class="n">merge_arrays</span><span class="p">(</span><span class="n">dataarrays</span><span class="o">=</span><span class="p">[</span><span class="n">tile_58CEU</span><span class="p">,</span> <span class="n">tile_58CEV</span><span class="p">])</span>
+<span class="n">rgb_image</span> <span class="o">=</span> <span class="n">rgb_mosaic</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">reproject_match</span><span class="p">(</span><span class="n">match_data_array</span><span class="o">=</span><span class="n">dem_mosaic</span><span class="p">)</span>
+<span class="n">rgb_image</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When working with DEM mosaics and optical imagery, carefully consider the size and
+resolution of the data. High-resolution DEMs combined with complex topographies can
+demand substantial computational resources for processing and visualization. A practical
+tip is to start with lower resolutions to experiment with and refine the scene geometry
+(e.g., azimuth, elevation, and perspective). Once you are satisfied with the
+visualization setup, switch to higher-resolution data for the final rendering. This
+approach helps optimize computational efficiency while maintaining the quality of your
+analysis.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="draping-rgb-image-on-3-d-topography">
+<h1>3️⃣ Draping RGB image on 3-D topography<a class="headerlink" href="#draping-rgb-image-on-3-d-topography" title="Link to this heading">#</a></h1>
+<p>We have our RGB imagery from Sentinel-2, and a DEM from REMA, and now we can learn how
+to render the colour image on top of the 3-D topography! Once again, we will be using
+<a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdview.html"><code class="docutils literal notranslate"><span class="pre">grdview</span></code></a>, but
+pass in some extra arguments:</p>
+<ul class="simple">
+<li><p><strong>drapegrid</strong>: This is the image that will be overlaid on top of the relief <strong>grid</strong>.</p></li>
+<li><p><strong>surftype</strong>: We are plotting an RGB image with 3-bands, so we will use <code class="docutils literal notranslate"><span class="pre">i</span></code> for an
+image plot. It is also possible to append a number (e.g. <code class="docutils literal notranslate"><span class="pre">600</span></code>) as the dots-per-unit
+resolution for the rasterization</p></li>
+<li><p><strong>zscale</strong>: vertical exaggeration factor, usually given as a fractional number.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When setting the <code class="docutils literal notranslate"><span class="pre">zscale</span></code> for vertical exaggeration, choose a value that balances
+clarity and realism. For subtle topographies, higher exaggeration (e.g., smaller
+<code class="docutils literal notranslate"><span class="pre">zscale</span></code> values) can emphasize elevation differences, making features more visible.
+However, for steep terrains, lower exaggeration helps maintain a natural appearance. You
+may use <code class="docutils literal notranslate"><span class="pre">shading=True</span></code> to add hillshading, which enhances the 3-D effect by simulating
+light and shadows, making terrain features easier to interpret. Experiment with both
+parameters to find the best combination for your dataset and visualization goals.</p>
+</div>
+<p>This is how the code will look like. We’ll also use
+<a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.config.html"><code class="docutils literal notranslate"><span class="pre">pygmt.config</span></code></a> to set
+<a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/gmt.conf.html#term-PS_PAGE_COLOR"><code class="docutils literal notranslate"><span class="pre">PS_PAGE_COLOR</span></code></a>
+(the background colour) to an off-white colour instead of the default black to better
+match the polar landscape.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">PS_PAGE_COLOR</span><span class="o">=</span><span class="s2">&quot;#a9aba5&quot;</span><span class="p">):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">grdview</span><span class="p">(</span>
+        <span class="n">grid</span><span class="o">=</span><span class="n">dem_mosaic</span><span class="p">,</span>  <span class="c1"># DEM layer</span>
+        <span class="n">drapegrid</span><span class="o">=</span><span class="n">rgb_image</span><span class="p">,</span>  <span class="c1"># Sentinel-2 image layer</span>
+        <span class="n">surftype</span><span class="o">=</span><span class="s2">&quot;i600&quot;</span><span class="p">,</span>  <span class="c1"># image draping with 600dpi resolution</span>
+        <span class="n">perspective</span><span class="o">=</span><span class="p">[</span><span class="mi">170</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>  <span class="c1"># view azimuth and angle</span>
+        <span class="n">zscale</span><span class="o">=</span><span class="s2">&quot;0.0005&quot;</span><span class="p">,</span>  <span class="c1"># vertical exaggeration</span>
+        <span class="n">shading</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># hillshading</span>
+        <span class="c1"># frame=&quot;af&quot;,</span>
+    <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Examples of other 3D perspective plots made with PyGMT:</p>
+<ul class="simple">
+<li><p><a class="github reference external" href="https://github.com/andrebelem/3D-Antarctic-maps">andrebelem/3D-Antarctic-maps</a></p></li>
+<li><p><a class="reference external" href="https://github.com/andrebelem/PlanetaryMaps/blob/main/2_%20Tutorial%20Mars%20Maps%20V2.ipynb">https://github.com/andrebelem/PlanetaryMaps/blob/main/2_ Tutorial Mars Maps V2.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://www.generic-mapping-tools.org/egu22pygmt/lidar_to_surface.html">https://www.generic-mapping-tools.org/egu22pygmt/lidar_to_surface.html</a></p></li>
+<li><p><a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/advanced/3d_perspective_image.html">https://www.pygmt.org/v0.13.0/tutorials/advanced/3d_perspective_image.html</a></p></li>
+</ul>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tut03_spe_xarray.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tut06_animation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Making animations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3-D Topography 🏔️</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mars-relief-data">0️⃣ Mars relief data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-map-view">2-D map view</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zoomed-in-view">Zoomed in view</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-grdview-for-3-d-visualization">1️⃣ Using <code class="docutils literal notranslate"><span class="pre">grdview</span></code> for 3-D Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#antarctic-digital-elevation-model">2️⃣ Antarctic Digital Elevation Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-a-dem-mosaic">Getting a DEM mosaic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-rgb-imagery">Getting RGB imagery</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#draping-rgb-image-on-3-d-topography">3️⃣ Draping RGB image on 3-D topography</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

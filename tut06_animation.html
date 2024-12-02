@@ -1,0 +1,1156 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Making animations &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut06_animation';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Making animations (extended)" href="tut06_animation_extended.html" />
+    <link rel="prev" title="3-D Topography 🏔️" href="tut05_topography.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <img src="_static/logo.webp" class="logo__image only-dark pst-js-only" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html">3-D Topography 🏔️</a></li>
+
+
+
+
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Making animations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut06_animation.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut06_animation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut06_animation.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Making animations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-animation">1.1. What is an Animation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-make-an-animation">1.2. How to Make an Animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-gmt-for-animations">1.3. Why use GMT for animations?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-animations-in-gmt">1.4. Types of animations in GMT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.5. Prerequisites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">2.1. Goals of the Tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-first-image">2.2. Make first image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-master-frame">2.3. Make the Master Frame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-gmt-movie">2.3.1. What is GMT movie?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt">2.3.2. First Attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-canvas">2.3.3. The Canvas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-fix-the-canvas">2.3.4. Second attempt. Fix the canvas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-draft-animation">2.4. Make draft animation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.4.1. First attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#movie-parameters">2.4.2. Movie Parameters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-the-number-of-frames">2.4.3. How to set the number of Frames</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-use-parameters">2.4.4. Second attempt. Use parameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">2.5. Make full animation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="making-animations">
+<h1>Making animations<a class="headerlink" href="#making-animations" title="Link to this heading">#</a></h1>
+<p>By F. Esteban (&#64;esteban82)</p>
+<ul class="simple">
+<li><p>This tutorial explains the basic aspect of doing animations with GMT.</p></li>
+<li><p>It serves as a guide to help beginners understand and troubleshoot potential issues.</p></li>
+<li><p>It explains the basic aspect of the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p></li>
+</ul>
+<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<ul class="simple">
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
+</ul>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Prior to GMT 6.0, ambitious movie makers had to write complicated scripts where the advancement of frames was explicitly done by a shell loop.
+At the end of the script, you would have to convert your PostScript plot to a raster image with a name that is lexically increasing,
+and then later you would use some external software to assemble the movie. Hence, only very brave GMT users attempted to make GMT animations.
+Here you can see a <a class="reference external" href="https://docs.generic-mapping-tools.org/5.4/gallery/anim_introduction.html">more complete explanation</a>
+and <a class="reference external" href="https://docs.generic-mapping-tools.org/5.4/Gallery.html#animations">some examples</a> of those times.</p>
+<p>GMT 6 (<a class="reference external" href="https://doi.org/10.1029/2019GC008515">Wessel et al. 2019</a>) simplified all that by adding movie-making modules
+that were later refined with GMT 6.5 (<a class="reference external" href="https://doi.org/10.1029/2024GC011545">Wessel et al. 2024</a>).
+These modules empower users to create animations by taking over non-trivial tasks.</p>
+<section id="what-is-an-animation">
+<h3>1.1. What is an Animation?<a class="headerlink" href="#what-is-an-animation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Animation is a technique used to create the illusion of motion.</p></li>
+<li><p>This is achieved by displaying a rapid sequence of still images (at least 12 frames per second; fps).</p></li>
+</ul>
+</section>
+<section id="how-to-make-an-animation">
+<h3>1.2. How to Make an Animation<a class="headerlink" href="#how-to-make-an-animation" title="Link to this heading">#</a></h3>
+<p>In order to make an animation we need:</p>
+<ol class="arabic simple">
+<li><p>A series of still images.</p></li>
+<li><p>A method to combine these images into a video format.</p></li>
+</ol>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<p>A video file is essentially a container format that sequentially displays all the images it contains.</p>
+</div>
+</section>
+<section id="why-use-gmt-for-animations">
+<h3>1.3. Why use GMT for animations?<a class="headerlink" href="#why-use-gmt-for-animations" title="Link to this heading">#</a></h3>
+<p>GMT is ideal for animations that require:</p>
+<ul class="simple">
+<li><p>Scientific precision.</p></li>
+<li><p>Handling geospatial data.</p></li>
+<li><p>High-quality graphical visualizations.</p></li>
+</ul>
+</section>
+<section id="types-of-animations-in-gmt">
+<h3>1.4. Types of animations in GMT<a class="headerlink" href="#types-of-animations-in-gmt" title="Link to this heading">#</a></h3>
+<p>For the purposes of this tutorial, I define two types of animations that can be made based on their complexity:</p>
+<ol class="arabic simple">
+<li><p><strong>Moving object</strong> (e.g., Earth spinning), created using the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module.</p></li>
+<li><p><strong>Appearing object</strong> (e.g., earthquakes), created using both the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p></li>
+</ol>
+</section>
+<section id="prerequisites">
+<h3>1.5. Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>GMT version 6.5 or later.</p></li>
+<li><p>Bash scripting environment: The examples in this tutorial are written in Bash and may not work correctly in other shell environments (e.g., zsh, fish, or Windows cmd).</p></li>
+</ul>
+</section>
+</section>
+<section id="tutorial-1-earth-spinning">
+<h2>2. Tutorial 1. Earth spinning<a class="headerlink" href="#tutorial-1-earth-spinning" title="Link to this heading">#</a></h2>
+<p>Here I explain how to make an animation of a moving object which only requires the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module.</p>
+<p>As an example, I will create an animation of the Earth spinning like the one below.</p>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/uZtyTv6DLnM" style="border: 0; height: 430px; width: 400px">
+</iframe></div><div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<p>This animation was created using 360 images (or frames), with each frame representing a 1-degree rotation in the central longitude of the map,
+displayed at 24 fps.</p>
+</div>
+<p>To create the animation, I follow these four steps:</p>
+<ol class="arabic simple">
+<li><p>Make first image</p></li>
+<li><p>Make master frame with gmt movie</p></li>
+<li><p>Make draft animation</p></li>
+<li><p>Make full animation</p></li>
+</ol>
+<section id="goals-of-the-tutorial">
+<h3>2.1. Goals of the Tutorial<a class="headerlink" href="#goals-of-the-tutorial" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Explain the most important aspects of using the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module which include:</p>
+<ul>
+<li><p>What is <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a></p></li>
+<li><p>How to set the Canvas (-C)</p></li>
+<li><p>What are and how to use the movie parameters</p></li>
+<li><p>How to set the number of Frames (-T)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="make-first-image">
+<h3>2.2. Make first image<a class="headerlink" href="#make-first-image" title="Link to this heading">#</a></h3>
+<p>The first step is to create an image using a standard GMT script
+(with <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/reference/introduction.html#modern-and-classic-mode">modern mode</a>)
+that will serve as the base for the animation.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Step Goal</strong>: Create the first image of the animation.</p>
+</div>
+<p>For this example, I create a map of the Earth with:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gmt<span class="w"> </span>begin<span class="w"> </span>Earth<span class="w"> </span>png
+<span class="w">    </span><span class="c1"># Plot relief grid</span>
+<span class="w">    </span>gmt<span class="w"> </span>grdimage<span class="w"> </span>@earth_relief_06m<span class="w"> </span>-I<span class="w"> </span>-JG0/0/13c
+gmt<span class="w"> </span>end
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-01920d6ddd40f8db1e4b9f6d23c1302d">
+<a class="reference internal image-reference" href="_images/01920d6ddd40f8db1e4b9f6d23c1302d.png"><img alt="_images/01920d6ddd40f8db1e4b9f6d23c1302d.png" src="_images/01920d6ddd40f8db1e4b9f6d23c1302d.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p><strong>gmt begin; gmt end</strong>: Commands to start and end a GMT script using modern syntax.</p></li>
+<li><p><strong>&#64;earth_relief_06m</strong>: A remote grid of Earth’s relief with a 6-minute resolution.</p></li>
+<li><p><strong>-I</strong>: Apply illumination to the grid.</p></li>
+<li><p><strong>-JG0/0/13c</strong>: Perspective projection with the center at longitude 0 and latitude 0, with a 13 cm map width.</p></li>
+</ul>
+</div>
+</section>
+<section id="make-the-master-frame">
+<h3>2.3. Make the Master Frame<a class="headerlink" href="#make-the-master-frame" title="Link to this heading">#</a></h3>
+<p>In this second step, I recreate the previous image but with the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module which is used to create animations.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Step Goal</strong>: Make a master frame that looks identical to the first image.</p>
+</div>
+<section id="what-is-gmt-movie">
+<h4>2.3.1. What is GMT movie?<a class="headerlink" href="#what-is-gmt-movie" title="Link to this heading">#</a></h4>
+<p>The <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module simplifies most of the steps needed to create an animation
+by executing a single plot script that is repeated across all frames.</p>
+<p><strong>Required Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>mainscript</strong>: Script that will be used to create all the frames.</p></li>
+<li><p><strong>-N</strong>: Name for the output file.</p></li>
+<li><p><strong>-C</strong>: Canvas Size (see below).</p></li>
+<li><p><strong>-T</strong>: Number of frames (see below).</p></li>
+<li><p>There are two types of outputs. An image (called <em>master frame</em>; <strong>-M</strong>) or a video (<strong>-F</strong>). You have to ask for at least one of them.</p></li>
+</ul>
+<p><strong>Optional Arguments</strong> (useful for this tutorial):</p>
+<ul class="simple">
+<li><p><strong>-G</strong>: Set the canvas color (or fill).</p></li>
+<li><p><strong>-V</strong>: Show verbose information during the movie-making process.</p></li>
+<li><p><strong>-L</strong>: Show a label with the frame number.</p></li>
+</ul>
+</section>
+<section id="first-attempt">
+<h4>2.3.2. First Attempt<a class="headerlink" href="#first-attempt" title="Link to this heading">#</a></h4>
+<p>In the first attempt, I create the first frame (<code class="docutils literal notranslate"><span class="pre">-M0,png</span></code>) over a black canvas (<code class="docutils literal notranslate"><span class="pre">-Gblack</span></code>) for an HD video format (<code class="docutils literal notranslate"><span class="pre">-Chd</span></code>).</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I -JG0/0/13c</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NEarth<span class="w"> </span>-Chd<span class="w"> </span>-T360<span class="w"> </span>-M0,png<span class="w"> </span>-V<span class="w"> </span>-L+f14p,Helvetica-Bold,white<span class="w"> </span>-Gblack
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-96a96f9adc86681d541c8bfc52a6820a">
+<a class="reference internal image-reference" href="_images/96a96f9adc86681d541c8bfc52a6820a.png"><img alt="_images/96a96f9adc86681d541c8bfc52a6820a.png" src="_images/96a96f9adc86681d541c8bfc52a6820a.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<ul class="simple">
+<li><p>The figure does not fit on the canvas!</p></li>
+<li><p>There is excess space on one side.</p></li>
+</ul>
+</div>
+<div class="admonition-technical-information admonition">
+<p class="admonition-title">Technical Information</p>
+<ul class="simple">
+<li><p>The previous script is enclosed between <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">&lt;&lt;</span> <span class="pre">'EOF'</span> <span class="pre">&gt;</span> <span class="pre">main.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">EOF</span></code>.</p></li>
+<li><p>This creates the <code class="docutils literal notranslate"><span class="pre">main.sh</span></code> file on-the-fly (using a <a class="reference external" href="https://en.wikipedia.org/wiki/Here_document">Here Document</a>).</p></li>
+<li><p>This is useful because it allows us to see (and edit) the main script and the arguments of <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> just using a single file.</p></li>
+</ul>
+</div>
+</section>
+<section id="the-canvas">
+<h4>2.3.3. The Canvas<a class="headerlink" href="#the-canvas" title="Link to this heading">#</a></h4>
+<p><strong>What is the Canvas?</strong></p>
+<ul class="simple">
+<li><p>The canvas is the black area of the previous image.</p></li>
+<li><p>This is the working area of the frames.</p></li>
+<li><p>The elements of the main script must be drawn inside the canvas.</p></li>
+<li><p>The elements that are outside will be (totally or partially) hidden in the animation.</p></li>
+<li><p>The canvas size is important by two reasons:</p>
+<ul>
+<li><p>to set the width and height (in cm or inches) of the frames.</p></li>
+<li><p>to set the dimensions in pixels of the frames/movie (i.e. the quality).</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>How to set the canvas</strong>:</p>
+<ul class="simple">
+<li><p>This is set via <code class="docutils literal notranslate"><span class="pre">movie</span> <span class="pre">-C</span></code>.</p></li>
+<li><p>There are two ways to the set the canvas:</p>
+<ul>
+<li><p>Preset formats</p></li>
+<li><p>Custom format</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Preset formats</strong>:</p>
+<ul class="simple">
+<li><p>It is the easiest way to specify the canvas.</p></li>
+<li><p>Use the name (or alias) to select a format based on this table (for 16:9 format):</p></li>
+</ul>
+<blockquote>
+<div><div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Preset format (alias)</p></th>
+<th class="head"><p>Pixel dimensions</p></th>
+<th class="head"><p>DPC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4320p (8k and uhd-2)</p></td>
+<td><p>7680 x 4320</p></td>
+<td><p>320</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p (4k and uhd)</p></td>
+<td><p>3840 x 2160</p></td>
+<td><p>160</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p (fhd and hd)</p></td>
+<td><p>1920 x 1080</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-odd"><td><p>720p</p></td>
+<td><p>1280 x 720</p></td>
+<td><p>53.3333</p></td>
+</tr>
+<tr class="row-even"><td><p>540p</p></td>
+<td><p>960 x 540</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-odd"><td><p>480p</p></td>
+<td><p>854 x 480</p></td>
+<td><p>35.5833</p></td>
+</tr>
+<tr class="row-even"><td><p>360p</p></td>
+<td><p>640 x 360</p></td>
+<td><p>26.6667</p></td>
+</tr>
+<tr class="row-odd"><td><p>240p</p></td>
+<td><p>426 x 240</p></td>
+<td><p>17.75</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></blockquote>
+<ul>
+<li><p>Pixel density (dots-per-cm, dpc) is set automatically.</p></li>
+<li><p>For the 16:9 format, the canvas is 24 x 13.5 cm:</p>
+<blockquote>
+<div><p><a class="reference download internal" download="" href="_downloads/9ec62a97cc2714435644f724c23f5466/bdad12f59e7e210859362b2d1a0c2eb5.sh"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">Code</span></code></a></p>
+<figure class="align-center" id="gmtplot-bdad12f59e7e210859362b2d1a0c2eb5">
+<a class="reference internal image-reference" href="_images/bdad12f59e7e210859362b2d1a0c2eb5.png"><img alt="_images/bdad12f59e7e210859362b2d1a0c2eb5.png" src="_images/bdad12f59e7e210859362b2d1a0c2eb5.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>By default, the canvas has an offset of 2.54 cm (or 1 inch) in X and Y.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>You can also specify the dimensions in inches (or points).</p></li>
+<li><p>There are also preset formats for 4:3 (uxga, sxga+, xga, svga, dvd).</p></li>
+</ul>
+</div>
+<p><strong>Custom format</strong>:</p>
+<ul class="simple">
+<li><p>If you want another dimension, you can request a custom format directly by giving width and height and dpu (<em>widthxheightxdpu</em>).</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>DPU: Dots-per-unit pixel density. So, it is DPI for inches or DPC for centimeters.</p></li>
+</ul>
+</div>
+</section>
+<section id="second-attempt-fix-the-canvas">
+<h4>2.3.4. Second attempt. Fix the canvas<a class="headerlink" href="#second-attempt-fix-the-canvas" title="Link to this heading">#</a></h4>
+<p>For this new attempt I:</p>
+<blockquote>
+<div><ul>
+<li><p>use a custom canvas of a square of 13 cm and 80 dpc (same resolution as full hd, <code class="docutils literal notranslate"><span class="pre">-C13cx13cx80</span></code>).</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">-X0</span></code> and <code class="docutils literal notranslate"><span class="pre">-Y0</span></code> (in <code class="docutils literal notranslate"><span class="pre">main.sh</span></code>) to remove the default offset.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I -JG0/0/13c -X0 -Y0</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NEarth<span class="w"> </span>-C13cx13cx80<span class="w"> </span>-T360<span class="w"> </span>-M0,png<span class="w"> </span>-V<span class="w"> </span>-L+f14p,Helvetica-Bold,white<span class="w"> </span>-Gblack
+</pre></div>
+</div>
+<figure class="align-center" id="gmtplot-5847818951ca8fbc9b86a6f2c67389b6">
+<a class="reference internal image-reference" href="_images/5847818951ca8fbc9b86a6f2c67389b6.png"><img alt="_images/5847818951ca8fbc9b86a6f2c67389b6.png" src="_images/5847818951ca8fbc9b86a6f2c67389b6.png" style="height: 400px;" /></a>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="make-draft-animation">
+<h3>2.4. Make draft animation<a class="headerlink" href="#make-draft-animation" title="Link to this heading">#</a></h3>
+<p>Once the master frame is ok, I recommend making a very short and small movie so you don’t have to wait very long to see the result.</p>
+<div class="admonition-step-goals admonition">
+<p class="admonition-title"><strong>Step Goals</strong>:</p>
+<ul class="simple">
+<li><p>See that the video file is created properly.</p></li>
+<li><p>See that the frames are changing as expected.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The conversion to a video format relies on <a class="reference external" href="https://www.ffmpeg.org/">FFmpeg</a> (for MP4 or WebM)
+and <a class="reference external" href="http://www.graphicsmagick.org/">GraphicsMagick</a> (for GIF).</p>
+</div>
+<section id="id1">
+<h4>2.4.1. First attempt<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>In this step I reduce the number of frames to 10 (<code class="docutils literal notranslate"><span class="pre">-T10</span></code>) and the quality to 30 DPC (<code class="docutils literal notranslate"><span class="pre">-C13cx13cx30</span></code>).
+Also, I add the following arguments to <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a>:</p>
+<ul>
+<li><p><strong>-Fmp4</strong>: to create a mp4 video (now it is possible to delete <code class="docutils literal notranslate"><span class="pre">-M</span></code>).</p></li>
+<li><p><strong>-Zs</strong>: to remove the temporary files created in the movie-making process. Useful to keep the working directory clean.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s">  gmt grdimage @earth_relief_06m -I -JG0/0/13c -X0 -Y0</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NEarth<span class="w"> </span>-C13cx13cx30<span class="w"> </span>-T10<span class="w"> </span>-M0,png<span class="w"> </span>-V<span class="w"> </span>-Gblack<span class="w"> </span>-L+f14p,Helvetica-Bold,white<span class="w"> </span>-Fmp4<span class="w"> </span>-Zs
+</pre></div>
+</div>
+</div></blockquote>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/hHmXSYpV0yw" style="border: 0; height: 430px; width: 400px">
+</iframe></div></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The display frame rate is set by default to 24 <a class="reference external" href="https://en.wikipedia.org/wiki/Frame_rate">fps</a>. It can be change with <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/movie.html#d">-D</a>.</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<ul class="simple">
+<li><p>The movie doesn’t change. We must learn about parameters.</p></li>
+</ul>
+</div>
+</section>
+<section id="movie-parameters">
+<h4>2.4.2. Movie Parameters<a class="headerlink" href="#movie-parameters" title="Link to this heading">#</a></h4>
+<p>The movie parameters are key to making animations.
+They are automatically assigned by different movie arguments (see tables below).
+There are two sets of parameters:</p>
+<p><strong>Variable parameters</strong>:</p>
+<ul class="simple">
+<li><p>These values change with the frame number.</p></li>
+<li><p>They must be used in the <em>main script</em> to introduce variations in the frames.</p></li>
+</ul>
+<blockquote>
+<div><div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Purpose or contents</p></th>
+<th class="head"><p>Set by Movie</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MOVIE_FRAME</p></td>
+<td><p>Number of current frame being processed</p></td>
+<td><p>-T</p></td>
+</tr>
+<tr class="row-odd"><td><p>MOVIE_TAG</p></td>
+<td><p>Formatted frame number (string)</p></td>
+<td><p>-T</p></td>
+</tr>
+<tr class="row-even"><td><p>MOVIE_NAME</p></td>
+<td><p>Prefix for current frame image</p></td>
+<td><p>-N and -T</p></td>
+</tr>
+<tr class="row-odd"><td><p>MOVIE_COLk</p></td>
+<td><p>Variable k from data column k, current row</p></td>
+<td><p>-T<em>timefile</em></p></td>
+</tr>
+<tr class="row-even"><td><p>MOVIE_TEXT</p></td>
+<td><p>The full trailing text for current row</p></td>
+<td><p>-T<em>timefile</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>MOVIE_WORDw</p></td>
+<td><p>Word w from trailing text, current row</p></td>
+<td><p>-T<em>timefile</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></blockquote>
+<p><strong>Constant parameters</strong>:</p>
+<ul class="simple">
+<li><p>These values do NOT change during the whole movie.</p></li>
+<li><p>They can be used in the <em>main script</em> (and in the optional background and foreground scripts).</p></li>
+</ul>
+<blockquote>
+<div><div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Purpose or contents</p></th>
+<th class="head"><p>Set by Movie</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MOVIE_NFRAMES</p></td>
+<td><p>Total number of frames in the movie</p></td>
+<td><p>-T</p></td>
+</tr>
+<tr class="row-odd"><td><p>MOVIE_WIDTH</p></td>
+<td><p>Width of the movie canvas</p></td>
+<td><p>-C</p></td>
+</tr>
+<tr class="row-even"><td><p>MOVIE_HEIGHT</p></td>
+<td><p>Height of the movie canvas</p></td>
+<td><p>-C</p></td>
+</tr>
+<tr class="row-odd"><td><p>MOVIE_DPU</p></td>
+<td><p>Dots (pixels) per unit used to convert to image</p></td>
+<td><p>-C</p></td>
+</tr>
+<tr class="row-even"><td><p>MOVIE_RATE</p></td>
+<td><p>Number of frames displayed per second</p></td>
+<td><p>-D</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>In order to introduce changes in the frames we must use the <strong>variable parameters</strong>.</p></li>
+</ul>
+</div>
+</section>
+<section id="how-to-set-the-number-of-frames">
+<h4>2.4.3. How to set the number of Frames<a class="headerlink" href="#how-to-set-the-number-of-frames" title="Link to this heading">#</a></h4>
+<p>The number of frames (<code class="docutils literal notranslate"><span class="pre">-T</span></code>) is another important aspect to make animations.
+There are 3 ways to do it:</p>
+<ol class="arabic simple">
+<li><p><strong>-TNumber</strong>:</p></li>
+</ol>
+<p>If you supply a single (integer) value, then it will be the total number of frames.
+Under the hood, this will create a one-column data set from 0 to that number minus one.
+For example, for <code class="docutils literal notranslate"><span class="pre">-T10</span></code> I get values from 0 to 9.
+In the main script, you have to use the MOVIE_FRAME parameter to access the values.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>-Tmin/max/inc</strong>:</p></li>
+</ol>
+<p>If you supply 3 values, then GMT will create a one-column data set from <em>min</em> to <em>max</em>, incrementing by <em>inc</em>.
+You have to use the MOVIE_COL0 parameter to access the values of the one-column data set.
+The total of number of frames will be:</p>
+<div class="math notranslate nohighlight">
+\[\text{total frames} = \frac{\text{max} - \text{min}}{\text{inc}} + 1\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>-Ttimefile</strong>:</p></li>
+</ol>
+<p>If you supply the name of a file, then GMT will access it and use one record (i.e. row) per frame.
+This method allows you to have more than one-column and can be used to make more complex animations.
+For example, you can have a second column with numbers that you can access using MOVIE_COL1.
+The file can even have trailing text that will be accessed with MOVIE_TEXT.</p>
+</section>
+<section id="second-attempt-use-parameters">
+<h4>2.4.4. Second attempt. Use parameters<a class="headerlink" href="#second-attempt-use-parameters" title="Link to this heading">#</a></h4>
+<p>Now I update the script with movie parameters.
+First, I use the <code class="docutils literal notranslate"><span class="pre">MOVIE_FRAME</span></code> variable parameter to set the central longitude of the map.
+I also use the <code class="docutils literal notranslate"><span class="pre">MOVIE_WIDTH</span></code> constant parameter (in <code class="docutils literal notranslate"><span class="pre">main.sh</span></code>) to set the width of the map (instead of 13c).</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s"> gmt grdimage @earth_relief_06m -I -JG-${MOVIE_FRAME}/0/${MOVIE_WIDTH} -Y0 -X0</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NEarth<span class="w"> </span>-C13cx13cx30<span class="w"> </span>-T10<span class="w"> </span>-M0,png<span class="w"> </span>-V<span class="w"> </span>-Gblack<span class="w"> </span>-L+f14p,Helvetica-Bold,white<span class="w"> </span>-Fmp4<span class="w"> </span>-Zs
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I add a minus sign so the earth spins in the correct sense.</p>
+</div>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/sagKzhI88tU" style="border: 0; height: 430px; width: 400px">
+</iframe></div></section>
+</section>
+<section id="make-full-animation">
+<h3>2.5. Make full animation<a class="headerlink" href="#make-full-animation" title="Link to this heading">#</a></h3>
+<p>Once the draft animation is working it is possible to increment the number of frames (-T) and movie quality (-C).</p>
+<p>In the step, I increase:</p>
+<ul>
+<li><p>the number of frames to 360 (<code class="docutils literal notranslate"><span class="pre">-T360</span></code>) to get the whole spin.</p></li>
+<li><p>the resolution to 80 DPC (<code class="docutils literal notranslate"><span class="pre">-C13cx13cx80</span></code>) to get a high-quality video.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; main.sh</span>
+<span class="s">gmt begin</span>
+<span class="s"> gmt grdimage @earth_relief_06m -I -JG-${MOVIE_FRAME}/0/13c -X0 -Y0</span>
+<span class="s">gmt end</span>
+<span class="s">EOF</span>
+gmt<span class="w"> </span>movie<span class="w"> </span>main.sh<span class="w"> </span>-NEarth<span class="w"> </span>-C13cx13cx80<span class="w"> </span>-T360<span class="w"> </span>-M0,png<span class="w"> </span>-V<span class="w"> </span>-Gblack<span class="w"> </span>-L+f14p,Helvetica-Bold,white<span class="w"> </span>-Fmp4<span class="w"> </span>-Zs
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/uZtyTv6DLnM" style="border: 0; height: 430px; width: 400px">
+</iframe></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Be careful. This step can be quite time (and resource) consuming.
+By default, <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> uses all the cores available to speed up the frame creation process.
+So probably you can’t do anything else while GMT is creating all the frames (maybe you can take a break, or have lunch).
+Also you could use <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/gmt.html#core-full">-x</a> to specify the number of active cores to be used.</p>
+</div>
+</section>
+</section>
+<section id="tutorial-2-earthquakes">
+<h2>3. Tutorial 2. Earthquakes<a class="headerlink" href="#tutorial-2-earthquakes" title="Link to this heading">#</a></h2>
+<p>Check the extended section to see the tutorial 2 about appearing objects.
+That type of animation is more complex and requires the use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> modules.
+In that tutorial, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).</p>
+</section>
+<section id="see-also">
+<h2>4. See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The paper about animations which include explanation and examples (<a class="reference external" href="https://doi.org/10.1029/2024GC011545">Wessel et al. 2024</a>).</p></li>
+<li><p>Check the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules documentation for full technical information.</p></li>
+<li><p>See the <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/animations.html">GMT animation gallery</a> for more examples.</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>5. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., &amp; Tian, D. (2019). The Generic Mapping Tools Version 6. Geochemistry, Geophysics, Geosystems, 20(11), 5556–5564. <a class="reference external" href="https://doi.org/10.1029/2019GC008515">https://doi.org/10.1029/2019GC008515</a></p></li>
+<li><p>Wessel, P., Esteban, F., &amp; Delaviel-Anger, G. (2024). The Generic Mapping Tools and animations for the masses. Geochemistry, Geophysics, Geosystems, 25, e2024GC011545. <a class="reference external" href="https://doi.org/10.1029/2024GC011545">https://doi.org/10.1029/2024GC011545</a>.</p></li>
+</ul>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tut05_topography.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3-D Topography 🏔️</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tut06_animation_extended.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Making animations (extended)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-animation">1.1. What is an Animation?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-make-an-animation">1.2. How to Make an Animation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-gmt-for-animations">1.3. Why use GMT for animations?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-animations-in-gmt">1.4. Types of animations in GMT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.5. Prerequisites</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">2.1. Goals of the Tutorial</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-first-image">2.2. Make first image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-master-frame">2.3. Make the Master Frame</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-gmt-movie">2.3.1. What is GMT movie?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#first-attempt">2.3.2. First Attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-canvas">2.3.3. The Canvas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-fix-the-canvas">2.3.4. Second attempt. Fix the canvas</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-draft-animation">2.4. Make draft animation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.4.1. First attempt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#movie-parameters">2.4.2. Movie Parameters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-set-the-number-of-frames">2.4.3. How to set the number of Frames</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#second-attempt-use-parameters">2.4.4. Second attempt. Use parameters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">2.5. Make full animation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -18,18 +18,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import gcsfs
 import pygmt
-import xarray as xr
+import rioxarray
+import rioxarray.merge
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [0;32mIn[1], line 1[0m
-[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mgcsfs[39;00m
-[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mpygmt[39;00m
-[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mxarray[39;00m [38;5;28;01mas[39;00m [38;5;21;01mxr[39;00m
+Cell [0;32mIn[1], line 2[0m
+[1;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mpygmt[39;00m
+[0;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01mrioxarray[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mrioxarray[39;00m[38;5;21;01m.[39;00m[38;5;21;01mmerge[39;00m
 
-[0;31mModuleNotFoundError[0m: No module named 'gcsfs'
+[0;31mModuleNotFoundError[0m: No module named 'rioxarray'
 
