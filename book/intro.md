@@ -10,7 +10,7 @@ geospatial data processing 🌐
 
 :::{grid-item-card} Tutorial 1 - First figure + Subplots / layout
 :img-top: _images/d9e3a5b11d774ff087afeb95b8bfd3e7974afe8b1e8f51d12a4736419cdc6974.png
-:link: ./first-figure.html
+:link: ./tut01_firstfigure.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 +++
 {bdg-primary}`pygmt`
@@ -25,7 +25,7 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 
 :::{grid-item-card} Tutorial 2 - Integration with the Scientific Python Ecosystem: Pandas / GeoPandas
 :img-top: _images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png
-:link: ./tut2_spec_pd_gpd.ipynb.html
+:link: ./tut02_spe_pd_gpd.html
 by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 +++
 {bdg-primary}`pygmt`
@@ -40,7 +40,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 
 :::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
 :img-top: _images/b3e45577786a5769fb54bb550f7032f3a73adc8289e08523d052827560bf3b0e.png
-:link: ./tut3.html
+:link: ./tut03_spe_xarray.html
 by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 +++
 {bdg-primary}`pygmt`
@@ -48,7 +48,7 @@ by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 :::
 
 :::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
-:link: ./tut4_geophysics.html
+:link: ./tut04_geophysics.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 +++
@@ -60,7 +60,7 @@ and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 :::
 
 :::{grid-item-card} Tutorial 5 - Topography (Planetary Maps / 3-D Antarctic Maps)
-:link: ./tut5.html
+:link: ./tut05_topography.html
 by [Wei Ji Leong](https://orcid.org/0000-0003-2354-1988)
 and [André Belém](https://orcid.org/0000-0002-8865-6180)
 +++
@@ -71,7 +71,7 @@ and [André Belém](https://orcid.org/0000-0002-8865-6180)
 
 :::{grid-item-card} Tutorial 6 - Animations
 :img-top: _images/5847818951ca8fbc9b86a6f2c67389b6.png
-:link: ./tut6.html
+:link: ./tut06_animation.html
 by [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
 +++
 {bdg-primary}`gmt`
