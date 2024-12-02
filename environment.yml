@@ -15,5 +15,7 @@ dependencies:
   - xarray=2024.10.0
   - zarr=2.18.3
   # Optional dev dependencies
-  - pre-commit
   - jupyter-book=1.0.2
+  - pre-commit
+  - sphinx_gmt
+  - sphinxcontrib-youtube
