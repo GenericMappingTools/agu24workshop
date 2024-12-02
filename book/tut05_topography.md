@@ -292,3 +292,11 @@ with pygmt.config(PS_PAGE_COLOR="#a9aba5"):
     )
 fig.show()
 ```
+
+```{seealso}
+Examples of other 3D perspective plots made with PyGMT:
+- https://github.com/andrebelem/3D-Antarctic-maps
+- https://github.com/andrebelem/PlanetaryMaps/blob/main/2_%20Tutorial%20Mars%20Maps%20V2.ipynb
+- https://www.generic-mapping-tools.org/egu22pygmt/lidar_to_surface.html
+- https://www.pygmt.org/v0.13.0/tutorials/advanced/3d_perspective_image.html
+```
