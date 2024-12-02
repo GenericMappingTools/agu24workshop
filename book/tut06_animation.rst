@@ -10,6 +10,7 @@ By F. Esteban (@esteban82)
 
 
 This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
+
 - Conference: https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736
 - GitHub: https://github.com/GenericMappingTools/agu24workshop
 - Website: https://www.generic-mapping-tools.org/agu24workshop
@@ -19,13 +20,13 @@ This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference wor
 ~~~~~~~~~~~~~~~
 
 Prior to GMT 6.0, ambitious movie makers had to write complicated scripts where the advancement of frames was explicitly done by a shell loop.
-At the end of the script, you would have to convert your PostScript plot to a raster image with a name that is lexically increasing, 
-and then later you would use some external software to assemble the movie. Hence, only very brave GMT users attempted to make GMT animations. 
-Here you can see a `more complete explanation <https://docs.generic-mapping-tools.org/5.4/gallery/anim_introduction.html>`_ 
+At the end of the script, you would have to convert your PostScript plot to a raster image with a name that is lexically increasing,
+and then later you would use some external software to assemble the movie. Hence, only very brave GMT users attempted to make GMT animations.
+Here you can see a `more complete explanation <https://docs.generic-mapping-tools.org/5.4/gallery/anim_introduction.html>`_
 and `some examples <https://docs.generic-mapping-tools.org/5.4/Gallery.html#animations>`_ of those times.
 
 GMT 6 (`Wessel et al. 2019 <https://doi.org/10.1029/2019GC008515>`_) simplified all that by adding movie-making modules
-that were later refined with GMT 6.5 (`Wessel et al. 2024 <https://doi.org/10.1029/2024GC011545>`_). 
+that were later refined with GMT 6.5 (`Wessel et al. 2024 <https://doi.org/10.1029/2024GC011545>`_).
 These modules empower users to create animations by taking over non-trivial tasks.
 
 
@@ -76,7 +77,7 @@ For the purposes of this tutorial, I define two types of animations that can be 
 2. Tutorial 1. Earth spinning
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here I explain how to make an animation of a moving object which only requires the :gmt-module:`movie` module. 
+Here I explain how to make an animation of a moving object which only requires the :gmt-module:`movie` module.
 
 As an example, I will create an animation of the Earth spinning like the one below.
 
@@ -88,7 +89,7 @@ As an example, I will create an animation of the Earth spinning like the one bel
 
 .. admonition:: Technical Information
 
-  This animation was created using 360 images (or frames), with each frame representing a 1-degree rotation in the central longitude of the map, 
+  This animation was created using 360 images (or frames), with each frame representing a 1-degree rotation in the central longitude of the map,
   displayed at 24 fps.
 
 
@@ -114,8 +115,8 @@ To create the animation, I follow these four steps:
 2.2. Make first image
 ======================
 
-The first step is to create an image using a standard GMT script 
-(with `modern mode <https://docs.generic-mapping-tools.org/6.5/reference/introduction.html#modern-and-classic-mode>`_) 
+The first step is to create an image using a standard GMT script
+(with `modern mode <https://docs.generic-mapping-tools.org/6.5/reference/introduction.html#modern-and-classic-mode>`_)
 that will serve as the base for the animation.
 
 .. Important::
@@ -144,7 +145,7 @@ For this example, I create a map of the Earth with:
 2.3. Make the Master Frame
 ===========================
 
-In this second step, I recreate the previous image but with the :gmt-module:`movie` module which is used to create animations. 
+In this second step, I recreate the previous image but with the :gmt-module:`movie` module which is used to create animations.
 
 
 .. Important::
@@ -154,7 +155,7 @@ In this second step, I recreate the previous image but with the :gmt-module:`mov
 2.3.1. What is GMT movie?
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The :gmt-module:`movie` module simplifies most of the steps needed to create an animation 
+The :gmt-module:`movie` module simplifies most of the steps needed to create an animation
 by executing a single plot script that is repeated across all frames.
 
 **Required Arguments:**
@@ -169,7 +170,7 @@ by executing a single plot script that is repeated across all frames.
 
 - **-G**: Set the canvas color (or fill).
 - **-V**: Show verbose information during the movie-making process.
-- **-L**: Show a label with the frame number. 
+- **-L**: Show a label with the frame number.
 
 2.3.2. First Attempt
 ^^^^^^^^^^^^^^^^^^^^^
@@ -206,14 +207,14 @@ In the first attempt, I create the first frame (``-M0,png``) over a black canvas
 **What is the Canvas?**
 
 - The canvas is the black area of the previous image.
-- This is the working area of the frames. 
+- This is the working area of the frames.
 - The elements of the main script must be drawn inside the canvas.
 - The elements that are outside will be (totally or partially) hidden in the animation.
 - The canvas size is important by two reasons:
 
   - to set the width and height (in cm or inches) of the frames.
   - to set the dimensions in pixels of the frames/movie (i.e. the quality).
-  
+
 
 **How to set the canvas**:
 
@@ -229,20 +230,20 @@ In the first attempt, I create the first frame (``-M0,png``) over a black canvas
 - Use the name (or alias) to select a format based on this table (for 16:9 format):
 
  ======================= ================== =========
-  Preset format (alias)   Pixel dimensions   DPC     
+  Preset format (alias)   Pixel dimensions   DPC
  ======================= ================== =========
-  4320p (8k and uhd-2)    7680 x 4320       320      
-  2160p (4k and uhd)      3840 x 2160       160      
-  1080p (fhd and hd)      1920 x 1080       80       
-  720p                    1280 x 720        53.3333  
-  540p                    960 x 540         40       
-  480p                    854 x 480         35.5833  
-  360p                    640 x 360         26.6667  
-  240p                    426 x 240         17.75    
+  4320p (8k and uhd-2)    7680 x 4320       320
+  2160p (4k and uhd)      3840 x 2160       160
+  1080p (fhd and hd)      1920 x 1080       80
+  720p                    1280 x 720        53.3333
+  540p                    960 x 540         40
+  480p                    854 x 480         35.5833
+  360p                    640 x 360         26.6667
+  240p                    426 x 240         17.75
  ======================= ================== =========
 
-- Pixel density (dots-per-cm, dpc) is set automatically. 
-- For the 16:9 format, the canvas is 24 x 13.5 cm: 
+- Pixel density (dots-per-cm, dpc) is set automatically.
+- For the 16:9 format, the canvas is 24 x 13.5 cm:
 
 
      .. gmtplot::
@@ -310,7 +311,7 @@ Once the master frame is ok, I recommend making a very short and small movie so 
 
 .. Note::
 
-  The conversion to a video format relies on `FFmpeg <https://www.ffmpeg.org/>`_ (for MP4 or WebM) 
+  The conversion to a video format relies on `FFmpeg <https://www.ffmpeg.org/>`_ (for MP4 or WebM)
   and `GraphicsMagick <http://www.graphicsmagick.org/>`_ (for GIF).
 
 
@@ -352,12 +353,12 @@ Also, I add the following arguments to :gmt-module:`movie`:
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 The movie parameters are key to making animations.
-They are automatically assigned by different movie arguments (see tables below). 
+They are automatically assigned by different movie arguments (see tables below).
 There are two sets of parameters:
 
 .. The key idea in :gmt-module:`movie` is for the user to write the main script that makes the idea of the animation and it is used for all frames.
 
-**Variable parameters**: 
+**Variable parameters**:
 
 - These values change with the frame number.
 - They must be used in the *main script* to introduce variations in the frames.
@@ -367,7 +368,7 @@ There are two sets of parameters:
   Parameter                  Purpose or contents               Set by Movie
  ============== ============================================= ===============
   MOVIE_FRAME    Number of current frame being processed       -T
-  MOVIE_TAG      Formatted frame number (string)               -T 
+  MOVIE_TAG      Formatted frame number (string)               -T
   MOVIE_NAME     Prefix for current frame image                -N and -T
   MOVIE_COLk     Variable k from data column k, current row    -T\ *timefile*
   MOVIE_TEXT     The full trailing text for current row        -T\ *timefile*
@@ -392,7 +393,7 @@ There are two sets of parameters:
  ============== ================================================= =====================
 
 .. Important::
-    
+
     - In order to introduce changes in the frames we must use the **variable parameters**.
 
 2.4.3. How to set the number of Frames
@@ -402,9 +403,9 @@ The number of frames (``-T``) is another important aspect to make animations.
 There are 3 ways to do it:
 
 
-1. **-TNumber**: 
+1. **-TNumber**:
 
-If you supply a single (integer) value, then it will be the total number of frames. 
+If you supply a single (integer) value, then it will be the total number of frames.
 Under the hood, this will create a one-column data set from 0 to that number minus one.
 For example, for ``-T10`` I get values from 0 to 9.
 In the main script, you have to use the MOVIE_FRAME parameter to access the values.
@@ -424,7 +425,7 @@ The total of number of frames will be:
 3. **-Ttimefile**:
 
 If you supply the name of a file, then GMT will access it and use one record (i.e. row) per frame.
-This method allows you to have more than one-column and can be used to make more complex animations. 
+This method allows you to have more than one-column and can be used to make more complex animations.
 For example, you can have a second column with numbers that you can access using MOVIE_COL1.
 The file can even have trailing text that will be accessed with MOVIE_TEXT.
 
@@ -432,7 +433,7 @@ The file can even have trailing text that will be accessed with MOVIE_TEXT.
 2.4.4. Second attempt. Use parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now I update the script with movie parameters. 
+Now I update the script with movie parameters.
 First, I use the ``MOVIE_FRAME`` variable parameter to set the central longitude of the map.
 I also use the ``MOVIE_WIDTH`` constant parameter (in ``main.sh``) to set the width of the map (instead of 13c).
 
@@ -447,7 +448,7 @@ I also use the ``MOVIE_WIDTH`` constant parameter (in ``main.sh``) to set the wi
         gmt movie main.sh -NEarth -C13cx13cx30 -T10 -M0,png -V -Gblack -L+f14p,Helvetica-Bold,white -Fmp4 -Zs
 
 .. Note::
- 
+
   I add a minus sign so the earth spins in the correct sense.
 
 
@@ -468,7 +469,7 @@ In the step, I increase:
 - the resolution to 80 DPC (``-C13cx13cx80``) to get a high-quality video.
 
     .. code-block:: bash
-     
+
         cat << 'EOF' > main.sh
         gmt begin
          gmt grdimage @earth_relief_06m -I -JG-${MOVIE_FRAME}/0/13c -X0 -Y0
@@ -492,7 +493,7 @@ In the step, I increase:
 3. Tutorial 2. Earthquakes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Check the extended section to see the tutorial 2 about appearing objects. 
+Check the extended section to see the tutorial 2 about appearing objects.
 That type of animation is more complex and requires the use :gmt-module:`events` and :gmt-module:`movie` modules.
 In that tutorial, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).
 

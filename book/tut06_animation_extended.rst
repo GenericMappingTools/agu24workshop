@@ -11,7 +11,7 @@ This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference wor
 3. Tutorial 2. Earthquakes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Here I explain how to make an animation with appearing objects. 
+Here I explain how to make an animation with appearing objects.
 This is more complex and requires the use :gmt-module:`events` and :gmt-module:`movie` modules.
 In this example, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).
 Note that the earthquakes are drawn as they occur and remain visible until the end of the animation.
@@ -71,16 +71,16 @@ In this step I plot a map of the earth with all the quakes from 2018.
      ============== ========== ======== ================ ========================
       46.4223        -38.9126     10        260           2018-01-02T02:16:18.11
       169.3488       -18.8355   242.77      260           2018-01-02T08:10:00.06
-      ...                                                 
+      ...
      ============== ========== ======== ================ ========================
-    - Note that the input file has the columns sorted as will be required by the :gmt-module:`plot` and :gmt-module:`events` modules. It was also used for `animation 08 <https://docs.generic-mapping-tools.org/6.5//animations/anim08.html>`_. 
+    - Note that the input file has the columns sorted as will be required by the :gmt-module:`plot` and :gmt-module:`events` modules. It was also used for `animation 08 <https://docs.generic-mapping-tools.org/6.5//animations/anim08.html>`_.
     Check it to see how it was downloaded and processed.
 
 
 3.3. Make master frame
 ======================
 
-In this step I create the master frame of the animation similar to the previous image. 
+In this step I create the master frame of the animation similar to the previous image.
 
 
 3.3.1. First attempt (first frame)
@@ -126,7 +126,7 @@ In this first attempt I create the first frame (``-Mf,png``) of the animation.
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the previous figure, I use the :gmt-module:`plot` module to draw the symbols. This results that the symbols appear on all frames.
-However if I want to plot quakes as they unfold, I have to use the :gmt-module:`events` instead. 
+However if I want to plot quakes as they unfold, I have to use the :gmt-module:`events` instead.
 
 
 .. Important::
@@ -168,7 +168,7 @@ Now, in this attempt I use :gmt-module:`events` with ``-T${MOVIE_COL0}`` to plot
 3.3.4. Third attempt (last frame with events)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now, I also plot the last frame (``-Ml``). 
+Now, I also plot the last frame (``-Ml``).
 
      .. gmtplot::
         :height: 400 px
@@ -249,7 +249,7 @@ The background script (``pre.sh``) is used to:
 #. create a CPT file that will be used to color the quakes.
 #. make a **static** worldwide background map.
 
-.. Important:: 
+.. Important::
 
   - The animation created is identical to the previous one.
   - The use of a background script allows the creation of the animation much faster because the CPT and the **static** background map will be created only once (instead of 365 times).
@@ -342,7 +342,7 @@ The idea is to change the default behavior of the symbols to enhance their appea
 
 This can be done by using `-M <https://docs.generic-mapping-tools.org/6.5/events.html#m>`_ and `-E <https://docs.generic-mapping-tools.org/6.5/events.html#e>`_ arguments.
 The -M arguments allows to temporarily change attributes of the symbol like:
- 
+
 - -Ms: Provide a factor to modify the size.
 - -Mc: Provide a value to brighten (up to 1) or darken (up to -1) the `color intensity <https://docs.generic-mapping-tools.org/6.5/reference/colorspace.html#artificial-illumination>`_.
 - -Mt: Transparency. Set a value between 100 (invisible) to 0 (opaque).
@@ -357,13 +357,13 @@ The duration of the temporary changes is controlled via the `-E <https://docs.ge
 .. Note::
 
    - For finite symbols there are also *normal* and *fade* phases.
-   - It is also possible to change the data value with ``-Mv``. 
+   - It is also possible to change the data value with ``-Mv``.
 
 
 3.6.2. Make full animation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this step I announce each quake by magnifying size and whitening the color for a little bit (during the rise phase). 
+In this step I announce each quake by magnifying size and whitening the color for a little bit (during the rise phase).
 Later the symbols return to their original properties during the decay phase.
 The plateau phase is not used.
 
