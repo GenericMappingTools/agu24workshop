@@ -35,7 +35,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-secondary-line}`japan_quakes`
 {bdg-info}`pandas`
 {bdg-info}`geopandas`
-{bdg-info-line}`airbnb`
+{bdg-info-line}`choropleth map`
 :::
 
 :::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
