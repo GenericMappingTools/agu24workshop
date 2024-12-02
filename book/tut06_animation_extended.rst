@@ -1,5 +1,5 @@
-Making animations
------------------
+Making animations (extended)
+----------------------------
 
 By F. Esteban (@esteban82)
 
