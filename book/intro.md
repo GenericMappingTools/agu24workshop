@@ -15,9 +15,9 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 +++
 {bdg-primary}`pygmt`
 {bdg-primary-line}`coast`
+{bdg-primary-line}`colorbar`
 {bdg-primary-line}`grdimage`
 {bdg-primary-line}`makecpt`
-{bdg-primary-line}`colorbar`
 {bdg-primary-line}`subplot`
 {bdg-secondary-line}`earth_relief`
 {bdg-secondary-line}`earth_age`
@@ -33,9 +33,9 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-primary-line}`legend`
 {bdg-primary-line}`plot`
 {bdg-secondary-line}`japan_quakes`
-{bdg-info}`pandas`
-{bdg-info}`geopandas`
-{bdg-info-line}`choropleth map`
+{bdg-success}`pandas`
+{bdg-success}`geopandas`
+{bdg-success-line}`choropleth map`
 :::
 
 :::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
@@ -44,7 +44,13 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 +++
 {bdg-primary}`pygmt`
-{bdg-info}`xarray`
+{bdg-primary-line}`config`
+{bdg-primary-line}`grdgradient`
+{bdg-primary-line}`which`
+{bdg-secondary-line}`earth_relief`
+{bdg-success}`xarray`
+{bdg-success-line}`temperature`
+{bdg-success-line}`CMIP6`
 :::
 
 :::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
@@ -53,10 +59,15 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 +++
 {bdg-primary}`pygmt`
-{bdg-primary-line}`xyz2grd`
 {bdg-primary-line}`grdcontour`
-{bdg-primary-line}`grdproject`
+{bdg-primary-line}`grdinfo`
 {bdg-primary-line}`grdtrack`
+{bdg-primary-line}`meca`
+{bdg-primary-line}`project`
+{bdg-primary-line}`text`
+{bdg-primary-line}`xyz2grd`
+{bdg-success}`numpy`
+{bdg-success}`pandas`
 :::
 
 :::{grid-item-card} Tutorial 5 - Topography (Planetary Maps / 3-D Antarctic Maps)
@@ -66,7 +77,10 @@ and [André Belém](https://orcid.org/0000-0002-8865-6180)
 +++
 {bdg-primary}`pygmt`
 {bdg-primary-line}`grdview`
-{bdg-secondary-line}`earth_relief`
+{bdg-secondary-line}`mars_relief`
+{bdg-success}`rioxarray`
+{bdg-success-line}`Sentinel-2`
+{bdg-success-line}`DEM`
 :::
 
 :::{grid-item-card} Tutorial 6 - Animations
@@ -75,8 +89,11 @@ and [André Belém](https://orcid.org/0000-0002-8865-6180)
 by [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
 +++
 {bdg-primary}`gmt`
+{bdg-primary-line}`events`
 {bdg-primary-line}`movie`
-{bdg-info}`bash`
+{bdg-secondary-line}`earth_relief`
+{bdg-secondary-line}`quakes_2018`
+{bdg-success}`bash`
 :::
 
 ::::
