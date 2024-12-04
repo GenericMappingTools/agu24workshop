@@ -28,7 +28,7 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 {bdg-secondary-line}`earth_age`
 :::
 
-:::{grid-item-card} Tutorial 2 - Integration with the Scientific Python Ecosystem: Pandas / GeoPandas
+:::{grid-item-card} Tutorial 2 - Integration with the scientific Python ecosystem: pandas / GeoPandas
 :img-top: _images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png
 :link: ./tut02_spe_pd_gpd.html
 by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
@@ -41,6 +41,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-success}`pandas`
 {bdg-success}`geopandas`
 {bdg-success-line}`choropleth map`
+{bdg-success-line}`scatter plot`
 :::
 
 ::::
@@ -51,7 +52,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 ::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
+:::{grid-item-card} Tutorial 3 - Integration with the scientific Python ecosystem: Xarray (grids)
 :img-top: _images/a18fcb026fb0d0c83360f2b8382a360e552dd50db6aa2db5311259bf5223d3a2.png
 :link: ./tut03_spe_xarray.html
 by [Max Jones](https://orcid.org/0000-0003-0180-8928)
@@ -80,6 +81,7 @@ and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-primary-line}`project`
 {bdg-primary-line}`text`
 {bdg-primary-line}`xyz2grd`
+{bdg-secondary-line}`earth_relief`
 {bdg-success}`numpy`
 {bdg-success}`pandas`
 :::
