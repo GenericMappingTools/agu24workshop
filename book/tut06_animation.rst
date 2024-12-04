@@ -1,5 +1,5 @@
-Making animations
------------------
+**Tutorial 6** - Animations
+---------------------------
 
 By F. Esteban (@esteban82)
 
