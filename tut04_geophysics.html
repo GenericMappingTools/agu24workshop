@@ -1,0 +1,1657 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tutorial 4 - Geophysics (Seismology) &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tut04_geophysics';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3-D Topography 🏔️" href="tut05_topography.html" />
+    <link rel="prev" title="Tutorial 3 - scientific Python ecosystem: Xarray" href="tut03_spe_xarray.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.webp" class="logo__image only-light" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+    <img src="_static/logo.webp" class="logo__image only-dark pst-js-only" alt="Mastering Geospatial Visualizations with GMT/PyGMT - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Details</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.agu.org/annual-meeting">AGU24 Homepage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 4</strong> - Geophysics (Seismology)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html">3-D Topography 🏔️</a></li>
+
+
+
+
+<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html">Making animations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main?urlpath=lab/tree/book/tut04_geophysics.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/edit/main/book/tut04_geophysics.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/GenericMappingTools/agu24workshop/issues/new?title=Issue%20on%20page%20%2Ftut04_geophysics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tut04_geophysics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tutorial 4 - Geophysics (Seismology)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1. Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2. Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3. Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-profile">3.1 Choose a profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-project">3.2 <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-grdtrack">3.3 <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-plot-showing-the-elevation-along-the-profile">3.4 Create a Cartesian plot showing the elevation along the profile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4. Add additional features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-beachball">4.1 Add a beachball</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-seismicity">4.2 Add the seismicity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5. Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6. Orientation / suggestion for “4.2 Add seismicity”</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-4-geophysics-seismology">
+<h1><strong>Tutorial 4</strong> - Geophysics (Seismology)<a class="headerlink" href="#tutorial-4-geophysics-seismology" title="Link to this heading">#</a></h1>
+<p>In this tutorial we will learn how to</p>
+<ol class="arabic simple">
+<li><p>Prepare <strong>gridded data</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></p></li>
+<li><p>Create a <strong>contour map</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></p></li>
+<li><p>Create a <strong>profile plot</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></p></li>
+</ol>
+<hr class="docutils" />
+<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<ul class="simple">
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
+<li><p>Recommended version: PyGMT v0.13.0 with GMT 6.5.0</p></li>
+</ul>
+<section id="general-stuff">
+<h2>0. General stuff<a class="headerlink" href="#general-stuff" title="Link to this heading">#</a></h2>
+<p>Import the required packages. Besides <a class="reference external" href="https://www.pygmt.org/v0.13.0"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> we also use <a class="reference external" href="https://numpy.org/doc/stable/"><code class="docutils literal notranslate"><span class="pre">NumPy</span></code></a> and <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="c1"># Use a resolution of only 150 dpi for the images within the Jupyter notebook, to keep the file small</span>
+<span class="n">img_dpi</span> <span class="o">=</span> <span class="mi">150</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prepare-gridded-data-pygmt-xyz2grd">
+<h2>1. Prepare gridded data: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a><a class="headerlink" href="#prepare-gridded-data-pygmt-xyz2grd" title="Link to this heading">#</a></h2>
+<p>Sometimes, spatial (regional or global) data is provided as tabular data (.txt or .csv files) containing x, y, and z columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reading file</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s2">&quot;south_america_topography_05m.txt&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[  -90.        ,     0.        , -1033.5       ],
+       [  -89.91666667,     0.        , -1132.5       ],
+       [  -89.83333333,     0.        , -1298.        ],
+       ...,
+       [  -60.16666667,   -40.        ,   -50.        ],
+       [  -60.08333333,   -40.        ,   -52.        ],
+       [  -60.        ,   -40.        ,   -54.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have to convert the <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code> to a GMT-ready grid via <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a>. Therefore, you need to provide:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> or <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>: Input text file. Importantly, if you use <code class="docutils literal notranslate"><span class="pre">data</span></code>, the columns order must be longitude, latitude, and data. Otherwise, you should use <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and <code class="docutils literal notranslate"><span class="pre">z</span></code> to individually define the dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Specifies the grid’s geographical region in the form <code class="docutils literal notranslate"><span class="pre">[lon_min,</span> <span class="pre">lon_max,</span> <span class="pre">lat_min,</span> <span class="pre">lat_max]</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spacing</span></code>: Grid spacing for the output grid. In our case, the spacing of original dataset is <code class="docutils literal notranslate"><span class="pre">5m</span></code> (5 arc-minutes), we do not interpolate to better resolution, otherwise, it might cause data distortion.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="s2">&quot;5m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can get some information about the grid using <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdinfo.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdinfo</span></code></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pygmt</span><span class="o">.</span><span class="n">grdinfo</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>: Title: 
+: Command: 
+: Remark: 
+: Gridline node registration used [Geographic grid]
+: Grid file format: nf = GMT netCDF format (32-bit float), CF-1.7
+: x_min: -90 x_max: -60 x_inc: 0.0833333333333 (5 min) name: x n_columns: 361
+: y_min: -40 y_max: 0 y_inc: 0.0833333333333 (5 min) name: y n_rows: 481
+: v_min: -7816.5 v_max: 5798.5 name: z
+: scale_factor: 1 add_offset: 0
+: format: classic
+: Default CPT: 
+</pre></div>
+</div>
+</div>
+</div>
+<p>In PyGMT, the grid is stored in an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+<defs>
+<symbol id="icon-database" viewBox="0 0 32 32">
+<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
+<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
+</symbol>
+<symbol id="icon-file-text2" viewBox="0 0 32 32">
+<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
+<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
+</symbol>
+</defs>
+</svg>
+<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
+ *
+ */
+
+:root {
+  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
+  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
+  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
+  --xr-border-color: var(--jp-border-color2, #e0e0e0);
+  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
+  --xr-background-color: var(--jp-layout-color0, white);
+  --xr-background-color-row-even: var(--jp-layout-color1, white);
+  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+}
+
+html[theme=dark],
+html[data-theme=dark],
+body[data-theme=dark],
+body.vscode-dark {
+  --xr-font-color0: rgba(255, 255, 255, 1);
+  --xr-font-color2: rgba(255, 255, 255, 0.54);
+  --xr-font-color3: rgba(255, 255, 255, 0.38);
+  --xr-border-color: #1F1F1F;
+  --xr-disabled-color: #515151;
+  --xr-background-color: #111111;
+  --xr-background-color-row-even: #111111;
+  --xr-background-color-row-odd: #313131;
+}
+
+.xr-wrap {
+  display: block !important;
+  min-width: 300px;
+  max-width: 700px;
+}
+
+.xr-text-repr-fallback {
+  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
+  display: none;
+}
+
+.xr-header {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 4px;
+  border-bottom: solid 1px var(--xr-border-color);
+}
+
+.xr-header > div,
+.xr-header > ul {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.xr-obj-type,
+.xr-array-name {
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.xr-obj-type {
+  color: var(--xr-font-color2);
+}
+
+.xr-sections {
+  padding-left: 0 !important;
+  display: grid;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+}
+
+.xr-section-item {
+  display: contents;
+}
+
+.xr-section-item input {
+  display: inline-block;
+  opacity: 0;
+}
+
+.xr-section-item input + label {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-item input:enabled + label {
+  cursor: pointer;
+  color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
+}
+
+.xr-section-item input:enabled + label:hover {
+  color: var(--xr-font-color0);
+}
+
+.xr-section-summary {
+  grid-column: 1;
+  color: var(--xr-font-color2);
+  font-weight: 500;
+}
+
+.xr-section-summary > span {
+  display: inline-block;
+  padding-left: 0.5em;
+}
+
+.xr-section-summary-in:disabled + label {
+  color: var(--xr-font-color2);
+}
+
+.xr-section-summary-in + label:before {
+  display: inline-block;
+  content: '►';
+  font-size: 11px;
+  width: 15px;
+  text-align: center;
+}
+
+.xr-section-summary-in:disabled + label:before {
+  color: var(--xr-disabled-color);
+}
+
+.xr-section-summary-in:checked + label:before {
+  content: '▼';
+}
+
+.xr-section-summary-in:checked + label > span {
+  display: none;
+}
+
+.xr-section-summary,
+.xr-section-inline-details {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.xr-section-inline-details {
+  grid-column: 2 / -1;
+}
+
+.xr-section-details {
+  display: none;
+  grid-column: 1 / -1;
+  margin-bottom: 5px;
+}
+
+.xr-section-summary-in:checked ~ .xr-section-details {
+  display: contents;
+}
+
+.xr-array-wrap {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 20px auto;
+}
+
+.xr-array-wrap > label {
+  grid-column: 1;
+  vertical-align: top;
+}
+
+.xr-preview {
+  color: var(--xr-font-color3);
+}
+
+.xr-array-preview,
+.xr-array-data {
+  padding: 0 5px !important;
+  grid-column: 2;
+}
+
+.xr-array-data,
+.xr-array-in:checked ~ .xr-array-preview {
+  display: none;
+}
+
+.xr-array-in:checked ~ .xr-array-data,
+.xr-array-preview {
+  display: inline-block;
+}
+
+.xr-dim-list {
+  display: inline-block !important;
+  list-style: none;
+  padding: 0 !important;
+  margin: 0;
+}
+
+.xr-dim-list li {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.xr-dim-list:before {
+  content: '(';
+}
+
+.xr-dim-list:after {
+  content: ')';
+}
+
+.xr-dim-list li:not(:last-child):after {
+  content: ',';
+  padding-right: 5px;
+}
+
+.xr-has-index {
+  font-weight: bold;
+}
+
+.xr-var-list,
+.xr-var-item {
+  display: contents;
+}
+
+.xr-var-item > div,
+.xr-var-item label,
+.xr-var-item > .xr-var-name span {
+  background-color: var(--xr-background-color-row-even);
+  margin-bottom: 0;
+}
+
+.xr-var-item > .xr-var-name:hover span {
+  padding-right: 5px;
+}
+
+.xr-var-list > li:nth-child(odd) > div,
+.xr-var-list > li:nth-child(odd) > label,
+.xr-var-list > li:nth-child(odd) > .xr-var-name span {
+  background-color: var(--xr-background-color-row-odd);
+}
+
+.xr-var-name {
+  grid-column: 1;
+}
+
+.xr-var-dims {
+  grid-column: 2;
+}
+
+.xr-var-dtype {
+  grid-column: 3;
+  text-align: right;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-preview {
+  grid-column: 4;
+}
+
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
+.xr-var-name,
+.xr-var-dims,
+.xr-var-dtype,
+.xr-preview,
+.xr-attrs dt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 10px;
+}
+
+.xr-var-name:hover,
+.xr-var-dims:hover,
+.xr-var-dtype:hover,
+.xr-attrs dt:hover {
+  overflow: visible;
+  width: auto;
+  z-index: 1;
+}
+
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  display: none;
+  background-color: var(--xr-background-color) !important;
+  padding-bottom: 5px !important;
+}
+
+.xr-var-attrs-in:checked ~ .xr-var-attrs,
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
+  display: block;
+}
+
+.xr-var-data > table {
+  float: right;
+}
+
+.xr-var-name span,
+.xr-var-data,
+.xr-index-name div,
+.xr-index-data,
+.xr-attrs {
+  padding-left: 25px !important;
+}
+
+.xr-attrs,
+.xr-var-attrs,
+.xr-var-data,
+.xr-index-data {
+  grid-column: 1 / -1;
+}
+
+dl.xr-attrs {
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 125px auto;
+}
+
+.xr-attrs dt,
+.xr-attrs dd {
+  padding: 0;
+  margin: 0;
+  float: left;
+  padding-right: 10px;
+  width: auto;
+}
+
+.xr-attrs dt {
+  font-weight: normal;
+  grid-column: 1;
+}
+
+.xr-attrs dt:hover span {
+  display: inline-block;
+  background: var(--xr-background-color);
+  padding-right: 10px;
+}
+
+.xr-attrs dd {
+  grid-column: 2;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.xr-icon-database,
+.xr-icon-file-text2,
+.xr-no-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1.5em !important;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;z&#x27; (lat: 481, lon: 361)&gt; Size: 1MB
+array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
+       [-3447.5, -3438.5, -3436. , ...,   -46. ,   -50.5,   -51. ],
+       [-3440.5, -3419.5, -3419. , ...,   -44.5,   -49. ,   -51. ],
+       ...,
+       [ -970. , -1083. , -1261.5, ...,   114. ,   126.5,   129. ],
+       [ -959. , -1044. , -1204. , ...,   110.5,   124.5,   146. ],
+       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])
+Coordinates:
+  * lat      (lat) float64 4kB -40.0 -39.92 -39.83 ... -0.1667 -0.08333 0.0
+  * lon      (lon) float64 3kB -90.0 -89.92 -89.83 ... -60.17 -60.08 -60.0
+Attributes:
+    Conventions:   CF-1.7
+    title:         
+    history:       gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G...
+    description:   
+    long_name:     z
+    actual_range:  [nan nan]</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'z'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 481</li><li><span class='xr-has-index'>lon</span>: 361</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-04f7cd32-f8b3-4414-86ea-884939f797fd' class='xr-array-in' type='checkbox' checked><label for='section-04f7cd32-f8b3-4414-86ea-884939f797fd' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-3.47e+03 -3.474e+03 -3.456e+03 -3.511e+03 ... 116.0 108.0 117.0 141.0</span></div><div class='xr-array-data'><pre>array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
+       [-3447.5, -3438.5, -3436. , ...,   -46. ,   -50.5,   -51. ],
+       [-3440.5, -3419.5, -3419. , ...,   -44.5,   -49. ,   -51. ],
+       ...,
+       [ -970. , -1083. , -1261.5, ...,   114. ,   126.5,   129. ],
+       [ -959. , -1044. , -1204. , ...,   110.5,   124.5,   146. ],
+       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])</pre></div></div></li><li class='xr-section-item'><input id='section-303bd023-6d83-4fb9-8f66-74c0241707fe' class='xr-section-summary-in' type='checkbox'  checked><label for='section-303bd023-6d83-4fb9-8f66-74c0241707fe' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-40.0 -39.92 ... -0.08333 0.0</div><input id='attrs-d36fcd69-ecd5-4041-9cec-9c4a01486278' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d36fcd69-ecd5-4041-9cec-9c4a01486278' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a52977d5-2a6c-44fe-9a9b-e79bcbe778bd' class='xr-var-data-in' type='checkbox'><label for='data-a52977d5-2a6c-44fe-9a9b-e79bcbe778bd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>actual_range :</span></dt><dd>[-40.   0.]</dd></dl></div><div class='xr-var-data'><pre>array([-40.      , -39.916667, -39.833333, ...,  -0.166667,  -0.083333,
+         0.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.92 ... -60.08 -60.0</div><input id='attrs-6673f95f-db79-4aac-b9cf-dc544b24ba8e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-6673f95f-db79-4aac-b9cf-dc544b24ba8e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-80519b38-50c3-417e-8c15-d437fbc1c202' class='xr-var-data-in' type='checkbox'><label for='data-80519b38-50c3-417e-8c15-d437fbc1c202' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>actual_range :</span></dt><dd>[-90. -60.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.916667, -89.833333, ..., -60.166667, -60.083333,
+       -60.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-002398be-d44a-4eb3-be60-e7801096bddb' class='xr-section-summary-in' type='checkbox'  ><label for='section-002398be-d44a-4eb3-be60-e7801096bddb' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-d79b6022-9f8d-42dd-8053-174ac1893aff' class='xr-index-data-in' type='checkbox'/><label for='index-d79b6022-9f8d-42dd-8053-174ac1893aff' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               -40.0,  -39.916666666666664,   -39.83333333333333,
+                     -39.75,  -39.666666666666664,   -39.58333333333333,
+                      -39.5,  -39.416666666666664,   -39.33333333333333,
+                     -39.25,
+       ...
+                      -0.75,  -0.6666666666666666,  -0.5833333333333333,
+                       -0.5, -0.41666666666666663,  -0.3333333333333333,
+                      -0.25, -0.16666666666666666, -0.08333333333333333,
+                        0.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=481))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-812ff5ae-ac4c-4db3-9141-f8e6d15f853e' class='xr-index-data-in' type='checkbox'/><label for='index-812ff5ae-ac4c-4db3-9141-f8e6d15f853e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([              -90.0,  -89.91666666666667,  -89.83333333333333,
+                    -89.75,  -89.66666666666667,  -89.58333333333333,
+                     -89.5,  -89.41666666666667,  -89.33333333333333,
+                    -89.25,
+       ...
+                    -60.75,  -60.66666666666667, -60.583333333333336,
+                     -60.5,  -60.41666666666667, -60.333333333333336,
+                    -60.25,  -60.16666666666667, -60.083333333333336,
+                     -60.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f09ca399-085a-40c1-a16f-c18c87847a7f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f09ca399-085a-40c1-a16f-c18c87847a7f' class='xr-section-summary' >Attributes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7</dd><dt><span>title :</span></dt><dd></dd><dt><span>history :</span></dt><dd>gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G-G-Y-000001 -I5m -R-90/-60/-40/0</dd><dt><span>description :</span></dt><dd></dd><dt><span>long_name :</span></dt><dd>z</dd><dt><span>actual_range :</span></dt><dd>[nan nan]</dd></dl></div></li></ul></div></div></div></div>
+</div>
+</section>
+<section id="create-a-contour-map-pygmt-figure-grdcontour">
+<h2>2. Create a contour map: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a><a class="headerlink" href="#create-a-contour-map-pygmt-figure-grdcontour" title="Link to this heading">#</a></h2>
+<p>To plot grids or images as contour lines you can use <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a>. You need to define:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>: Access the remote datasets or provide your dataset as an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level</span></code>: Specify the contour intervals to generate; for example, a value of 1000 means plotting contour lines at every 1000 m.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">annotation</span></code>: Annotate contour levels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">limit</span></code>: Draw contours below low or above high, e.g., [-4000, 0] means drawing contour lines below sea level and above -4000 m.</p></li>
+</ol>
+<p>Before we plot the grid as contour lines, we plot the grid with color-coding using <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a>. Via the <code class="docutils literal notranslate"><span class="pre">shading</span></code> parameter, we can apply an illumination to the grid or image, which can help to create visually appealing maps. By passing the argument <strong>+a</strong>, we use an azimuth of -45 degrees. Run the next code cell twice, first without and second with illumination, to see the difference. For a more complicated illumination, please refer to <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdgradient.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdgradient</span></code></a>, which was already introduced in <a class="reference internal" href="tut03_spe_xarray.html"><span class="doc std std-doc">Tutorial 3</span></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a10f5&quot;</span><span class="p">)</span>
+
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oleron&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">7000</span><span class="p">],</span> <span class="n">transparency</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;xa2000f1000+lElevation&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transparency</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="c1"># Apply an illumination to the grid or image via the &quot;shading&quot; parameter</span>
+<span class="c1"># fig.grdimage(grid=grid, cmap=True, transparency=25, shading=&quot;+a&quot;)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> 
+    <span class="n">annotation</span><span class="o">=</span><span class="s2">&quot;1000+fgray20&quot;</span><span class="p">,</span> 
+    <span class="n">levels</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+    <span class="n">limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,white&quot;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e3789034d4a94ead80daa806b232c4eea0e9b3fc17339589b3c821a52ec493ae.png"><img alt="_images/e3789034d4a94ead80daa806b232c4eea0e9b3fc17339589b3c821a52ec493ae.png" src="_images/e3789034d4a94ead80daa806b232c4eea0e9b3fc17339589b3c821a52ec493ae.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">
+<h2>3. Create a profile plot: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><a class="headerlink" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack" title="Link to this heading">#</a></h2>
+<section id="choose-a-profile">
+<h3>3.1 Choose a profile<a class="headerlink" href="#choose-a-profile" title="Link to this heading">#</a></h3>
+<p>First, we choose a profile or survey line within our study area and plot it on top of our geographic map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set start and end points of the survey line</span>
+<span class="n">start_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">85</span>  <span class="c1"># Longitude in degrees East</span>
+<span class="n">start_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>  <span class="c1"># Latitude in degrees North</span>
+<span class="n">end_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">62</span>
+<span class="n">end_y</span><span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
+
+<span class="c1"># Plot the survey line</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">start_y</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;1p,red&quot;</span><span class="p">)</span>
+
+<span class="c1"># Mark start and end points with labels</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">],</span> 
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">start_y</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span>
+    <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&#39;&quot;</span><span class="p">],</span>
+    <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;0c/0.3c&quot;</span><span class="p">,</span> 
+    <span class="n">font</span><span class="o">=</span><span class="s2">&quot;10p,Helvetica-Bold,white&quot;</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fc8de6bd2a76035091d9d7149c67128b039a50bf3d628398c3ba7a5e67370339.png"><img alt="_images/fc8de6bd2a76035091d9d7149c67128b039a50bf3d628398c3ba7a5e67370339.png" src="_images/fc8de6bd2a76035091d9d7149c67128b039a50bf3d628398c3ba7a5e67370339.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="pygmt-project">
+<h3>3.2 <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a><a class="headerlink" href="#pygmt-project" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> is designed to sample points along a great circle, a straight line, or across specified distance. In our case, we will create a profile point-to-point. Therefore you need to define:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code> and <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>: Specify the start and end coordinates of the profile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generate</span></code>: Distance interval of each point, e.g., <code class="docutils literal notranslate"><span class="pre">10</span></code> means points are generated every 10 degrees along the profile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unit</span></code> (option): By default, <code class="docutils literal notranslate"><span class="pre">unit=False</span></code>, the distances of points along the profile are measured in degrees. When <code class="docutils literal notranslate"><span class="pre">unit=True</span></code> is used, it specifies that the distances are generated in kilometers.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">track_df</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">project</span><span class="p">(</span>
+    <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">],</span> 
+    <span class="n">endpoint</span><span class="o">=</span><span class="p">[</span><span class="n">end_x</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span> 
+    <span class="c1"># Output data in steps of 1 km with setting unit=True</span>
+    <span class="n">generate</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>  
+    <span class="n">unit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">track_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r</th>
+      <th>s</th>
+      <th>p</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-85.000000</td>
+      <td>-20.000000</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-84.990453</td>
+      <td>-20.000624</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-84.980905</td>
+      <td>-20.001248</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-84.971358</td>
+      <td>-20.001871</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-84.961810</td>
+      <td>-20.002493</td>
+      <td>4.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Note</strong>: The output format is a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>, and <strong>r</strong> and <strong>s</strong> together provide the geographic coordinates (longitude, latitude) of each point along the track, while <strong>p</strong> gives the cumulative distance along the profile up to each point.</p>
+</section>
+<section id="pygmt-grdtrack">
+<h3>3.3 <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><a class="headerlink" href="#pygmt-grdtrack" title="Link to this heading">#</a></h3>
+<p>Then, we use <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a> to sample topographic (or other grid-based data) values along a profile that you generated using <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a>. This allows you to retrieve data from a grid file along a specified path. Therefore, you need to provide:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>: Specify the grid file (e.g., a topographic grid) from which data will be sampled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">points</span></code>: Provide the coordinates of the profile points.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newcolname</span></code>: Name for the new column with the sampled values.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the elevation at the generated points from the downloaded grid</span>
+<span class="c1"># and add it as new column &quot;elevation&quot; to the pandas.DataFrame</span>
+<span class="n">track_df</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">grdtrack</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="n">track_df</span><span class="p">,</span> <span class="n">newcolname</span><span class="o">=</span><span class="s2">&quot;elevation&quot;</span><span class="p">)</span>
+<span class="n">track_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>r</th>
+      <th>s</th>
+      <th>p</th>
+      <th>elevation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-85.000000</td>
+      <td>-20.000000</td>
+      <td>0.0</td>
+      <td>-4440.500000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-84.990453</td>
+      <td>-20.000624</td>
+      <td>1.0</td>
+      <td>-4445.130540</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-84.980905</td>
+      <td>-20.001248</td>
+      <td>2.0</td>
+      <td>-4450.944209</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-84.971358</td>
+      <td>-20.001871</td>
+      <td>3.0</td>
+      <td>-4457.558040</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-84.961810</td>
+      <td>-20.002493</td>
+      <td>4.0</td>
+      <td>-4464.581447</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Note</strong>: The new column is <strong>elevation</strong> to indicate the elevation variation along the profile.</p>
+<p>We can observe the minimum and maximum of this elevation data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]),</span> <span class="nb">max</span><span class="p">(</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-7319.553238186641 4422.575285314314
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-cartesian-plot-showing-the-elevation-along-the-profile">
+<h3>3.4 Create a Cartesian plot showing the elevation along the profile<a class="headerlink" href="#create-a-cartesian-plot-showing-the-elevation-along-the-profile" title="Link to this heading">#</a></h3>
+<p>Now, we want to visualize the elevation along the profile in a Cartesian plot. Therefore, we add another panel to our figure. Use <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.shift_origin.html"><code class="docutils literal notranslate"><span class="pre">Figure.shift_origin</span></code></a> to shift the plotting origin to the top of the geographic map and create a new basemap via <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.basemap.html"><code class="docutils literal notranslate"><span class="pre">Figure.basemap</span></code></a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shift the plotting origin by the height (+h) of the geographic map plus 1.5 centimeters to the top</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span><span class="n">yshift</span><span class="o">=</span><span class="s2">&quot;h+1.5c&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">]),</span> <span class="o">-</span><span class="mi">7500</span><span class="p">,</span> <span class="mi">5000</span><span class="p">],</span>
+    <span class="c1"># Cartesian projection with a width of 10 centimeters and a height of 3 centimeters</span>
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;X10c/3c&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;WSrt&quot;</span><span class="p">,</span> <span class="s2">&quot;xa500f250+lDistance / km&quot;</span><span class="p">,</span> <span class="s2">&quot;ya2500+lElevation / m&quot;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">])],</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">],</span>
+    <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&#39;&quot;</span><span class="p">],</span>
+    <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;0c/0.3c&quot;</span><span class="p">,</span>
+    <span class="n">no_clip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Do not clip text that fall outside the plot bounds</span>
+    <span class="n">font</span><span class="o">=</span><span class="s2">&quot;10p,Helvetica-Bold,white&quot;</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/32e0b715f404e52b400cae91bf789feda02aa0fe4adfd17aca6ca12e56cf6b09.png"><img alt="_images/32e0b715f404e52b400cae91bf789feda02aa0fe4adfd17aca6ca12e56cf6b09.png" src="_images/32e0b715f404e52b400cae91bf789feda02aa0fe4adfd17aca6ca12e56cf6b09.png" style="width: 500px;" /></a>
+</div>
+</div>
+<p>Plotting the elevation along the profile and coloring ocean and land in lightblue and lightgray, respectively:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot water masses</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">])],</span>
+    <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span>  <span class="c1"># Fill the polygon in &quot;lightblue&quot;</span>
+    <span class="n">close</span><span class="o">=</span><span class="s2">&quot;+y-7500&quot;</span><span class="p">,</span>  <span class="c1"># Force closed polygon</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot elevation along the profile and plot land masses</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;p&quot;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">track_df</span><span class="p">[</span><span class="s2">&quot;elevation&quot;</span><span class="p">],</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;lightgray&quot;</span><span class="p">,</span>  <span class="c1"># Fill the polygon in &quot;lightgray&quot;</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;1p,red,solid&quot;</span><span class="p">,</span>  <span class="c1"># Draw a 1-point thick, red, solid outline</span>
+    <span class="n">close</span><span class="o">=</span><span class="s2">&quot;+y-7500&quot;</span><span class="p">,</span>  <span class="c1"># Force closed polygon</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7777eb8d783b254747a282eab42b98f3189f49b9b9f602f84d9deaf242b56b01.png"><img alt="_images/7777eb8d783b254747a282eab42b98f3189f49b9b9f602f84d9deaf242b56b01.png" src="_images/7777eb8d783b254747a282eab42b98f3189f49b9b9f602f84d9deaf242b56b01.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+</section>
+<section id="add-additional-features">
+<h2>4. Add additional features<a class="headerlink" href="#add-additional-features" title="Link to this heading">#</a></h2>
+<p>Finally, you can add additional features on top of the geographic map. Feel free to include your own ideas here! Here are a few ideas what you can try:</p>
+<ul class="simple">
+<li><p><strong>Highlight a specific earthquake as beachball</strong>: See subsection 4.1</p></li>
+<li><p><strong>Plot the seismicity</strong>: See subsection 4.2</p></li>
+<li><p><strong>Mark the subduction zone</strong>: Use a so-called line front to indicate the fault, use the Gallery example <a class="reference external" href="https://www.pygmt.org/v0.13.0/gallery/lines/linefronts.html">Line fronts</a> for an orientation</p></li>
+<li><p><strong>Include the plate motion</strong>: Use an arrow to indicate direction and speed; use the Gallery example <a class="reference external" href="https://www.pygmt.org/v0.13.0/gallery/lines/vector_styles.html">Cartesian, circular, and geographic vectors</a> for an orientation</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Move plotting origin back to the geographic map at the top</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">shift_origin</span><span class="p">(</span><span class="n">yshift</span><span class="o">=</span><span class="s2">&quot;-16c&quot;</span><span class="p">)</span>  <span class="c1"># Manually adjusted</span>
+
+<span class="c1"># Use the same projection and region we have used at the beginning for the geographic map</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;rltb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="add-a-beachball">
+<h3>4.1 Add a beachball<a class="headerlink" href="#add-a-beachball" title="Link to this heading">#</a></h3>
+<p>A specific earthquake can be plotted as a beachballs to represent the focal mechanism. Here, we look at the Esmeraldas earthquake on 2022/03/27 at 04:28:12 (UTC) as an example. The data were retrieved from USGS.</p>
+<p>First we, store the focal mechanism parameters in a dictionary based on the Aki &amp; Richards convention:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">focal_mechanism</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;strike&quot;</span><span class="p">:</span> <span class="mi">116</span><span class="p">,</span> <span class="s2">&quot;dip&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="s2">&quot;rake&quot;</span><span class="p">:</span> <span class="mi">74</span><span class="p">,</span> <span class="s2">&quot;magnitude&quot;</span><span class="p">:</span> <span class="mf">5.8</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the focal mechanism of this earthquake as a beachball on top of the map. Therefore, we pass the focal mechanism data to the <code class="docutils literal notranslate"><span class="pre">spec</span></code> parameter of <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.meca.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.meca</span></code></a>. In addition, you have to provide scale, event location, and event depth.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">meca</span><span class="p">(</span>
+    <span class="n">spec</span><span class="o">=</span><span class="n">focal_mechanism</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;1c&quot;</span><span class="p">,</span>  <span class="c1"># in centimeters</span>
+    <span class="n">longitude</span><span class="o">=-</span><span class="mf">79.611</span><span class="p">,</span>  <span class="c1"># event location</span>
+    <span class="n">latitude</span><span class="o">=-</span><span class="mf">0.904</span><span class="p">,</span>
+    <span class="n">depth</span><span class="o">=</span><span class="mi">19</span><span class="p">,</span>  <span class="c1"># in kilometers</span>
+    <span class="c1"># Fill compressive quadrants with color &quot;darkorange&quot; [Default is &quot;black&quot;]</span>
+    <span class="n">compressionfill</span><span class="o">=</span><span class="s2">&quot;darkorange&quot;</span><span class="p">,</span>
+    <span class="c1"># Fill extensive quadrants with color &quot;cornsilk&quot; [Default is &quot;white&quot;]</span>
+    <span class="n">extensionfill</span><span class="o">=</span><span class="s2">&quot;cornsilk&quot;</span><span class="p">,</span>
+    <span class="c1"># Draw a 0.5-points thick, darkgray (&quot;gray30&quot;) solid outline via the pen parameter</span>
+    <span class="c1"># [Default is &quot;0.25p,black,solid&quot;]</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,gray30,solid&quot;</span><span class="p">,</span>
+    <span class="c1"># Shift plotting location from event location</span>
+    <span class="n">plot_longitude</span><span class="o">=-</span><span class="mi">70</span><span class="p">,</span>
+    <span class="n">plot_latitude</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span>
+    <span class="c1"># Add a connection line between the plotting and event locations</span>
+    <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;+p0.1p,orange+s0.2c&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+ 
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ccbaa2cf5dae07220a99bf3b873c1eaef9b8e489d7e001464affecbfffc2676a.png"><img alt="_images/ccbaa2cf5dae07220a99bf3b873c1eaef9b8e489d7e001464affecbfffc2676a.png" src="_images/ccbaa2cf5dae07220a99bf3b873c1eaef9b8e489d7e001464affecbfffc2676a.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+<section id="add-the-seismicity">
+<h3>4.2 Add the seismicity<a class="headerlink" href="#add-the-seismicity" title="Link to this heading">#</a></h3>
+<p>We provide data for the seismicity between 2022-01-01 and 2023-01-01 as a CSV file within this repository or tutorial. These data were retrieved via <a class="reference external" href="https://docs.obspy.org/">ObsPy</a> using the <code class="docutils literal notranslate"><span class="pre">client.get_events</span></code> function:</p>
+<blockquote>
+<div><p>t1 = UTCDateTime(“2022-01-01”); t2 = UTCDateTime(“2022-06-30”)</p>
+<p>catalog = client.get_events(starttime=t1, endtime=t2, minmagnitude=4, minlatitude=-40, maxlatitude=0, minlongitude=-90, maxlongitude=-60)</p>
+</div></blockquote>
+<p>First, we read the data into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> and have a look at the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;seismicity_2022.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>lon</th>
+      <th>lat</th>
+      <th>depth</th>
+      <th>mag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2022-06-29T23:45:41.235000Z</td>
+      <td>-66.8673</td>
+      <td>-24.1091</td>
+      <td>190.77</td>
+      <td>4.3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2022-06-29T20:20:29.480000Z</td>
+      <td>-71.1510</td>
+      <td>-28.8356</td>
+      <td>62.45</td>
+      <td>4.3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2022-06-29T14:30:41.654000Z</td>
+      <td>-67.0522</td>
+      <td>-23.5599</td>
+      <td>230.86</td>
+      <td>4.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2022-06-29T13:53:02.602000Z</td>
+      <td>-79.7148</td>
+      <td>-2.6731</td>
+      <td>10.00</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2022-06-28T14:44:31.853000Z</td>
+      <td>-69.0212</td>
+      <td>-31.5582</td>
+      <td>110.99</td>
+      <td>4.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Explore the dataset. Get the value ranges of the hypocentral depth and magnitude.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code (:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we split the dataset into two datasets based on the magnitude. Feel free to try different limits or build another subset!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lim_mag</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="n">df_low_mag</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">lim_mag</span><span class="p">]</span>
+<span class="n">df_high_mag</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">lim_mag</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now you can plot the earthquakes of the two datasets on top of our map, e.g., using circles for the events with lower and stars for the events with higher magnitude. Additionally, you can add color- and size-coding to include epicentral distance and magnitude of the earthquakes. Take a look at what you have learned in <a class="reference internal" href="tut02_spe_pd_gpd.html"><span class="doc std std-doc">Tutorial 2</span></a> 🙂 and the PyGMT Tutorial <a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/basics/plot.html">Plotting data points</a> as an orientation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Your code (:</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-comments">
+<h2>5. Additional comments<a class="headerlink" href="#additional-comments" title="Link to this heading">#</a></h2>
+<p>Some helpful and interesting aspects:</p>
+<ul class="simple">
+<li><p>Use suitable colormaps for your data: <a class="reference external" href="https://www.fabiocrameri.ch/colourmaps/"><strong>Scientific colourmaps by Fabio Crameri</strong></a>, see also the publications <a class="reference external" href="https://doi.org/10.1002/cpz1.1126">Crameri et al. (2024)</a> and <a class="reference external" href="https://doi.org/10.1038/s41467-020-19160-7">Crameri et al. (2020)</a></p></li>
+</ul>
+</section>
+<section id="orientation-suggestion-for-4-2-add-seismicity">
+<h2>6. Orientation / suggestion for “4.2 Add seismicity”<a class="headerlink" href="#orientation-suggestion-for-4-2-add-seismicity" title="Link to this heading">#</a></h2>
+<p>Below you find a rough code shipset for plotting the subsets of the earthquake dataset in section 4.1. Note the logarithmic scaling of size of the symbols as the size is referring to the magnitude of the earthquakes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/acton&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> 
+    <span class="n">y</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> 
+    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;cc&quot;</span><span class="p">,</span>  <span class="c1"># Plot circles (fist &quot;c&quot;) in centimeters (second &quot;c&quot;)</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">])</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># size varies based on magnitude</span>
+    <span class="n">fill</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">],</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.1p,black&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> 
+    <span class="n">y</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> 
+    <span class="n">style</span><span class="o">=</span><span class="s2">&quot;ac&quot;</span><span class="p">,</span>  <span class="c1"># Plot stars (&quot;a&quot;) in centimeters (&quot;c&quot;)</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]),</span> 
+    <span class="n">fill</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">],</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,black&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
+    <span class="n">position</span><span class="o">=</span><span class="s2">&quot;x0.5c/0.5c+w4.5c/0.25c+v+mc+ef0.2c&quot;</span><span class="p">,</span>
+    <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a100f50+lHypocentral depth&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lkm&quot;</span><span class="p">],</span>
+    <span class="n">box</span><span class="o">=</span><span class="s2">&quot;+gwhite@30&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/88669291b1d1c169f4f9173399f9c8eb83cae97719bd91cad1c10a4d8a2d461b.png"><img alt="_images/88669291b1d1c169f4f9173399f9c8eb83cae97719bd91cad1c10a4d8a2d461b.png" src="_images/88669291b1d1c169f4f9173399f9c8eb83cae97719bd91cad1c10a4d8a2d461b.png" style="width: 500px;" /></a>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tut03_spe_xarray.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tut05_topography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3-D Topography 🏔️</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1. Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2. Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3. Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-profile">3.1 Choose a profile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-project">3.2 <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-grdtrack">3.3 <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-plot-showing-the-elevation-along-the-profile">3.4 Create a Cartesian plot showing the elevation along the profile</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4. Add additional features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-beachball">4.1 Add a beachball</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-seismicity">4.2 Add the seismicity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5. Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6. Orientation / suggestion for “4.2 Add seismicity”</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The GMT and PyGMT Teams
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />
+This content is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
