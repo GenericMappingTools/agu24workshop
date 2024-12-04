@@ -66,15 +66,16 @@ In this step I plot a map of the earth with all the quakes from 2018.
     - I use :gmt-module:`makecpt` to create a `CPT <https://docs.generic-mapping-tools.org/6.5/reference/cpts.html#of-colors-and-color-legends>`_ to color the earthquakes.
     - I used the earthquakes from the file `quakes_2018.txt <https://github.com/GenericMappingTools/gmtserver-admin/blob/master/cache/quakes_2018.txt>`_ which has 5 columns.
 
-     ============== ========== ======== ================ ========================
-      Longitude      Latitude   Depth    Magnitude (x50)          Date
-     ============== ========== ======== ================ ========================
-      46.4223        -38.9126     10        260           2018-01-02T02:16:18.11
-      169.3488       -18.8355   242.77      260           2018-01-02T08:10:00.06
-      ...
-     ============== ========== ======== ================ ========================
+      ============== ========== ======== ================ ========================
+       Longitude      Latitude   Depth    Magnitude (x50)          Date
+      ============== ========== ======== ================ ========================
+       46.4223        -38.9126     10        260           2018-01-02T02:16:18.11
+       169.3488       -18.8355   242.77      260           2018-01-02T08:10:00.06
+       ...
+      ============== ========== ======== ================ ========================
+
     - Note that the input file has the columns sorted as will be required by the :gmt-module:`plot` and :gmt-module:`events` modules. It was also used for `animation 08 <https://docs.generic-mapping-tools.org/6.5//animations/anim08.html>`_.
-    Check it to see how it was downloaded and processed.
+      Check it to see how it was downloaded and processed.
 
 
 3.3. Make master frame
