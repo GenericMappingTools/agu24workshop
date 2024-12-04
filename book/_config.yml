@@ -9,7 +9,7 @@ logo: logo.webp
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: cache
-  timeout: 90  # https://jupyterbook.org/en/stable/content/execute.html#setting-execution-timeout
+  timeout: 270  # https://jupyterbook.org/en/stable/content/execute.html#setting-execution-timeout
 
 # Define the name of the latex output file for PDF builds
 latex:
