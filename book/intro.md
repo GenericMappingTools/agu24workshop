@@ -1,12 +1,17 @@
 # Mastering Geospatial Visualizations with GMT/PyGMT
 
-## Welcome to the AGU24 GMT/PyGMT workshop 🥳
+Welcome to the AGU24 [GMT](https://docs.generic-mapping-tools.org/6.5)/
+[PyGMT](https://www.pygmt.org/v0.13.0) workshop 🥳! This Jupyter book 📖 contains
+tutorials for making maps 🗺️ and animations 🎦
 
-This Jupyter book 📖 contains [GMT](https://docs.generic-mapping-tools.org/6.5) and
-[PyGMT](https://www.pygmt.org/v0.13.0) tutorials for producing maps 🗺️ and doing
-geospatial data processing 🌐
+::::::{grid} 1 1 3 3
+:gutter: 1
+:padding: 1
 
-::::{grid} 3
+
+:::::{grid-item}
+::::{grid} 1 1 1 1
+:gutter: 1
 
 :::{grid-item-card} Tutorial 1 - First figure + Subplots / layout
 :img-top: _images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png
@@ -37,6 +42,14 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-success}`geopandas`
 {bdg-success-line}`choropleth map`
 :::
+
+::::
+:::::
+
+
+:::::{grid-item}
+::::{grid} 1 1 1 1
+:gutter: 1
 
 :::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
 :img-top: _images/a18fcb026fb0d0c83360f2b8382a360e552dd50db6aa2db5311259bf5223d3a2.png
@@ -71,6 +84,14 @@ and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 {bdg-success}`pandas`
 :::
 
+::::
+:::::
+
+
+:::::{grid-item}
+::::{grid} 1 1 1 1
+:gutter: 1
+
 :::{grid-item-card} Tutorial 5 - Topography (Planetary Maps / 3-D Antarctic Maps)
 :img-top: _images/1dfddce0ff606bd7dc3a175aedbd2fc4bde3aeadfadfd339eb30ce1903d049f9.png
 :link: ./tut05_topography.html
@@ -99,6 +120,11 @@ by [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
 :::
 
 ::::
+:::::
+
+
+::::::
+
 
 Each tutorial is rendered on this website for easy viewing 👀, but they are all Jupyter
 notebooks designed to be ran interactively 💫. See the instructions below on how you can
