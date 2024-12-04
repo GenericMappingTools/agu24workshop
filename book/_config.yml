@@ -44,6 +44,7 @@ html:
 
 sphinx:
   config:
+    bibtex_bibliography_header: ".. rubric:: References"
     bibtex_reference_style: author_year
     html_show_copyright: false
     # Adjust highlight language for sphinx_gmt examples
