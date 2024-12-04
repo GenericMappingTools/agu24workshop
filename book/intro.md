@@ -190,8 +190,8 @@ Here's the instructions to install the `agu24workshop` environment:
    terminal and this will will take you to the Jupyter Lab page.
 
 6. Download the Jupyter notebook(s) you want to run (e.g.
-   https://www.generic-mapping-tools.org/agu24workshop/first-figure.html) using either
-   the download button on the ↗️ top right (select '.ipynb') or from GitHub at
+   https://www.generic-mapping-tools.org/agu24workshop/tut01_firstfigure.html) using
+   either the download button on the ↗️ top right (select '.ipynb') or from GitHub at
    https://github.com/GenericMappingTools/agu24workshop/tree/main/book. Make sure to put
    the *.ipynb file(s) inside of the 'agu24workshop' folder.
 
