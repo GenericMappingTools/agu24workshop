@@ -54,7 +54,7 @@ by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 :::
 
 :::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
-:img-top: _images/88669291b1d1c169f4f9173399f9c8eb83cae97719bd91cad1c10a4d8a2d461b.png
+:img-top: https://github.com/user-attachments/assets/37d94581-b9e9-4dec-a021-07c1b58c132a
 :link: ./tut04_geophysics.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
