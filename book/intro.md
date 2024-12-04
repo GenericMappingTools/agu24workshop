@@ -9,7 +9,7 @@ geospatial data processing 🌐
 ::::{grid} 3
 
 :::{grid-item-card} Tutorial 1 - First figure + Subplots / layout
-:img-top: _images/d9e3a5b11d774ff087afeb95b8bfd3e7974afe8b1e8f51d12a4736419cdc6974.png
+:img-top: _images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png
 :link: ./tut01_firstfigure.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 +++
@@ -24,7 +24,7 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 :::
 
 :::{grid-item-card} Tutorial 2 - Integration with the Scientific Python Ecosystem: Pandas / GeoPandas
-:img-top: _images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png
+:img-top: _images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png
 :link: ./tut02_spe_pd_gpd.html
 by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 +++
@@ -39,7 +39,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 :::
 
 :::{grid-item-card} Tutorial 3 - Integration with the Scientific Python Ecosystem: Xarray (grids)
-:img-top: _images/b3e45577786a5769fb54bb550f7032f3a73adc8289e08523d052827560bf3b0e.png
+:img-top: _images/a18fcb026fb0d0c83360f2b8382a360e552dd50db6aa2db5311259bf5223d3a2.png
 :link: ./tut03_spe_xarray.html
 by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 +++
@@ -54,6 +54,7 @@ by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 :::
 
 :::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
+:img-top: _images/88669291b1d1c169f4f9173399f9c8eb83cae97719bd91cad1c10a4d8a2d461b.png
 :link: ./tut04_geophysics.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
@@ -71,6 +72,7 @@ and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 :::
 
 :::{grid-item-card} Tutorial 5 - Topography (Planetary Maps / 3-D Antarctic Maps)
+:img-top: _images/1dfddce0ff606bd7dc3a175aedbd2fc4bde3aeadfadfd339eb30ce1903d049f9.png
 :link: ./tut05_topography.html
 by [Wei Ji Leong](https://orcid.org/0000-0003-2354-1988)
 and [André Belém](https://orcid.org/0000-0002-8865-6180)
