@@ -37,7 +37,7 @@ Washington, DC 20001, United States
 | 11:00-11:45 | Tutorial 3 - Integration with scientific Python ecosystem: Xarray (grids)     |
 | 11:45-12:45 | **Lunch**                                               |
 | 12:45-13:30 | Tutorial 4 - Geophysics (Seismology)                    |
-| 13:30-14:15 | Tutorial 5 - 3-D Topography (Planetary / Antarctic Maps) |
+| 13:30-14:15 | Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) |
 | 14:15-14:45 | **Break**                                               |
 | 14:45-15:30 | Tutorial 6 - Animations with GMT                        |
 | 15:30-17:00 | Final exercises / mini-project                          |
