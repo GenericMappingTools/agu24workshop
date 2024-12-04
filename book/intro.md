@@ -150,6 +150,13 @@ If you prefer to run the 🧑‍🏫 tutorials with a local installation of GMT/
 follow along! For this AGU24 workshop, we recommend creating a virtual conda environment
 and installing the C and 🐍 Python libraries inside.
 
+```{attention}
+If you are running this on Windows, we recommend installing a bash emulator (e.g.
+[Git for Windows](https://gitforwindows.org/)) so that you can run the command-line
+instructions below. A bash prompt is also a pre-requisite for the final
+[animation tutorial](./tut06_animation) that assumes a bash scripting environment.
+```
+
 :::{tip} For users comfortable with using `git`, feel free to ⬇️ download or clone the
 repository containing the workshop materials directly using
 `git clone https://github.com/GenericMappingTools/agu24workshop.git`
