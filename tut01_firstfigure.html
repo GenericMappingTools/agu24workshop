@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>PyGMT - first figure and subplot &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+    <title>Tutorial 1 - First figure and subplot &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
   
   
   
@@ -177,7 +177,7 @@
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">PyGMT - first figure and subplot</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 1</strong> - First figure and subplot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology)</a></li>
@@ -415,7 +415,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>PyGMT - first figure and subplot</h1>
+    <h1>Tutorial 1 - First figure and subplot</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -425,15 +425,6 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jing-hui-tong">Jing-Hui Tong</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#liam-toney-2021-iris-roses-unit05">Liam Toney, 2021 IRIS ROSES unit05</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
@@ -460,21 +451,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pygmt-first-figure-and-subplot">
-<h1>PyGMT - first figure and subplot<a class="headerlink" href="#pygmt-first-figure-and-subplot" title="Link to this heading">#</a></h1>
-<section id="preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">
-<h2>Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States<a class="headerlink" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states" title="Link to this heading">#</a></h2>
-<section id="jing-hui-tong">
-<h3>Jing-Hui Tong<a class="headerlink" href="#jing-hui-tong" title="Link to this heading">#</a></h3>
-<section id="reference">
-<h4>Reference:<a class="headerlink" href="#reference" title="Link to this heading">#</a></h4>
-</section>
-<section id="liam-toney-2021-iris-roses-unit05">
-<h4>Liam Toney, <a class="reference external" href="https://github.com/roseseismo/roses2021/blob/main/unit05/roses_mapping_lecture.ipynb">2021 IRIS ROSES unit05</a><a class="headerlink" href="#liam-toney-2021-iris-roses-unit05" title="Link to this heading">#</a></h4>
-</section>
-<section id="chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">
-<h4>Chih-Ming Lin, GMT courses for 2019 NTNUES summer program<a class="headerlink" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program" title="Link to this heading">#</a></h4>
-<hr class="docutils" />
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-1-first-figure-and-subplot">
+<h1><strong>Tutorial 1</strong> - First figure and subplot<a class="headerlink" href="#tutorial-1-first-figure-and-subplot" title="Link to this heading">#</a></h1>
 <p>This tutorial will cover the fundamental concepts behind making figures with PyGMT:</p>
 <ul class="simple">
 <li><p>drawing coastlines</p></li>
@@ -484,6 +462,20 @@
 <li><p>imaging Earth’s relief</p></li>
 <li><p>creating colorbar</p></li>
 <li><p>subplot in a figure</p></li>
+</ul>
+<hr class="docutils" />
+<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<ul class="simple">
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
+<li><p>Recommended version: PyGMT v0.13.0 with GMT 6.5.0</p></li>
+</ul>
+<hr class="docutils" />
+<p>References:</p>
+<ul class="simple">
+<li><p>Liam Toney, <a class="reference external" href="https://github.com/roseseismo/roses2021/blob/main/unit05/roses_mapping_lecture.ipynb">2021 IRIS ROSES unit05</a></p></li>
+<li><p>Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</p></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -496,9 +488,6 @@
 <li><p>Auto-completion: <code class="docutils literal notranslate"><span class="pre">TAB</span></code> while you writing some code</p></li>
 </ul>
 </div>
-</section>
-</section>
-</section>
 <section id="importing">
 <h2>Importing<a class="headerlink" href="#importing" title="Link to this heading">#</a></h2>
 <p>First thing to do is load PyGMT (<code class="docutils literal notranslate"><span class="pre">import</span></code>) so that we can access its functionality.</p>
@@ -570,9 +559,9 @@
 <li><p>axis labels <code class="docutils literal notranslate"><span class="pre">WSne</span></code>: If an upper-case letter (W, S, N, E) is passed, the axis is plotted with tick marks and annotations. The lower-case version (w, s, n, e) plots the axis only with tick marks. To only plot the axis pass (l, b, t, r).</p></li>
 <li><p>annotations <code class="docutils literal notranslate"><span class="pre">a</span></code>: tick labels</p></li>
 <li><p>frame <code class="docutils literal notranslate"><span class="pre">f</span></code>: ticks</p></li>
-<li><p>grid <code class="docutils literal notranslate"><span class="pre">g</span></code>: grid line in the figure.
-<img alt="image.png" src="attachment:8fe9e8b5-1a79-4e94-97a1-ef674ce63807.png" /></p></li>
+<li><p>grid <code class="docutils literal notranslate"><span class="pre">g</span></code>: grid line in the figure.</p></li>
 </ol>
+<img src="_static/tut01_frame.jpg" alt="frame" />
 <blockquote>
 <div><p>More detail for frame <a class="reference external" href="https://www.pygmt.org/v0.13.0/tutorials/basics/frames.html">https://www.pygmt.org/v0.13.0/tutorials/basics/frames.html</a></p>
 </div></blockquote>
@@ -748,8 +737,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </div></blockquote>
 </li>
 </ol>
-<p><img alt="image.png" src="attachment:a957cbf2-7879-4ae6-aa08-d8c734642874.png" /></p>
-<div class="cell docutils container">
+<img src="_static/tut01_colorbar_position.jpg" alt="position" /><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -786,8 +774,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">panel</span></code>: Setting the current subplot panel to plot on. e.g., <strong>index</strong> or [<strong>row</strong>, <strong>col</strong>]</p></li>
 </ol>
-<p><img alt="image.png" src="attachment:0572d821-8214-4ebf-8b1f-f521ffdd201d.png" /></p>
-<div class="cell docutils container">
+<img src="_static/tut01_subplot.jpg" alt="subplot" /><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
@@ -842,8 +829,8 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </div>
 <section id="basic-projection-types">
 <h3>Basic projection types:<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h3>
-<p><img alt="image.png" src="attachment:4cb14ffd-1415-4ab6-ac30-408a1f5913be.png" /></p>
-<p>By default, PyGMT will use an equidistant cylindrical projection if the region seems to be geographic longitude and latitude.</p>
+<img src="_static/tut01_projection.jpg" alt="position" />
+By default, PyGMT will use an equidistant cylindrical projection if the region seems to be geographic longitude and latitude.
 <ol class="arabic simple">
 <li><p>Mercator Projection – mapping the Earth onto a cylinder, preserving angles, making it useful for navigational purposes.</p></li>
 </ol>
@@ -934,15 +921,6 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preworkshop-in-2024-agu-fall-meeting-in-washington-dc-united-states">Preworkshop in 2024 AGU Fall Meeting in Washington, DC, United States</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jing-hui-tong">Jing-Hui Tong</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reference">Reference:</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#liam-toney-2021-iris-roses-unit05">Liam Toney, 2021 IRIS ROSES unit05</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chih-ming-lin-gmt-courses-for-2019-ntnues-summer-program">Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
