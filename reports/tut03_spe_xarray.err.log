@@ -1,17 +1,4 @@
 Traceback (most recent call last):
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 198, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/jupyter_client/channels.py", line 313, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
@@ -25,22 +12,50 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^
   File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 90 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
+  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/runner/micromamba/envs/agu24workshop/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
 # Download the dataset from the IRI Data Library
 url = "https://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NODC/.WOA09/.Grid-1x1/.Annual/.temperature/.t_an/data.nc"
 netcdf_file = pygmt.which(fname=url, download=True)
 woa_temp = xr.open_dataset(netcdf_file).isel(time=0)
 woa_temp
--------------------
+------------------
+
+----- stderr -----
+gmtwhich [ERROR]: Libcurl Error: Timeout was reached
+----- stderr -----
+gmtwhich [ERROR]: Unable to obtain remote file https://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NODC/.WOA09/.Grid-1x1/.Annual/.temperature/.t_an/data.nc
+----- stderr -----
+gmtwhich [ERROR]: File https://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NODC/.WOA09/.Grid-1x1/.Annual/.temperature/.t_an/data.nc not found!
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[6], line 3[0m
+[1;32m      1[0m [38;5;66;03m# Download the dataset from the IRI Data Library[39;00m
+[1;32m      2[0m url [38;5;241m=[39m [38;5;124m"[39m[38;5;124mhttps://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NODC/.WOA09/.Grid-1x1/.Annual/.temperature/.t_an/data.nc[39m[38;5;124m"[39m
+[0;32m----> 3[0m netcdf_file [38;5;241m=[39m [43mpygmt[49m[38;5;241;43m.[39;49m[43mwhich[49m[43m([49m[43mfname[49m[38;5;241;43m=[39;49m[43murl[49m[43m,[49m[43m [49m[43mdownload[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[1;32m      4[0m woa_temp [38;5;241m=[39m xr[38;5;241m.[39mopen_dataset(netcdf_file)[38;5;241m.[39misel(time[38;5;241m=[39m[38;5;241m0[39m)
+[1;32m      5[0m woa_temp
+
+File [0;32m~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/helpers/decorators.py:609[0m, in [0;36muse_alias.<locals>.alias_decorator.<locals>.new_module[0;34m(*args, **kwargs)[0m
+[1;32m    603[0m     msg [38;5;241m=[39m (
+[1;32m    604[0m         [38;5;124m"[39m[38;5;124mParameters [39m[38;5;124m'[39m[38;5;124mY[39m[38;5;124m'[39m[38;5;124m and [39m[38;5;124m'[39m[38;5;124myshift[39m[38;5;124m'[39m[38;5;124m are no longer supported since v0.12.0. [39m[38;5;124m"[39m
+[1;32m    605[0m         [38;5;124m"[39m[38;5;124mUse Figure.shift_origin(yshift=...) instead.[39m[38;5;124m"[39m
+[1;32m    606[0m     )
+[1;32m    607[0m     [38;5;28;01mraise[39;00m GMTInvalidInput(msg)
+[0;32m--> 609[0m [38;5;28;01mreturn[39;00m [43mmodule_func[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/src/which.py:71[0m, in [0;36mwhich[0;34m(fname, **kwargs)[0m
+[1;32m     69[0m [38;5;28;01mcase[39;00m [38;5;241m0[39m:
+[1;32m     70[0m     _fname [38;5;241m=[39m [38;5;124m"[39m[38;5;124m'[39m[38;5;124m, [39m[38;5;124m'[39m[38;5;124m"[39m[38;5;241m.[39mjoin(fname) [38;5;28;01mif[39;00m is_nonstr_iter(fname) [38;5;28;01melse[39;00m fname
+[0;32m---> 71[0m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mFile(s) [39m[38;5;124m'[39m[38;5;132;01m{[39;00m_fname[38;5;132;01m}[39;00m[38;5;124m'[39m[38;5;124m not found.[39m[38;5;124m"[39m)
+[1;32m     72[0m [38;5;28;01mcase[39;00m [38;5;241m1[39m:
+[1;32m     73[0m     [38;5;28;01mreturn[39;00m paths[[38;5;241m0[39m]
+
+[0;31mFileNotFoundError[0m: File(s) 'https://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NODC/.WOA09/.Grid-1x1/.Annual/.temperature/.t_an/data.nc' not found.
 
