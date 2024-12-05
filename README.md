@@ -33,10 +33,10 @@ Washington, DC 20001, United States
 | :---------: | :---------------------------------------------------------------------------: |
 | 08:30-08:40 |                          Introduction to GMT / PyGMT                          |
 | 08:40-08:55 |                                 Installation                                  |
-| 08:55-09:45 |                 Tutorial 1 - First figure + Subplots / layout                 |
+| 08:55-09:45 |                Tutorial 1 - First figure and Subplots / layout               |
 | 09:45-10:15 |                                   **Break**                                   |
-| 10:15-11:00 | Tutorial 2 - Integration with scientific Python ecosystem: pandas / GeoPandas |
-| 11:00-11:45 |   Tutorial 3 - Integration with scientific Python ecosystem: Xarray (grids)   |
+| 10:15-11:00 | Tutorial 2 - Integration with scientific Python ecosystem: pandas / GeoPandas (tabular data) |
+| 11:00-11:45 |   Tutorial 3 - Integration with scientific Python ecosystem: Xarray (gridded data)   |
 | 11:45-12:45 |                                   **Lunch**                                   |
 | 12:45-13:30 |                     Tutorial 4 - Geophysics (Seismology)                      |
 | 13:30-14:15 |           Tutorial 5 - 3-D Topography (Planetary / Antarctic maps)            |
