@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial 1 - First figure and subplot &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+    <title>Tutorial 1 - First figure 🚀 and Subplots / layout &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tut01_firstfigure';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial 2 - scientific Python ecosystem: pandas and GeoPandas" href="tut02_spe_pd_gpd.html" />
+    <link rel="next" title="Tutorial 2 - scientific Python ecosystem 🐍: pandas and GeoPandas (tabular data 🗒️)" href="tut02_spe_pd_gpd.html" />
     <link rel="prev" title="Mastering Geospatial Visualizations with GMT/PyGMT" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,17 +184,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🧑‍🏫 Tutorials</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 1</strong> - First figure and subplot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography 🏔️</a></li>
-
-
-
-
-<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 1</strong> - First figure 🚀 and Subplots / layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> (tabular data 🗒️)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations with GMT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT (extended)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -430,7 +426,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tutorial 1 - First figure and subplot</h1>
+    <h1>Tutorial 1 - First figure 🚀 and Subplots / layout</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -440,21 +436,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">Coloring and add map element (frame and ticks)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">0️⃣ Importing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">1️⃣ Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">1.1 Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">1.2 Coloring and add map element (frame and ticks)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.3 Stacking approach of GMT / PyGMT</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">Basic projection types:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">2️⃣ Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">3️⃣ Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">3.1 Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">3.2 Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">4️⃣ Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types:</a></li>
 </ul>
             </nav>
         </div>
@@ -466,32 +462,39 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-1-first-figure-and-subplot">
-<h1><strong>Tutorial 1</strong> - First figure and subplot<a class="headerlink" href="#tutorial-1-first-figure-and-subplot" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="tutorial-1-first-figure-and-subplots-layout">
+<h1><strong>Tutorial 1</strong> - First figure 🚀 and Subplots / layout<a class="headerlink" href="#tutorial-1-first-figure-and-subplots-layout" title="Link to this heading">#</a></h1>
 <p>This tutorial will cover the fundamental concepts behind making figures with PyGMT:</p>
 <ul class="simple">
-<li><p>drawing coastlines</p></li>
-<li><p>drawing a map frame</p></li>
-<li><p>choosing a projection</p></li>
-<li><p>downloading remote dataset</p></li>
-<li><p>imaging Earth’s relief</p></li>
-<li><p>creating colorbar</p></li>
-<li><p>subplot in a figure</p></li>
+<li><p>Drawing coastlines</p></li>
+<li><p>Drawing a map frame</p></li>
+<li><p>Choosing a projection</p></li>
+<li><p>Downloading remote dataset</p></li>
+<li><p>Imaging Earth’s relief</p></li>
+<li><p>Creating colorbar</p></li>
+<li><p>Subplot in a figure</p></li>
 </ul>
-<hr class="docutils" />
-<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
 <ul class="simple">
-<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
-<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
 <li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
-<li><p>Recommended version: PyGMT v0.13.0 with GMT 6.5.0</p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
 </ul>
-<hr class="docutils" />
-<p>References:</p>
+<p>History</p>
+<ul class="simple">
+<li><p>Author: <a class="reference external" href="https://orcid.org/0009-0002-7195-3071">Jing-Hui Tong</a></p></li>
+<li><p>Created: November-December 2024</p></li>
+<li><p>Recommended versions: <a class="reference external" href="https://www.pygmt.org/v0.13.0">PyGMT v0.13.0</a> with <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5">GMT 6.5.0</a></p></li>
+</ul>
+<p>References</p>
 <ul class="simple">
 <li><p>Liam Toney, <a class="reference external" href="https://github.com/roseseismo/roses2021/blob/main/unit05/roses_mapping_lecture.ipynb">2021 IRIS ROSES unit05</a></p></li>
 <li><p>Chih-Ming Lin, GMT courses for 2019 NTNUES summer program</p></li>
 </ul>
+<p>Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/issues">opening an issue</a> or <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/pulls">provide a fix via a pull request</a>. Please use the <a class="reference external" href="https://forum.generic-mapping-tools.org/">GMT forum</a> to ask questions.</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>In Jupyter, some shortcut key will increase your learning curve!</p>
@@ -504,7 +507,7 @@ document.write(`
 </ul>
 </div>
 <section id="importing">
-<h2>Importing<a class="headerlink" href="#importing" title="Link to this heading">#</a></h2>
+<h2>0️⃣ Importing<a class="headerlink" href="#importing" title="Link to this heading">#</a></h2>
 <p>First thing to do is load PyGMT (<code class="docutils literal notranslate"><span class="pre">import</span></code>) so that we can access its functionality.</p>
 <p>PyGMT has a flat package layout, meaning that you can access everything in it with a single <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p>
 <div class="cell docutils container">
@@ -516,8 +519,8 @@ document.write(`
 </div>
 </section>
 <section id="starting-your-first-figure-pygmt-figure">
-<h2>Starting your first figure – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><a class="headerlink" href="#starting-your-first-figure-pygmt-figure" title="Link to this heading">#</a></h2>
-<p>Every figure must start with the creation of a pygmt.Figure</p>
+<h2>1️⃣ Starting your first figure – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><a class="headerlink" href="#starting-your-first-figure-pygmt-figure" title="Link to this heading">#</a></h2>
+<p>Every figure must start with the creation of a pygmt.Figure()</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">=</span><span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -526,9 +529,8 @@ document.write(`
 </div>
 </div>
 <p>We have blank canvas in the <code class="docutils literal notranslate"><span class="pre">fig</span></code> variable now, we will overlay elements and show it on same <code class="docutils literal notranslate"><span class="pre">fig</span></code>.</p>
-</section>
 <section id="drawing-coastline-pygmt-figure-coast">
-<h2>Drawing coastline – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.coast.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><a class="headerlink" href="#drawing-coastline-pygmt-figure-coast" title="Link to this heading">#</a></h2>
+<h3>1.1 Drawing coastline – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.coast.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><a class="headerlink" href="#drawing-coastline-pygmt-figure-coast" title="Link to this heading">#</a></h3>
 <p>Before plotting, you need to define</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Controlling the geographic or Cartesian extent of the figure. Regions are specified as lists of <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">xmax,</span> <span class="pre">ymin,</span> <span class="pre">ymax]</span></code>. Another shortcut, <code class="docutils literal notranslate"><span class="pre">region=&quot;g&quot;</span></code>, which specifies a <strong>global</strong> domain.</p></li>
@@ -568,8 +570,9 @@ document.write(`
 <p class="admonition-title">See also</p>
 <p>If the image size is too small, the default annotation fonts may appear disproportionately large, impacting the overall visual balance and readability.</p>
 </div>
+</section>
 <section id="coloring-and-add-map-element-frame-and-ticks">
-<h3>Coloring and add map element (frame and ticks)<a class="headerlink" href="#coloring-and-add-map-element-frame-and-ticks" title="Link to this heading">#</a></h3>
+<h3>1.2 Coloring and add map element (frame and ticks)<a class="headerlink" href="#coloring-and-add-map-element-frame-and-ticks" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>axis labels <code class="docutils literal notranslate"><span class="pre">WSne</span></code>: If an upper-case letter (W, S, N, E) is passed, the axis is plotted with tick marks and annotations. The lower-case version (w, s, n, e) plots the axis only with tick marks. To only plot the axis pass (l, b, t, r).</p></li>
 <li><p>annotations <code class="docutils literal notranslate"><span class="pre">a</span></code>: tick labels</p></li>
@@ -597,8 +600,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="note">
-<h3>NOTE<a class="headerlink" href="#note" title="Link to this heading">#</a></h3>
+<section id="stacking-approach-of-gmt-pygmt">
+<h3>1.3 Stacking approach of GMT / PyGMT<a class="headerlink" href="#stacking-approach-of-gmt-pygmt" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>In GMT/PyGMT, plotting is achieved by layering new elements, meaning that each new element is stacked on top of the previous layers.
 Therefore, if you draw a black line in an earlier layer and then add a new layer (such as color filling), these new layers might cover the original black line, making it invisible.</p></li>
@@ -607,7 +610,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </section>
 </section>
 <section id="downloading-global-dataset-pygmt-datasets">
-<h2>Downloading global dataset – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/index.html#datasets"><code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a><a class="headerlink" href="#downloading-global-dataset-pygmt-datasets" title="Link to this heading">#</a></h2>
+<h2>2️⃣ Downloading global dataset – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/index.html#datasets"><code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a><a class="headerlink" href="#downloading-global-dataset-pygmt-datasets" title="Link to this heading">#</a></h2>
 <p>Before you access remote dataset from PyGMT, you need to define</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">region</span></code>: Region of interest, format is [xmin, xmax, ymin, ymax]</p></li>
@@ -665,7 +668,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </div>
 </section>
 <section id="visualizing-grid-pygmt-figure-grdimage">
-<h2>Visualizing grid – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a><a class="headerlink" href="#visualizing-grid-pygmt-figure-grdimage" title="Link to this heading">#</a></h2>
+<h2>3️⃣ Visualizing grid – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdimage.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a><a class="headerlink" href="#visualizing-grid-pygmt-figure-grdimage" title="Link to this heading">#</a></h2>
 <p>Project and plot grids or images</p>
 <p>Now, we start with a new canvas. So you need to set up region/projection again!</p>
 <p>Before imaging, you need to define</p>
@@ -691,9 +694,8 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <a class="reference internal image-reference" href="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png"><img alt="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png" src="_images/ea6e804893275306c0027467e15e56648e4ecf8c68c88befb8596f2177f690d2.png" style="width: 500px;" /></a>
 </div>
 </div>
-</section>
 <section id="customizing-colorbar-pygmt-makecpt">
-<h2>Customizing colorbar – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.makecpt.html"><code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a><a class="headerlink" href="#customizing-colorbar-pygmt-makecpt" title="Link to this heading">#</a></h2>
+<h3>3.1 Customizing colorbar – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.makecpt.html"><code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a><a class="headerlink" href="#customizing-colorbar-pygmt-makecpt" title="Link to this heading">#</a></h3>
 <p>Making GMT color palette tables (CPT).</p>
 <p>You need to define:</p>
 <ol class="arabic simple">
@@ -720,7 +722,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <p>Now, re-plot the figure with new colormap and …</p>
 </section>
 <section id="adding-pygmt-figure-colorbar">
-<h2>Adding <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.colorbar.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a><a class="headerlink" href="#adding-pygmt-figure-colorbar" title="Link to this heading">#</a></h2>
+<h3>3.2 Adding <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.colorbar.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a><a class="headerlink" href="#adding-pygmt-figure-colorbar" title="Link to this heading">#</a></h3>
 <p>Plot a gray or color scale-bar on maps.</p>
 <p>You need to define,</p>
 <ol class="arabic">
@@ -777,8 +779,9 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </div>
 </div>
 </section>
+</section>
 <section id="creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">
-<h2>Creating multi-panel figures in a canvas – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.subplot.html#pygmt.Figure.subplot"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.set_panel.html#pygmt.Figure.set_panel"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><a class="headerlink" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel" title="Link to this heading">#</a></h2>
+<h2>4️⃣ Creating multi-panel figures in a canvas – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.subplot.html#pygmt.Figure.subplot"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.set_panel.html#pygmt.Figure.set_panel"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><a class="headerlink" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel" title="Link to this heading">#</a></h2>
 <p>You need to define the figure layout with figure.subplot:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nrows</span></code>: Number of vertical rows</p></li>
@@ -842,8 +845,9 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <a class="reference internal image-reference" href="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png"><img alt="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" src="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" style="width: 500px;" /></a>
 </div>
 </div>
+</section>
 <section id="basic-projection-types">
-<h3>Basic projection types:<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h3>
+<h2>5️⃣ Basic projection types:<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h2>
 <img src="_static/tut01_projection.jpg" alt="position" />
 By default, PyGMT will use an equidistant cylindrical projection if the region seems to be geographic longitude and latitude.
 <ol class="arabic simple">
@@ -867,7 +871,6 @@ By default, PyGMT will use an equidistant cylindrical projection if the region s
 <li><p>Use Case: Suitable for mapping polar regions or any area where direction from a central point is essential.</p></li>
 <li><p>GMT Command: <strong>E[lon]/[lat]</strong>, with lon and lat defining the central point.</p></li>
 </ul>
-</section>
 </section>
 </section>
 
@@ -915,7 +918,7 @@ By default, PyGMT will use an equidistant cylindrical projection if the region s
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></p>
+        <p class="prev-next-title"><strong>Tutorial 2</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> (tabular data 🗒️)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -935,21 +938,21 @@ By default, PyGMT will use an equidistant cylindrical projection if the region s
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">Importing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">Coloring and add map element (frame and ticks)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#note">NOTE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing">0️⃣ Importing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">1️⃣ Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">1.1 Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">1.2 Coloring and add map element (frame and ticks)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.3 Stacking approach of GMT / PyGMT</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">Basic projection types:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">2️⃣ Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-grid-pygmt-figure-grdimage">3️⃣ Visualizing grid – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdimage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customizing-colorbar-pygmt-makecpt">3.1 Customizing colorbar – <code class="docutils literal notranslate"><span class="pre">pygmt.makecpt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-pygmt-figure-colorbar">3.2 Adding <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.colorbar</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">4️⃣ Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types:</a></li>
 </ul>
   </nav></div>
 

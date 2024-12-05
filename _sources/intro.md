@@ -13,7 +13,7 @@ tutorials for making maps 🗺️ and animations 🎦
 ::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} Tutorial 1 - First figure + Subplots / layout
+:::{grid-item-card} Tutorial 1 - First figure 🚀 and Subplots / layout
 :img-top: _images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png
 :link: ./tut01_firstfigure.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
@@ -28,7 +28,7 @@ by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 {bdg-secondary-line}`earth_age`
 :::
 
-:::{grid-item-card} Tutorial 2 - Integration with the scientific Python ecosystem: pandas / GeoPandas
+:::{grid-item-card} Tutorial 2 - Integration with the scientific Python ecosystem 🐍: pandas and GeoPandas (tabular data 🗒️)
 :img-top: _images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png
 :link: ./tut02_spe_pd_gpd.html
 by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
@@ -52,7 +52,7 @@ by [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 ::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} Tutorial 3 - Integration with the scientific Python ecosystem: Xarray (grids)
+:::{grid-item-card} Tutorial 3 - Integration with the scientific Python ecosystem 🐍: Xarray (gridded data 🌐)
 :img-top: _images/a18fcb026fb0d0c83360f2b8382a360e552dd50db6aa2db5311259bf5223d3a2.png
 :link: ./tut03_spe_xarray.html
 by [Max Jones](https://orcid.org/0000-0003-0180-8928)
@@ -67,7 +67,7 @@ by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 {bdg-success-line}`CMIP6`
 :::
 
-:::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
+:::{grid-item-card} Tutorial 4 - Geophysics (Seismology) 🌎🌏🌍
 :img-top: https://github.com/user-attachments/assets/37d94581-b9e9-4dec-a021-07c1b58c132a
 :link: ./tut04_geophysics.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)

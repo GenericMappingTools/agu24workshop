@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial 6 - Animations &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+    <title>Tutorial 6 - Animations with GMT &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tut06_animation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Making animations (extended)" href="tut06_animation_extended.html" />
-    <link rel="prev" title="Tutorial 5 - 3-D Topography 🏔️" href="tut05_topography.html" />
+    <link rel="next" title="Tutorial 6 - Animations with GMT (extended)" href="tut06_animation_extended.html" />
+    <link rel="prev" title="Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) 🏔️" href="tut05_topography.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -186,17 +186,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🧑‍🏫 Tutorials</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html"><strong>Tutorial 1</strong> - First figure and subplot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography 🏔️</a></li>
-
-
-
-
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Tutorial 6</strong> - Animations</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html"><strong>Tutorial 1</strong> - First figure 🚀 and Subplots / layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> (tabular data 🗒️)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Tutorial 6</strong> - Animations with GMT</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT (extended)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -401,7 +397,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tutorial 6 - Animations</h1>
+    <h1>Tutorial 6 - Animations with GMT</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -453,20 +449,28 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="tutorial-6-animations">
-<h1><strong>Tutorial 6</strong> - Animations<a class="headerlink" href="#tutorial-6-animations" title="Link to this heading">#</a></h1>
-<p>By F. Esteban (&#64;esteban82)</p>
+  <section id="tutorial-6-animations-with-gmt">
+<h1><strong>Tutorial 6</strong> - Animations with GMT<a class="headerlink" href="#tutorial-6-animations-with-gmt" title="Link to this heading">#</a></h1>
+<p>Content
+- This tutorial explains the basic aspect of doing animations with GMT.
+- It serves as a guide to help beginners understand and troubleshoot potential issues.
+- It explains the basic aspect of the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
 <ul class="simple">
-<li><p>This tutorial explains the basic aspect of doing animations with GMT.</p></li>
-<li><p>It serves as a guide to help beginners understand and troubleshoot potential issues.</p></li>
-<li><p>It explains the basic aspect of the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p></li>
-</ul>
-<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
-<ul class="simple">
-<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
-<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
 <li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
 </ul>
+<p>History</p>
+<ul class="simple">
+<li><p>Author: <a class="reference external" href="https://orcid.org/0000-0002-0641-7371">Federico Esteban</a></p></li>
+<li><p>Created: November-December 2024</p></li>
+<li><p>Recommended version: <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5">GMT 6.5.0</a></p></li>
+</ul>
+<p>Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/issues">opening an issue</a> or <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/pulls">provide a fix via a pull request</a>. Please use the <a class="reference external" href="https://forum.generic-mapping-tools.org/">GMT forum</a> to ask questions.</p>
+</div>
 <section id="introduction">
 <h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Prior to GMT 6.0, ambitious movie makers had to write complicated scripts where the advancement of frames was explicitly done by a shell loop.
@@ -1056,7 +1060,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><strong>Tutorial 5</strong> - 3-D Topography 🏔️</p>
+        <p class="prev-next-title"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</p>
       </div>
     </a>
     <a class="right-next"
@@ -1064,7 +1068,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Making animations (extended)</p>
+        <p class="prev-next-title"><strong>Tutorial 6</strong> - Animations with GMT (extended)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial 4 - Geophysics (Seismology) &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+    <title>Tutorial 4 - Geophysics (Seismology) 🌎🌏🌍 &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tut04_geophysics';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial 5 - 3-D Topography 🏔️" href="tut05_topography.html" />
-    <link rel="prev" title="Tutorial 3 - scientific Python ecosystem: Xarray" href="tut03_spe_xarray.html" />
+    <link rel="next" title="Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) 🏔️" href="tut05_topography.html" />
+    <link rel="prev" title="Tutorial 3 - scientific Python ecosystem 🐍: Xarray (gridded data 🌐)" href="tut03_spe_xarray.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,17 +184,13 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">🧑‍🏫 Tutorials</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html"><strong>Tutorial 1</strong> - First figure and subplot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 4</strong> - Geophysics (Seismology)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography 🏔️</a></li>
-
-
-
-
-<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html">Making animations (extended)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut01_firstfigure.html"><strong>Tutorial 1</strong> - First figure 🚀 and Subplots / layout</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02_spe_pd_gpd.html"><strong>Tutorial 2</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code> (tabular data 🗒️)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations with GMT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT (extended)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -430,7 +426,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tutorial 4 - Geophysics (Seismology)</h1>
+    <h1>Tutorial 4 - Geophysics (Seismology) 🌎🌏🌍</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -440,23 +436,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1. Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2. Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3. Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0️⃣ General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1️⃣ Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2️⃣ Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3️⃣ Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-profile">3.1 Choose a profile</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-project">3.2 <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-grdtrack">3.3 <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-plot-showing-the-elevation-along-the-profile">3.4 Create a Cartesian plot showing the elevation along the profile</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4. Add additional features</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4️⃣ Add additional features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-beachball">4.1 Add a beachball</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-seismicity">4.2 Add the seismicity</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5. Additional comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6. Orientation / suggestion for “4.2 Add seismicity”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5️⃣ Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6️⃣ Orientation / suggestion for “4.2 Add seismicity”</a></li>
 </ul>
             </nav>
         </div>
@@ -469,23 +465,31 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tutorial-4-geophysics-seismology">
-<h1><strong>Tutorial 4</strong> - Geophysics (Seismology)<a class="headerlink" href="#tutorial-4-geophysics-seismology" title="Link to this heading">#</a></h1>
+<h1><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍<a class="headerlink" href="#tutorial-4-geophysics-seismology" title="Link to this heading">#</a></h1>
 <p>In this tutorial we will learn how to</p>
 <ol class="arabic simple">
 <li><p>Prepare <strong>gridded data</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></p></li>
 <li><p>Create a <strong>contour map</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></p></li>
 <li><p>Create a <strong>profile plot</strong>: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></p></li>
 </ol>
-<hr class="docutils" />
-<p>This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
 <ul class="simple">
-<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
-<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
 <li><p>Website: <a class="reference external" href="https://www.generic-mapping-tools.org/agu24workshop">https://www.generic-mapping-tools.org/agu24workshop</a></p></li>
-<li><p>Recommended version: PyGMT v0.13.0 with GMT 6.5.0</p></li>
+<li><p>GitHub: <a class="github reference external" href="https://github.com/GenericMappingTools/agu24workshop">GenericMappingTools/agu24workshop</a></p></li>
+<li><p>Conference: <a class="reference external" href="https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736">https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736</a></p></li>
 </ul>
+<p>History</p>
+<ul class="simple">
+<li><p>Authors: <a class="reference external" href="https://orcid.org/0009-0002-7195-3071">Jing-Hui Tong</a> and <a class="reference external" href="https://orcid.org/0000-0002-8566-0619">Yvonne Fröhlich</a></p></li>
+<li><p>Created: November-December 2024</p></li>
+<li><p>Recommended versions: <a class="reference external" href="https://www.pygmt.org/v0.13.0">PyGMT v0.13.0</a> with <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5">GMT 6.5.0</a></p></li>
+</ul>
+<p>Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/issues">opening an issue</a> or <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/pulls">provide a fix via a pull request</a>. Please use the <a class="reference external" href="https://forum.generic-mapping-tools.org/">GMT forum</a> to ask questions.</p>
+</div>
 <section id="general-stuff">
-<h2>0. General stuff<a class="headerlink" href="#general-stuff" title="Link to this heading">#</a></h2>
+<h2>0️⃣ General stuff<a class="headerlink" href="#general-stuff" title="Link to this heading">#</a></h2>
 <p>Import the required packages. Besides <a class="reference external" href="https://www.pygmt.org/v0.13.0"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> we also use <a class="reference external" href="https://numpy.org/doc/stable/"><code class="docutils literal notranslate"><span class="pre">NumPy</span></code></a> and <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -501,7 +505,7 @@ document.write(`
 </div>
 </section>
 <section id="prepare-gridded-data-pygmt-xyz2grd">
-<h2>1. Prepare gridded data: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a><a class="headerlink" href="#prepare-gridded-data-pygmt-xyz2grd" title="Link to this heading">#</a></h2>
+<h2>1️⃣ Prepare gridded data: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.xyz2grd.html"><code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a><a class="headerlink" href="#prepare-gridded-data-pygmt-xyz2grd" title="Link to this heading">#</a></h2>
 <p>Sometimes, spatial (regional or global) data is provided as tabular data (.txt or .csv files) containing x, y, and z columns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -566,7 +570,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>In PyGMT, the grid is stored in an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>:</p>
+<p>In PyGMT, the grid is stored in an <a class="reference external" href="https://docs.xarray.dev/en/v2024.09.0/generated/xarray.DataArray.html"><code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span>
@@ -960,15 +964,15 @@ Attributes:
     history:       gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G...
     description:   
     long_name:     z
-    actual_range:  [nan nan]</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'z'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 481</li><li><span class='xr-has-index'>lon</span>: 361</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-4785d9c8-7e29-428e-bcf4-1df33a1447d0' class='xr-array-in' type='checkbox' checked><label for='section-4785d9c8-7e29-428e-bcf4-1df33a1447d0' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-3.47e+03 -3.474e+03 -3.456e+03 -3.511e+03 ... 116.0 108.0 117.0 141.0</span></div><div class='xr-array-data'><pre>array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
+    actual_range:  [nan nan]</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'z'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 481</li><li><span class='xr-has-index'>lon</span>: 361</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-80bff68a-aaf7-446b-8652-0e7490ded70c' class='xr-array-in' type='checkbox' checked><label for='section-80bff68a-aaf7-446b-8652-0e7490ded70c' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-3.47e+03 -3.474e+03 -3.456e+03 -3.511e+03 ... 116.0 108.0 117.0 141.0</span></div><div class='xr-array-data'><pre>array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
        [-3447.5, -3438.5, -3436. , ...,   -46. ,   -50.5,   -51. ],
        [-3440.5, -3419.5, -3419. , ...,   -44.5,   -49. ,   -51. ],
        ...,
        [ -970. , -1083. , -1261.5, ...,   114. ,   126.5,   129. ],
        [ -959. , -1044. , -1204. , ...,   110.5,   124.5,   146. ],
-       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])</pre></div></div></li><li class='xr-section-item'><input id='section-58060552-1bd7-4f95-a3b9-9c850b74fb3f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-58060552-1bd7-4f95-a3b9-9c850b74fb3f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-40.0 -39.92 ... -0.08333 0.0</div><input id='attrs-16b26e37-15fc-4dc5-ab70-4de86fd22c9b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-16b26e37-15fc-4dc5-ab70-4de86fd22c9b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-99f77e7e-acb5-4749-98a4-a14f21d569fe' class='xr-var-data-in' type='checkbox'><label for='data-99f77e7e-acb5-4749-98a4-a14f21d569fe' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>actual_range :</span></dt><dd>[-40.   0.]</dd></dl></div><div class='xr-var-data'><pre>array([-40.      , -39.916667, -39.833333, ...,  -0.166667,  -0.083333,
-         0.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.92 ... -60.08 -60.0</div><input id='attrs-51146cc5-8b65-44ea-bc19-d7d6c435f389' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-51146cc5-8b65-44ea-bc19-d7d6c435f389' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-b8c0fd5f-5465-4a6d-892a-00e2145825a0' class='xr-var-data-in' type='checkbox'><label for='data-b8c0fd5f-5465-4a6d-892a-00e2145825a0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>actual_range :</span></dt><dd>[-90. -60.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.916667, -89.833333, ..., -60.166667, -60.083333,
-       -60.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c2b71b3b-c064-406f-b4b2-65e9c1766a9f' class='xr-section-summary-in' type='checkbox'  ><label for='section-c2b71b3b-c064-406f-b4b2-65e9c1766a9f' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-8c5e656c-edbb-47df-bcfe-c7419e904635' class='xr-index-data-in' type='checkbox'/><label for='index-8c5e656c-edbb-47df-bcfe-c7419e904635' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               -40.0,  -39.916666666666664,   -39.83333333333333,
+       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])</pre></div></div></li><li class='xr-section-item'><input id='section-c0567ac5-1732-478c-8233-df0d2a1e89a4' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c0567ac5-1732-478c-8233-df0d2a1e89a4' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-40.0 -39.92 ... -0.08333 0.0</div><input id='attrs-d6303ee2-7393-4178-932d-e1c6558b1de8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d6303ee2-7393-4178-932d-e1c6558b1de8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eee59056-a6d1-4929-b522-ab43ab9da14c' class='xr-var-data-in' type='checkbox'><label for='data-eee59056-a6d1-4929-b522-ab43ab9da14c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>actual_range :</span></dt><dd>[-40.   0.]</dd></dl></div><div class='xr-var-data'><pre>array([-40.      , -39.916667, -39.833333, ...,  -0.166667,  -0.083333,
+         0.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.92 ... -60.08 -60.0</div><input id='attrs-aed76c87-b373-417d-b44f-12edcafe40e1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aed76c87-b373-417d-b44f-12edcafe40e1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-afd85cde-1710-48d4-bc77-9be66776c174' class='xr-var-data-in' type='checkbox'><label for='data-afd85cde-1710-48d4-bc77-9be66776c174' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>actual_range :</span></dt><dd>[-90. -60.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.916667, -89.833333, ..., -60.166667, -60.083333,
+       -60.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-fa51a6a5-a121-444e-98ee-25e8bd85270b' class='xr-section-summary-in' type='checkbox'  ><label for='section-fa51a6a5-a121-444e-98ee-25e8bd85270b' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-77c26e00-d071-47f8-a2dd-1d3bedccfb4b' class='xr-index-data-in' type='checkbox'/><label for='index-77c26e00-d071-47f8-a2dd-1d3bedccfb4b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               -40.0,  -39.916666666666664,   -39.83333333333333,
                      -39.75,  -39.666666666666664,   -39.58333333333333,
                       -39.5,  -39.416666666666664,   -39.33333333333333,
                      -39.25,
@@ -977,7 +981,7 @@ Attributes:
                        -0.5, -0.41666666666666663,  -0.3333333333333333,
                       -0.25, -0.16666666666666666, -0.08333333333333333,
                         0.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=481))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-ec0c9c09-6eb9-448e-92c1-c6ddfc5f1070' class='xr-index-data-in' type='checkbox'/><label for='index-ec0c9c09-6eb9-448e-92c1-c6ddfc5f1070' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([              -90.0,  -89.91666666666667,  -89.83333333333333,
+      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=481))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-38de8631-700b-4696-87df-7b757227b601' class='xr-index-data-in' type='checkbox'/><label for='index-38de8631-700b-4696-87df-7b757227b601' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([              -90.0,  -89.91666666666667,  -89.83333333333333,
                     -89.75,  -89.66666666666667,  -89.58333333333333,
                      -89.5,  -89.41666666666667,  -89.33333333333333,
                     -89.25,
@@ -986,14 +990,14 @@ Attributes:
                      -60.5,  -60.41666666666667, -60.333333333333336,
                     -60.25,  -60.16666666666667, -60.083333333333336,
                      -60.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f3d74db0-0cf7-460d-b1e8-2587bf77e9e9' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f3d74db0-0cf7-460d-b1e8-2587bf77e9e9' class='xr-section-summary' >Attributes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7</dd><dt><span>title :</span></dt><dd></dd><dt><span>history :</span></dt><dd>gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G-G-Y-000001 -I5m -R-90/-60/-40/0</dd><dt><span>description :</span></dt><dd></dd><dt><span>long_name :</span></dt><dd>z</dd><dt><span>actual_range :</span></dt><dd>[nan nan]</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-09fb3682-4c40-4895-a888-706ebf581e89' class='xr-section-summary-in' type='checkbox'  checked><label for='section-09fb3682-4c40-4895-a888-706ebf581e89' class='xr-section-summary' >Attributes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7</dd><dt><span>title :</span></dt><dd></dd><dt><span>history :</span></dt><dd>gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G-G-Y-000001 -I5m -R-90/-60/-40/0</dd><dt><span>description :</span></dt><dd></dd><dt><span>long_name :</span></dt><dd>z</dd><dt><span>actual_range :</span></dt><dd>[nan nan]</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 <section id="create-a-contour-map-pygmt-figure-grdcontour">
-<h2>2. Create a contour map: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a><a class="headerlink" href="#create-a-contour-map-pygmt-figure-grdcontour" title="Link to this heading">#</a></h2>
+<h2>2️⃣ Create a contour map: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a><a class="headerlink" href="#create-a-contour-map-pygmt-figure-grdcontour" title="Link to this heading">#</a></h2>
 <p>To plot grids or images as contour lines you can use <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.grdcontour.html"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a>. You need to define:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>: Access the remote datasets or provide your dataset as an <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>: Access the remote datasets or provide your dataset as an <a class="reference external" href="https://docs.xarray.dev/en/v2024.09.0/generated/xarray.DataArray.html"><code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">level</span></code>: Specify the contour intervals to generate; for example, a value of 1000 means plotting contour lines at every 1000 m.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">annotation</span></code>: Annotate contour levels.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">limit</span></code>: Draw contours below low or above high, e.g., [-4000, 0] means drawing contour lines below sea level and above -4000 m.</p></li>
@@ -1029,7 +1033,7 @@ Attributes:
 </div>
 </section>
 <section id="create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">
-<h2>3. Create a profile plot: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><a class="headerlink" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack" title="Link to this heading">#</a></h2>
+<h2>3️⃣ Create a profile plot: <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.project.html"><code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a> and <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.grdtrack.html"><code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><a class="headerlink" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack" title="Link to this heading">#</a></h2>
 <section id="choose-a-profile">
 <h3>3.1 Choose a profile<a class="headerlink" href="#choose-a-profile" title="Link to this heading">#</a></h3>
 <p>First, we choose a profile or survey line within our study area and plot it on top of our geographic map.</p>
@@ -1306,7 +1310,7 @@ Attributes:
 </section>
 </section>
 <section id="add-additional-features">
-<h2>4. Add additional features<a class="headerlink" href="#add-additional-features" title="Link to this heading">#</a></h2>
+<h2>4️⃣ Add additional features<a class="headerlink" href="#add-additional-features" title="Link to this heading">#</a></h2>
 <p>Finally, you can add additional features on top of the geographic map. Feel free to include your own ideas here! Here are a few ideas what you can try:</p>
 <ul class="simple">
 <li><p><strong>Highlight a specific earthquake as beachball</strong>: See subsection 4.1</p></li>
@@ -1484,14 +1488,14 @@ Attributes:
 </section>
 </section>
 <section id="additional-comments">
-<h2>5. Additional comments<a class="headerlink" href="#additional-comments" title="Link to this heading">#</a></h2>
+<h2>5️⃣ Additional comments<a class="headerlink" href="#additional-comments" title="Link to this heading">#</a></h2>
 <p>Some helpful and interesting aspects:</p>
 <ul class="simple">
 <li><p>Use suitable colormaps for your data: <a class="reference external" href="https://www.fabiocrameri.ch/colourmaps/"><strong>Scientific colourmaps by Fabio Crameri</strong></a>, see also the publications <a class="reference external" href="https://doi.org/10.1002/cpz1.1126">Crameri et al. (2024)</a> and <a class="reference external" href="https://doi.org/10.1038/s41467-020-19160-7">Crameri et al. (2020)</a></p></li>
 </ul>
 </section>
 <section id="orientation-suggestion-for-4-2-add-seismicity">
-<h2>6. Orientation / suggestion for “4.2 Add seismicity”<a class="headerlink" href="#orientation-suggestion-for-4-2-add-seismicity" title="Link to this heading">#</a></h2>
+<h2>6️⃣ Orientation / suggestion for “4.2 Add seismicity”<a class="headerlink" href="#orientation-suggestion-for-4-2-add-seismicity" title="Link to this heading">#</a></h2>
 <p>Below you find a rough code shipset for plotting the subsets of the earthquake dataset in section 4.1. Note the logarithmic scaling of size of the symbols as the size is referring to the magnitude of the earthquakes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1570,7 +1574,7 @@ Attributes:
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><strong>Tutorial 3</strong> - scientific Python ecosystem: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code></p>
+        <p class="prev-next-title"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</p>
       </div>
     </a>
     <a class="right-next"
@@ -1578,7 +1582,7 @@ Attributes:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Tutorial 5</strong> - 3-D Topography 🏔️</p>
+        <p class="prev-next-title"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1598,23 +1602,23 @@ Attributes:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0. General stuff</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1. Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2. Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3. Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-stuff">0️⃣ General stuff</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-gridded-data-pygmt-xyz2grd">1️⃣ Prepare gridded data: <code class="docutils literal notranslate"><span class="pre">pygmt.xyz2grd</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-contour-map-pygmt-figure-grdcontour">2️⃣ Create a contour map: <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.grdcontour</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-profile-plot-pygmt-project-and-pygmt-grdtrack">3️⃣ Create a profile plot: <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choose-a-profile">3.1 Choose a profile</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-project">3.2 <code class="docutils literal notranslate"><span class="pre">pygmt.project</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pygmt-grdtrack">3.3 <code class="docutils literal notranslate"><span class="pre">pygmt.grdtrack</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-cartesian-plot-showing-the-elevation-along-the-profile">3.4 Create a Cartesian plot showing the elevation along the profile</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4. Add additional features</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-additional-features">4️⃣ Add additional features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-a-beachball">4.1 Add a beachball</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#add-the-seismicity">4.2 Add the seismicity</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5. Additional comments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6. Orientation / suggestion for “4.2 Add seismicity”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-comments">5️⃣ Additional comments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orientation-suggestion-for-4-2-add-seismicity">6️⃣ Orientation / suggestion for “4.2 Add seismicity”</a></li>
 </ul>
   </nav></div>
 
