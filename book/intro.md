@@ -67,7 +67,7 @@ by [Max Jones](https://orcid.org/0000-0003-0180-8928)
 {bdg-success-line}`CMIP6`
 :::
 
-:::{grid-item-card} Tutorial 4 - Geophysics (Seismology)
+:::{grid-item-card} Tutorial 4 - Geophysics (Seismology) 🌎🌏🌍
 :img-top: https://github.com/user-attachments/assets/37d94581-b9e9-4dec-a021-07c1b58c132a
 :link: ./tut04_geophysics.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
