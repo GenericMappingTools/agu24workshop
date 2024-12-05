@@ -493,9 +493,9 @@ document.write(`
 <p>Import the required packages. Besides <a class="reference external" href="https://www.pygmt.org/v0.13.0"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> we also use <a class="reference external" href="https://numpy.org/doc/stable/"><code class="docutils literal notranslate"><span class="pre">NumPy</span></code></a> and <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="c1"># Use a resolution of only 150 dpi for the images within the Jupyter notebook, to keep the file small</span>
 <span class="n">img_dpi</span> <span class="o">=</span> <span class="mi">150</span>
@@ -540,7 +540,7 @@ document.write(`
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">region</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">xyz2grd</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="s2">&quot;5m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
 </pre></div>
@@ -964,15 +964,15 @@ Attributes:
     history:       gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G...
     description:   
     long_name:     z
-    actual_range:  [nan nan]</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'z'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 481</li><li><span class='xr-has-index'>lon</span>: 361</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-80bff68a-aaf7-446b-8652-0e7490ded70c' class='xr-array-in' type='checkbox' checked><label for='section-80bff68a-aaf7-446b-8652-0e7490ded70c' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-3.47e+03 -3.474e+03 -3.456e+03 -3.511e+03 ... 116.0 108.0 117.0 141.0</span></div><div class='xr-array-data'><pre>array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
+    actual_range:  [nan nan]</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'z'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>lat</span>: 481</li><li><span class='xr-has-index'>lon</span>: 361</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-a55f14ba-36a2-4cfb-99b2-f83ee9821624' class='xr-array-in' type='checkbox' checked><label for='section-a55f14ba-36a2-4cfb-99b2-f83ee9821624' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-3.47e+03 -3.474e+03 -3.456e+03 -3.511e+03 ... 116.0 108.0 117.0 141.0</span></div><div class='xr-array-data'><pre>array([[-3470.5, -3474. , -3455.5, ...,   -50. ,   -52. ,   -54. ],
        [-3447.5, -3438.5, -3436. , ...,   -46. ,   -50.5,   -51. ],
        [-3440.5, -3419.5, -3419. , ...,   -44.5,   -49. ,   -51. ],
        ...,
        [ -970. , -1083. , -1261.5, ...,   114. ,   126.5,   129. ],
        [ -959. , -1044. , -1204. , ...,   110.5,   124.5,   146. ],
-       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])</pre></div></div></li><li class='xr-section-item'><input id='section-c0567ac5-1732-478c-8233-df0d2a1e89a4' class='xr-section-summary-in' type='checkbox'  checked><label for='section-c0567ac5-1732-478c-8233-df0d2a1e89a4' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-40.0 -39.92 ... -0.08333 0.0</div><input id='attrs-d6303ee2-7393-4178-932d-e1c6558b1de8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d6303ee2-7393-4178-932d-e1c6558b1de8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-eee59056-a6d1-4929-b522-ab43ab9da14c' class='xr-var-data-in' type='checkbox'><label for='data-eee59056-a6d1-4929-b522-ab43ab9da14c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>actual_range :</span></dt><dd>[-40.   0.]</dd></dl></div><div class='xr-var-data'><pre>array([-40.      , -39.916667, -39.833333, ...,  -0.166667,  -0.083333,
-         0.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.92 ... -60.08 -60.0</div><input id='attrs-aed76c87-b373-417d-b44f-12edcafe40e1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-aed76c87-b373-417d-b44f-12edcafe40e1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-afd85cde-1710-48d4-bc77-9be66776c174' class='xr-var-data-in' type='checkbox'><label for='data-afd85cde-1710-48d4-bc77-9be66776c174' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>actual_range :</span></dt><dd>[-90. -60.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.916667, -89.833333, ..., -60.166667, -60.083333,
-       -60.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-fa51a6a5-a121-444e-98ee-25e8bd85270b' class='xr-section-summary-in' type='checkbox'  ><label for='section-fa51a6a5-a121-444e-98ee-25e8bd85270b' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-77c26e00-d071-47f8-a2dd-1d3bedccfb4b' class='xr-index-data-in' type='checkbox'/><label for='index-77c26e00-d071-47f8-a2dd-1d3bedccfb4b' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               -40.0,  -39.916666666666664,   -39.83333333333333,
+       [-1033.5, -1132.5, -1298. , ...,   108. ,   117. ,   141. ]])</pre></div></div></li><li class='xr-section-item'><input id='section-f23f03e7-e879-4a80-9ae9-ed09bc5c7d7b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-f23f03e7-e879-4a80-9ae9-ed09bc5c7d7b' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lat</span></div><div class='xr-var-dims'>(lat)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-40.0 -39.92 ... -0.08333 0.0</div><input id='attrs-f4608949-c2bf-4525-a466-8e75caa6275a' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f4608949-c2bf-4525-a466-8e75caa6275a' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-50ca207b-5332-4482-9a33-f185089d04d4' class='xr-var-data-in' type='checkbox'><label for='data-50ca207b-5332-4482-9a33-f185089d04d4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>axis :</span></dt><dd>Y</dd><dt><span>actual_range :</span></dt><dd>[-40.   0.]</dd></dl></div><div class='xr-var-data'><pre>array([-40.      , -39.916667, -39.833333, ...,  -0.166667,  -0.083333,
+         0.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>lon</span></div><div class='xr-var-dims'>(lon)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.92 ... -60.08 -60.0</div><input id='attrs-8c5e93c3-4c4b-4e3b-b463-4740f2c73a27' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8c5e93c3-4c4b-4e3b-b463-4740f2c73a27' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4574dee5-d9d8-4b4b-9399-c80eba79a0c5' class='xr-var-data-in' type='checkbox'><label for='data-4574dee5-d9d8-4b4b-9399-c80eba79a0c5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>axis :</span></dt><dd>X</dd><dt><span>actual_range :</span></dt><dd>[-90. -60.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.916667, -89.833333, ..., -60.166667, -60.083333,
+       -60.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-dce8e114-031b-42d1-a42e-92a74a99d993' class='xr-section-summary-in' type='checkbox'  ><label for='section-dce8e114-031b-42d1-a42e-92a74a99d993' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>lat</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e404c0b0-ce10-4c9d-9236-1d2d69d69dd1' class='xr-index-data-in' type='checkbox'/><label for='index-e404c0b0-ce10-4c9d-9236-1d2d69d69dd1' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([               -40.0,  -39.916666666666664,   -39.83333333333333,
                      -39.75,  -39.666666666666664,   -39.58333333333333,
                       -39.5,  -39.416666666666664,   -39.33333333333333,
                      -39.25,
@@ -981,7 +981,7 @@ Attributes:
                        -0.5, -0.41666666666666663,  -0.3333333333333333,
                       -0.25, -0.16666666666666666, -0.08333333333333333,
                         0.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=481))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-38de8631-700b-4696-87df-7b757227b601' class='xr-index-data-in' type='checkbox'/><label for='index-38de8631-700b-4696-87df-7b757227b601' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([              -90.0,  -89.91666666666667,  -89.83333333333333,
+      dtype=&#x27;float64&#x27;, name=&#x27;lat&#x27;, length=481))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>lon</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2a4be849-30b8-4d2f-b24f-1bf6cf29c83a' class='xr-index-data-in' type='checkbox'/><label for='index-2a4be849-30b8-4d2f-b24f-1bf6cf29c83a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([              -90.0,  -89.91666666666667,  -89.83333333333333,
                     -89.75,  -89.66666666666667,  -89.58333333333333,
                      -89.5,  -89.41666666666667,  -89.33333333333333,
                     -89.25,
@@ -990,7 +990,7 @@ Attributes:
                      -60.5,  -60.41666666666667, -60.333333333333336,
                     -60.25,  -60.16666666666667, -60.083333333333336,
                      -60.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-09fb3682-4c40-4895-a888-706ebf581e89' class='xr-section-summary-in' type='checkbox'  checked><label for='section-09fb3682-4c40-4895-a888-706ebf581e89' class='xr-section-summary' >Attributes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7</dd><dt><span>title :</span></dt><dd></dd><dt><span>history :</span></dt><dd>gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G-G-Y-000001 -I5m -R-90/-60/-40/0</dd><dt><span>description :</span></dt><dd></dd><dt><span>long_name :</span></dt><dd>z</dd><dt><span>actual_range :</span></dt><dd>[nan nan]</dd></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float64&#x27;, name=&#x27;lon&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0bc30d34-e4d5-4db5-af30-5ea4b06bef87' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0bc30d34-e4d5-4db5-af30-5ea4b06bef87' class='xr-section-summary' >Attributes: <span>(6)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.7</dd><dt><span>title :</span></dt><dd></dd><dt><span>history :</span></dt><dd>gmt xyz2grd @GMTAPI@-S-I-D-M-T-N-000000 -G@GMTAPI@-S-O-G-G-G-Y-000001 -I5m -R-90/-60/-40/0</dd><dt><span>description :</span></dt><dd></dd><dt><span>long_name :</span></dt><dd>z</dd><dt><span>actual_range :</span></dt><dd>[nan nan]</dd></dl></div></li></ul></div></div></div></div>
 </div>
 </section>
 <section id="create-a-contour-map-pygmt-figure-grdcontour">
@@ -1016,11 +1016,11 @@ Attributes:
 <span class="c1"># fig.grdimage(grid=grid, cmap=True, transparency=25, shading=&quot;+a&quot;)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">grdcontour</span><span class="p">(</span>
-    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> 
-    <span class="n">annotation</span><span class="o">=</span><span class="s2">&quot;1000+fgray20&quot;</span><span class="p">,</span> 
-    <span class="n">levels</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
-    <span class="n">limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> 
-    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,white&quot;</span>
+    <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+    <span class="n">annotation</span><span class="o">=</span><span class="s2">&quot;1000+fgray20&quot;</span><span class="p">,</span>
+    <span class="n">levels</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">limit</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,white&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
@@ -1043,17 +1043,17 @@ Attributes:
 <span class="n">start_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">85</span>  <span class="c1"># Longitude in degrees East</span>
 <span class="n">start_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>  <span class="c1"># Latitude in degrees North</span>
 <span class="n">end_x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">62</span>
-<span class="n">end_y</span><span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
+<span class="n">end_y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
 
 <span class="c1"># Plot the survey line</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">start_y</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;1p,red&quot;</span><span class="p">)</span>
 
 <span class="c1"># Mark start and end points with labels</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">],</span> 
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">end_x</span><span class="p">],</span>
     <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="n">start_y</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span>
     <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&#39;&quot;</span><span class="p">],</span>
-    <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;0c/0.3c&quot;</span><span class="p">,</span> 
+    <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;0c/0.3c&quot;</span><span class="p">,</span>
     <span class="n">font</span><span class="o">=</span><span class="s2">&quot;10p,Helvetica-Bold,white&quot;</span><span class="p">,</span>
     <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1078,10 +1078,10 @@ Attributes:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">track_df</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">project</span><span class="p">(</span>
-    <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">],</span> 
-    <span class="n">endpoint</span><span class="o">=</span><span class="p">[</span><span class="n">end_x</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span> 
+    <span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">],</span>
+    <span class="n">endpoint</span><span class="o">=</span><span class="p">[</span><span class="n">end_x</span><span class="p">,</span> <span class="n">end_y</span><span class="p">],</span>
     <span class="c1"># Output data in steps of 1 km with setting unit=True</span>
-    <span class="n">generate</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>  
+    <span class="n">generate</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
     <span class="n">unit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">track_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1362,7 +1362,7 @@ Attributes:
     <span class="c1"># Add a connection line between the plotting and event locations</span>
     <span class="n">offset</span><span class="o">=</span><span class="s2">&quot;+p0.1p,orange+s0.2c&quot;</span><span class="p">,</span>
 <span class="p">)</span>
- 
+
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1502,20 +1502,20 @@ Attributes:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/acton&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> 
-    <span class="n">y</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span>
     <span class="n">style</span><span class="o">=</span><span class="s2">&quot;cc&quot;</span><span class="p">,</span>  <span class="c1"># Plot circles (fist &quot;c&quot;) in centimeters (second &quot;c&quot;)</span>
-    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">])</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># size varies based on magnitude</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># size varies based on magnitude</span>
     <span class="n">fill</span><span class="o">=</span><span class="n">df_low_mag</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">],</span>
     <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.1p,black&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span> 
-    <span class="n">y</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span> 
+    <span class="n">x</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lon&quot;</span><span class="p">],</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;lat&quot;</span><span class="p">],</span>
     <span class="n">style</span><span class="o">=</span><span class="s2">&quot;ac&quot;</span><span class="p">,</span>  <span class="c1"># Plot stars (&quot;a&quot;) in centimeters (&quot;c&quot;)</span>
-    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]),</span> 
+    <span class="n">size</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;mag&quot;</span><span class="p">]),</span>
     <span class="n">fill</span><span class="o">=</span><span class="n">df_high_mag</span><span class="p">[</span><span class="s2">&quot;depth&quot;</span><span class="p">],</span>
     <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,black&quot;</span><span class="p">,</span>

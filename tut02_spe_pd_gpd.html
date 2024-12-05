@@ -500,10 +500,8 @@ document.write(`
 <p>Import the required packages, besides <a class="reference external" href="https://www.pygmt.org"><code class="docutils literal notranslate"><span class="pre">PyGMT</span></code></a> itself, we use <a class="reference external" href="https://pandas.pydata.org/docs/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> and <a class="reference external" href="https://geopandas.org/en/stable/docs.html"><code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="c1"># Use a resolution of only 150 dpi for the images within the Jupyter notebook, to keep the file small</span>
 <span class="n">img_dpi</span> <span class="o">=</span> <span class="mi">150</span>
@@ -613,8 +611,10 @@ document.write(`
 <p>First we create a Cartesian histogram for the moment magnitude distribution of all earthquakes in the dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_min</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">mag_min</span><span class="p">)</span>
-<span class="n">mag_max</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">mag_max</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mag_min</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mag_min</span><span class="p">)</span>
+<span class="n">mag_max</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mag_max</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -711,9 +711,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
-    <span class="s2">&quot;https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/&quot;</span> <span class="o">+</span> \
-    <span class="s2">&quot;zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/&quot;</span> <span class="o">+</span> \
-    <span class="s2">&quot;at_download/file/wise_large_rivers.zip&quot;</span>
+    <span class="s2">&quot;https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/&quot;</span>
+    <span class="o">+</span> <span class="s2">&quot;at_download/file/wise_large_rivers.zip&quot;</span>
 <span class="p">)</span>
 <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -782,7 +782,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">crs</span>
-<span class="n">gpd_rivers</span> <span class="o">=</span> <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:4326&#39;</span><span class="p">)</span>
+<span class="n">gpd_rivers</span> <span class="o">=</span> <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
 <span class="n">gpd_rivers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -855,7 +855,7 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
-    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">57</span><span class="p">],</span>
     <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
     <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
@@ -889,7 +889,7 @@ document.write(`
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
-    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
     <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
     <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
@@ -897,7 +897,11 @@ document.write(`
 <span class="p">)</span>
 
 <span class="c1"># Plot the subsets differently and specify the text for the legend entries</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_short</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,orange&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;shorter </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m+Hriver length+f9p&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_short</span><span class="p">,</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,orange&quot;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;shorter </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m+Hriver length+f9p&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_long</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,darkred&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;longer </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
 
 <span class="c1"># Place the legend at the Top Left corner with an offset of 0.1 centimeters from the map frame</span>
@@ -1113,8 +1117,10 @@ This time we are lucky and the data is directly provided in the geographic coord
 <p>Here we are going to create a so-called <strong>choropleth map</strong>. Such a visualization is helpful to show a quantity which vary between subregions of a study area, e.g., countries or states. The dataset contains several columns, here we will focus on the column <code class="docutils literal notranslate"><span class="pre">&quot;population&quot;</span></code>, but feel free to modify the code below and use another quantity for the color-coding!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popul_min</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">popul_min</span><span class="p">)</span>
-<span class="n">popul_max</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">();</span> <span class="nb">print</span><span class="p">(</span><span class="n">popul_max</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">popul_min</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">popul_min</span><span class="p">)</span>
+<span class="n">popul_max</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">popul_max</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1141,9 +1147,9 @@ This time we are lucky and the data is directly provided in the geographic coord
 
 <span class="c1"># Plot the polygons with color-coding for the population</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">gdf_airbnb</span><span class="p">,</span> 
-    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.2p,gray10&quot;</span><span class="p">,</span> 
-    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;+z&quot;</span><span class="p">,</span> 
+    <span class="n">data</span><span class="o">=</span><span class="n">gdf_airbnb</span><span class="p">,</span>
+    <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.2p,gray10&quot;</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s2">&quot;+z&quot;</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">aspatial</span><span class="o">=</span><span class="s2">&quot;Z=population&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1178,19 +1184,21 @@ This time we are lucky and the data is directly provided in the geographic coord
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">coast</span><span class="p">(</span>
-    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span> 
+    <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;M10c&quot;</span><span class="p">,</span>
     <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span>
     <span class="n">land</span><span class="o">=</span><span class="s2">&quot;gray99&quot;</span><span class="p">,</span>
     <span class="n">shorelines</span><span class="o">=</span><span class="s2">&quot;1/0.1p,gray50&quot;</span><span class="p">,</span>
     <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oslo&quot;</span><span class="p">,</span><span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">Shape_Leng</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1500000</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oslo&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">Shape_Leng</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1500000</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x+lriver length&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;+ef0.2c&quot;</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i_river</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gpd_rivers</span><span class="p">)):</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">index</span><span class="o">==</span><span class="n">i_river</span><span class="p">],</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">i_river</span><span class="p">],</span>
         <span class="n">zvalue</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_river</span><span class="p">,</span> <span class="s2">&quot;Shape_Leng&quot;</span><span class="p">],</span>
         <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p&quot;</span><span class="p">,</span>
         <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
