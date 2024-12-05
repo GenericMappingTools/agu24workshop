@@ -1,5 +1,8 @@
-Making animations (extended)
-----------------------------
+**Tutorial 6** - Animations with GMT (extended)
+-----------------------------------------------
+
+Content
+- Extension of "Tutorial 6 - Animations with GMT"
 
 This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
 - Website: https://www.generic-mapping-tools.org/agu24workshop

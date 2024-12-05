@@ -1,5 +1,5 @@
-**Tutorial 6** - Animations
----------------------------
+**Tutorial 6** - Animations with GMT
+------------------------------------
 
 Content
 - This tutorial explains the basic aspect of doing animations with GMT.
