@@ -1,12 +1,16 @@
 Making animations (extended)
 ----------------------------
 
-By F. Esteban (@esteban82)
-
-This tutorial is part of the AGU2024 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
-- Conference: https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736
-- GitHub: https://github.com/GenericMappingTools/agu24workshop
+This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
 - Website: https://www.generic-mapping-tools.org/agu24workshop
+- GitHub: https://github.com/GenericMappingTools/agu24workshop
+- Conference: https://agu.confex.com/agu/agu24/meetingapp.cgi/Session/226736
+
+History
+- Author: [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
+- Created: November-December 2024
+- Recommended version: GMT 6.5.0 (https://docs.generic-mapping-tools.org/6.5/)
+
 
 3. Tutorial 2. Earthquakes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
