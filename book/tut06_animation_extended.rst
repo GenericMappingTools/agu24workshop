@@ -9,7 +9,7 @@ This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference works
 History
 - Author: [Federico Esteban](https://orcid.org/0000-0002-0641-7371)
 - Created: November-December 2024
-- Recommended version: GMT 6.5.0 (https://docs.generic-mapping-tools.org/6.5/)
+- Recommended version: GMT 6.5.0 (https://docs.generic-mapping-tools.org/6.5)
 
 
 3. Tutorial 2. Earthquakes
