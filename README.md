@@ -9,6 +9,7 @@ pre-conference workshop (PREWS9) at the
 [AGU24 Annual Meeting](https://www.agu.org/annual-meeting).
 
 **Presenters**
+
 - [Wei Ji Leong](https://github.com/weiji14)
 - [Yvonne Fröhlich](https://github.com/yvonnefroehlich)
 - [Jing-Hui Tong](https://github.com/jhtong33)
@@ -17,6 +18,7 @@ pre-conference workshop (PREWS9) at the
 - [Andre Luiz Belem](https://github.com/andrebelem)
 
 **When**
+
 - Sunday 8 December 2024, 8:30-17:00 (EST) / 13:10-22:00 (UTC)
 - [Event Time Zone Converter](https://www.timeanddate.com/worldclock/fixedtime.html?msg=AGU24+workshop%3A+Mastering+Geospatial+Visualizations+with+GMT%2FPyGMT&iso=20241208T0830&p1=263&ah=8&am=30)
 
@@ -27,21 +29,20 @@ Washington, DC 20001, United States
 
 ## Schedule
 
-|  Time (EST) | Topic                                                   |
-|:-----------:|:-------------------------------------------------------:|
-| 08:30-08:40 | Introduction to GMT / PyGMT                             |
-| 08:40-08:55 | Installation                                            |
-| 08:55-09:45 | Tutorial 1 - First figure + Subplots / layout           |
-| 09:45-10:15 | **Break**                                               |
+| Time (EST)  |                                     Topic                                     |
+| :---------: | :---------------------------------------------------------------------------: |
+| 08:30-08:40 |                          Introduction to GMT / PyGMT                          |
+| 08:40-08:55 |                                 Installation                                  |
+| 08:55-09:45 |                 Tutorial 1 - First figure + Subplots / layout                 |
+| 09:45-10:15 |                                   **Break**                                   |
 | 10:15-11:00 | Tutorial 2 - Integration with scientific Python ecosystem: pandas / GeoPandas |
-| 11:00-11:45 | Tutorial 3 - Integration with scientific Python ecosystem: Xarray (grids)     |
-| 11:45-12:45 | **Lunch**                                               |
-| 12:45-13:30 | Tutorial 4 - Geophysics (Seismology)                    |
-| 13:30-14:15 | Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) |
-| 14:15-14:45 | **Break**                                               |
-| 14:45-15:30 | Tutorial 6 - Animations with GMT                        |
-| 15:30-17:00 | Final exercises / mini-project                          |
-
+| 11:00-11:45 |   Tutorial 3 - Integration with scientific Python ecosystem: Xarray (grids)   |
+| 11:45-12:45 |                                   **Lunch**                                   |
+| 12:45-13:30 |                     Tutorial 4 - Geophysics (Seismology)                      |
+| 13:30-14:15 |           Tutorial 5 - 3-D Topography (Planetary / Antarctic maps)            |
+| 14:15-14:45 |                                   **Break**                                   |
+| 14:45-15:30 |                       Tutorial 6 - Animations with GMT                        |
+| 15:30-17:00 |                        Final exercises / mini-project                         |
 
 ## Getting started
 
@@ -50,7 +51,6 @@ Washington, DC 20001, United States
 Launch on regular [Binder](https://mybinder.readthedocs.io/en/latest/index.html).
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GenericMappingTools/agu24workshop/main)
-
 
 ## Code of Conduct
 
