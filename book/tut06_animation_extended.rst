@@ -2,7 +2,8 @@
 -----------------------------------------------
 
 Content
-- Extension of "Tutorial 6 - Animations with GMT"
+
+* Extension of "Tutorial 6 - Animations with GMT"
 
 .. note::
   This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**

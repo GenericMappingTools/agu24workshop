@@ -2,9 +2,10 @@
 ------------------------------------
 
 Content
-- This tutorial explains the basic aspect of doing animations with GMT.
-- It serves as a guide to help beginners understand and troubleshoot potential issues.
-- It explains the basic aspect of the :gmt-module:`movie` and :gmt-module:`events` modules.
+
+* This tutorial explains the basic aspect of doing animations with GMT.
+* It serves as a guide to help beginners understand and troubleshoot potential issues.
+* It explains the basic aspect of the :gmt-module:`movie` and :gmt-module:`events` modules.
 
 .. note::
   This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
@@ -22,8 +23,8 @@ Content
   Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by `opening an issue <https://github.com/GenericMappingTools/agu24workshop/issues>`_ or `provide a fix via a pull request <https://github.com/GenericMappingTools/agu24workshop/pulls>`_. Please use the `GMT forum <https://forum.generic-mapping-tools.org/>`_ to ask questions.
 
 
-1. Introduction
-~~~~~~~~~~~~~~~
+1️⃣. Introduction
+~~~~~~~~~~~~~~~~~
 
 Prior to GMT 6.0, ambitious movie makers had to write complicated scripts where the advancement of frames was explicitly done by a shell loop.
 At the end of the script, you would have to convert your PostScript plot to a raster image with a name that is lexically increasing,
@@ -80,8 +81,9 @@ For the purposes of this tutorial, I define two types of animations that can be 
 - GMT version 6.5 or later.
 - Bash scripting environment: The examples in this tutorial are written in Bash and may not work correctly in other shell environments (e.g., zsh, fish, or Windows cmd).
 
-2. Tutorial 1. Earth spinning
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2️⃣. Tutorial 1. Earth spinning
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here I explain how to make an animation of a moving object which only requires the :gmt-module:`movie` module.
 
@@ -496,17 +498,16 @@ In the step, I increase:
   Also you could use `-x <https://docs.generic-mapping-tools.org/6.5/gmt.html#core-full>`_ to specify the number of active cores to be used.
 
 
-3. Tutorial 2. Earthquakes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+3️⃣. Tutorial 2. Earthquakes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Check the extended section to see the tutorial 2 about appearing objects.
 That type of animation is more complex and requires the use :gmt-module:`events` and :gmt-module:`movie` modules.
 In that tutorial, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).
 
 
-
-4. See also
-~~~~~~~~~~~
+4️⃣. See also
+~~~~~~~~~~~~~
 
 - The paper about animations which include explanation and examples (`Wessel et al. 2024 <https://doi.org/10.1029/2024GC011545>`_).
 
@@ -515,8 +516,8 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
 - See the `GMT animation gallery <https://docs.generic-mapping-tools.org/6.5/animations.html>`_ for more examples.
 
 
-5. References
-~~~~~~~~~~~~~
+5️. References
+~~~~~~~~~~~~~~~
 
 - Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., & Tian, D. (2019). The Generic Mapping Tools Version 6. Geochemistry, Geophysics, Geosystems, 20(11), 5556–5564. https://doi.org/10.1029/2019GC008515
 - Wessel, P., Esteban, F., & Delaviel-Anger, G. (2024). The Generic Mapping Tools and animations for the masses. Geochemistry, Geophysics, Geosystems, 25, e2024GC011545. https://doi.org/10.1029/2024GC011545.
