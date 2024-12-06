@@ -93,7 +93,7 @@ and [Yvonne Fröhlich](https://orcid.org/0000-0002-8566-0619)
 ::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} Tutorial 5 - 3-D Topography (Planetary / Antarctic maps)
+:::{grid-item-card} Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) 🏔️
 :img-top: \_images/0a6fc097b1fcaa99eff8632dab714787757564ed60e07f20825101c6a8e045ae.png
 :link: ./tut05_topography.html
 by [Wei Ji Leong](https://orcid.org/0000-0003-2354-1988)
@@ -107,7 +107,7 @@ and [André Belém](https://orcid.org/0000-0002-8865-6180)
 {bdg-success-line}`DEM`
 :::
 
-:::{grid-item-card} Tutorial 6 - Animations with GMT
+:::{grid-item-card} Tutorial 6 - Animations with GMT 🎦
 :img-top: \_images/5847818951ca8fbc9b86a6f2c67389b6.png
 :link: ./tut06_animation.html
 by [Federico Esteban](https://orcid.org/0000-0002-0641-7371)

@@ -1,5 +1,5 @@
-**Tutorial 6** - Animations with GMT (extended)
------------------------------------------------
+**Tutorial 6** - Animations with GMT 🎦 (extended)
+--------------------------------------------------
 
 Content
 
