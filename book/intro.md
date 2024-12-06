@@ -4,6 +4,8 @@ Welcome to the AGU24 [GMT](https://docs.generic-mapping-tools.org/6.5)/
 [PyGMT](https://www.pygmt.org/v0.13.0) workshop 🥳! This Jupyter book 📖 contains
 tutorials for making maps 🗺️ and animations 🎦
 
+## 📚 Overview of tutorials
+
 ::::::{grid} 1 1 3 3
 :gutter: 1
 :padding: 1
@@ -127,7 +129,7 @@ Each tutorial is rendered on this website for easy viewing 👀, but they are al
 notebooks designed to be ran interactively 💫. See the instructions below on how you can
 start running the tutorials in no time! 🚀
 
-# 🌠 Quickstart
+## 🌠 Setting up your environment
 
 To run these notebooks in an interactive Jupyter session online, 🖱️ click on the button
 below to launch on regular
@@ -138,7 +140,7 @@ below to launch on regular
 Alternatively, you can go to a specific tutorial page, hover over the rocket 🚀 icon on
 the top right, and click 'Binder'.
 
-# 💻 Running the notebooks locally
+### 💻 Creating a local environment for running tutorials
 
 If you prefer to run the 🧑‍🏫 tutorials with a local installation of GMT/PyGMT, then
 follow along! For this AGU24 workshop, we recommend creating a virtual conda environment
