@@ -189,8 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations with GMT</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT (extended)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tut06_animation.html"><strong>Tutorial 6</strong> - Animations with GMT 🎦</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT 🎦 (extended)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -450,7 +450,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">4️⃣ Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types</a></li>
 </ul>
             </nav>
         </div>
@@ -537,7 +537,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">projection</span></code>: Controlling the map projection. GMT (and therefore PyGMT) supports 31 different map projections, from basic Cartesian axes to <a class="reference external" href="https://docs.generic-mapping-tools.org/6.5/gallery/ex26.html">arbitrary vertical perspectives</a>.</p></li>
 </ol>
 <blockquote>
-<div><p>Determining the size of your images <code class="docutils literal notranslate"><span class="pre">10c</span></code>, the size will affect how large of your following fontsize and markersize</p>
+<div><p>Determining the size of your images <code class="docutils literal notranslate"><span class="pre">10c</span></code>, the size will affect how large of your following font size and marker size</p>
 <blockquote>
 <div><p><strong>length unit</strong> <code class="docutils literal notranslate"><span class="pre">c</span></code>: centimeter (default)</p>
 </div></blockquote>
@@ -822,7 +822,7 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
         <span class="p">)</span>
 
         <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span>
-            <span class="n">position</span><span class="o">=</span><span class="s2">&quot;JBC+w6c/0.3c+mc+h&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a40f20+lSeafloor crustal asge (Ma)&quot;</span>
+            <span class="n">position</span><span class="o">=</span><span class="s2">&quot;JBC+w6c/0.3c+mc+h&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="s2">&quot;a40f20+lSeafloor crustal age (Ma)&quot;</span>
         <span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -839,12 +839,12 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]:   -&gt; Download grid file [205K]: earth_age_30m_g.grd
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png"><img alt="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" src="_images/fd70248f75b8b37ee54b3135f77705f98c6d8489eb18b6910184b447d0f0638d.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="_images/595c695c25a21e4711d8c268a368ef6fee13a6d9d7918e1ebdb92d8b0bbd4475.png"><img alt="_images/595c695c25a21e4711d8c268a368ef6fee13a6d9d7918e1ebdb92d8b0bbd4475.png" src="_images/595c695c25a21e4711d8c268a368ef6fee13a6d9d7918e1ebdb92d8b0bbd4475.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
 <section id="basic-projection-types">
-<h2>5️⃣ Basic projection types:<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h2>
+<h2>5️⃣ Basic projection types<a class="headerlink" href="#basic-projection-types" title="Link to this heading">#</a></h2>
 <img src="_static/tut01_projection.jpg" alt="position" />
 By default, PyGMT will use an equidistant cylindrical projection if the region seems to be geographic longitude and latitude.
 <ol class="arabic simple">
@@ -949,7 +949,7 @@ By default, PyGMT will use an equidistant cylindrical projection if the region s
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-multi-panel-figures-in-a-canvas-pygmt-figure-subplot-and-pygmt-figure-set-panel">4️⃣ Creating multi-panel figures in a canvas – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.subplot</span></code> and <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.set_panel</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-projection-types">5️⃣ Basic projection types</a></li>
 </ul>
   </nav></div>
 

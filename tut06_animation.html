@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tutorial 6 - Animations with GMT &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
+    <title>Tutorial 6 - Animations with GMT 🎦 &#8212; Mastering Geospatial Visualizations with GMT/PyGMT</title>
   
   
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tut06_animation';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial 6 - Animations with GMT (extended)" href="tut06_animation_extended.html" />
+    <link rel="next" title="Tutorial 6 - Animations with GMT 🎦 (extended)" href="tut06_animation_extended.html" />
     <link rel="prev" title="Tutorial 5 - 3-D Topography (Planetary / Antarctic maps) 🏔️" href="tut05_topography.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,8 +191,8 @@
 <li class="toctree-l1"><a class="reference internal" href="tut03_spe_xarray.html"><strong>Tutorial 3</strong> - scientific Python ecosystem 🐍: <code class="docutils literal notranslate"><span class="pre">Xarray</span></code> (gridded data 🌐)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut04_geophysics.html"><strong>Tutorial 4</strong> - Geophysics (Seismology) 🌎🌏🌍</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tut05_topography.html"><strong>Tutorial 5</strong> - 3-D Topography (Planetary / Antarctic maps) 🏔️</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Tutorial 6</strong> - Animations with GMT</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT (extended)</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><strong>Tutorial 6</strong> - Animations with GMT 🎦</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tut06_animation_extended.html"><strong>Tutorial 6</strong> - Animations with GMT 🎦 (extended)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -397,7 +397,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tutorial 6 - Animations with GMT</h1>
+    <h1>Tutorial 6 - Animations with GMT 🎦</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -407,7 +407,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1️⃣. Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-animation">1.1. What is an Animation?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-make-an-animation">1.2. How to Make an Animation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-gmt-for-animations">1.3. Why use GMT for animations?</a></li>
@@ -415,7 +415,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.5. Prerequisites</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2️⃣. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">2.1. Goals of the Tutorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-first-image">2.2. Make first image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-master-frame">2.3. Make the Master Frame</a><ul class="nav section-nav flex-column">
@@ -435,9 +435,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">2.5. Make full animation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3️⃣. Tutorial 2. Earthquakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4️⃣. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5️. References</a></li>
 </ul>
             </nav>
         </div>
@@ -450,11 +450,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section id="tutorial-6-animations-with-gmt">
-<h1><strong>Tutorial 6</strong> - Animations with GMT<a class="headerlink" href="#tutorial-6-animations-with-gmt" title="Link to this heading">#</a></h1>
-<p>Content
-- This tutorial explains the basic aspect of doing animations with GMT.
-- It serves as a guide to help beginners understand and troubleshoot potential issues.
-- It explains the basic aspect of the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p>
+<h1><strong>Tutorial 6</strong> - Animations with GMT 🎦<a class="headerlink" href="#tutorial-6-animations-with-gmt" title="Link to this heading">#</a></h1>
+<p>Content</p>
+<ul class="simple">
+<li><p>This tutorial explains the basic aspect of doing animations with GMT.</p></li>
+<li><p>It serves as a guide to help beginners understand and troubleshoot potential issues.</p></li>
+<li><p>It explains the basic aspect of the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules.</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) <strong>Mastering Geospatial Visualizations with GMT/PyGMT</strong></p>
@@ -472,7 +474,7 @@ document.write(`
 <p>Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/issues">opening an issue</a> or <a class="reference external" href="https://github.com/GenericMappingTools/agu24workshop/pulls">provide a fix via a pull request</a>. Please use the <a class="reference external" href="https://forum.generic-mapping-tools.org/">GMT forum</a> to ask questions.</p>
 </div>
 <section id="introduction">
-<h2>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<h2>1️⃣. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Prior to GMT 6.0, ambitious movie makers had to write complicated scripts where the advancement of frames was explicitly done by a shell loop.
 At the end of the script, you would have to convert your PostScript plot to a raster image with a name that is lexically increasing,
 and then later you would use some external software to assemble the movie. Hence, only very brave GMT users attempted to make GMT animations.
@@ -526,7 +528,7 @@ These modules empower users to create animations by taking over non-trivial task
 </section>
 </section>
 <section id="tutorial-1-earth-spinning">
-<h2>2. Tutorial 1. Earth spinning<a class="headerlink" href="#tutorial-1-earth-spinning" title="Link to this heading">#</a></h2>
+<h2>2️⃣. Tutorial 1. Earth spinning<a class="headerlink" href="#tutorial-1-earth-spinning" title="Link to this heading">#</a></h2>
 <p>Here I explain how to make an animation of a moving object which only requires the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> module.</p>
 <p>As an example, I will create an animation of the Earth spinning like the one below.</p>
 <div class="video_wrapper align-center" style="text-align: center">
@@ -1000,13 +1002,13 @@ Also you could use <a class="reference external" href="https://docs.generic-mapp
 </section>
 </section>
 <section id="tutorial-2-earthquakes">
-<h2>3. Tutorial 2. Earthquakes<a class="headerlink" href="#tutorial-2-earthquakes" title="Link to this heading">#</a></h2>
+<h2>3️⃣. Tutorial 2. Earthquakes<a class="headerlink" href="#tutorial-2-earthquakes" title="Link to this heading">#</a></h2>
 <p>Check the extended section to see the tutorial 2 about appearing objects.
 That type of animation is more complex and requires the use <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> modules.
 In that tutorial, I create an animation showing the occurrences of earthquakes during the year 2018 (with one frame per day).</p>
 </section>
 <section id="see-also">
-<h2>4. See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
+<h2>4️⃣. See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The paper about animations which include explanation and examples (<a class="reference external" href="https://doi.org/10.1029/2024GC011545">Wessel et al. 2024</a>).</p></li>
 <li><p>Check the <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/movie">movie</a> and <a class="extlink-gmt-module reference external" href="https://docs.generic-mapping-tools.org/6.5/events">events</a> modules documentation for full technical information.</p></li>
@@ -1014,7 +1016,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
 </ul>
 </section>
 <section id="references">
-<h2>5. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<h2>5️. References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., &amp; Tian, D. (2019). The Generic Mapping Tools Version 6. Geochemistry, Geophysics, Geosystems, 20(11), 5556–5564. <a class="reference external" href="https://doi.org/10.1029/2019GC008515">https://doi.org/10.1029/2019GC008515</a></p></li>
 <li><p>Wessel, P., Esteban, F., &amp; Delaviel-Anger, G. (2024). The Generic Mapping Tools and animations for the masses. Geochemistry, Geophysics, Geosystems, 25, e2024GC011545. <a class="reference external" href="https://doi.org/10.1029/2024GC011545">https://doi.org/10.1029/2024GC011545</a>.</p></li>
@@ -1068,7 +1070,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Tutorial 6</strong> - Animations with GMT (extended)</p>
+        <p class="prev-next-title"><strong>Tutorial 6</strong> - Animations with GMT 🎦 (extended)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1088,7 +1090,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1️⃣. Introduction</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-animation">1.1. What is an Animation?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-make-an-animation">1.2. How to Make an Animation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-gmt-for-animations">1.3. Why use GMT for animations?</a></li>
@@ -1096,7 +1098,7 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">1.5. Prerequisites</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-1-earth-spinning">2️⃣. Tutorial 1. Earth spinning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-of-the-tutorial">2.1. Goals of the Tutorial</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-first-image">2.2. Make first image</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-the-master-frame">2.3. Make the Master Frame</a><ul class="nav section-nav flex-column">
@@ -1116,9 +1118,9 @@ In that tutorial, I create an animation showing the occurrences of earthquakes d
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-full-animation">2.5. Make full animation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3. Tutorial 2. Earthquakes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4. See also</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5. References</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial-2-earthquakes">3️⃣. Tutorial 2. Earthquakes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">4️⃣. See also</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">5️. References</a></li>
 </ul>
   </nav></div>
 
