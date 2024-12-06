@@ -1,8 +1,9 @@
-**Tutorial 6** - Animations with GMT (extended)
------------------------------------------------
+**Tutorial 6** - Animations with GMT 🎦 (extended)
+--------------------------------------------------
 
 Content
-- Extension of "Tutorial 6 - Animations with GMT"
+
+* Extension of "Tutorial 6 - Animations with GMT"
 
 .. note::
   This tutorial is part of the AGU24 annual meeting GMT/PyGMT pre-conference workshop (PREWS9) **Mastering Geospatial Visualizations with GMT/PyGMT**
@@ -21,8 +22,8 @@ Content
 
   Fee free to play around with these code examples 🚀. In case you found any kind of error, just report it by `opening an issue <https://github.com/GenericMappingTools/agu24workshop/issues>`_ or `provide a fix via a pull request <https://github.com/GenericMappingTools/agu24workshop/pulls>`_. Please use the `GMT forum <https://forum.generic-mapping-tools.org/>`_ to ask questions.
 
-3. Tutorial 2. Earthquakes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+3️. Tutorial 2. Earthquakes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here I explain how to make an animation with appearing objects.
 This is more complex and requires the use :gmt-module:`events` and :gmt-module:`movie` modules.
@@ -419,8 +420,8 @@ The plateau phase is not used.
   - -Mi1+c0: modify the intensity of the color. It gets lighter during the rise phase and then returns to its original color in the coda phase.
 
 
-4. See also
-~~~~~~~~~~~
+4️⃣. See also
+~~~~~~~~~~~~~
 
 - The paper about animations which include explanation and examples (`Wessel et al. 2024 <https://doi.org/10.1029/2024GC011545>`_).
 
@@ -429,8 +430,8 @@ The plateau phase is not used.
 - See the `GMT animation gallery <https://docs.generic-mapping-tools.org/6.5/animations.html>`_ for more examples.
 
 
-5. References
-~~~~~~~~~~~~~
+5️⃣. References
+~~~~~~~~~~~~~~~
 
 - Wessel, P., Luis, J. F., Uieda, L., Scharroo, R., Wobbe, F., Smith, W. H. F., & Tian, D. (2019). The Generic Mapping Tools Version 6. Geochemistry, Geophysics, Geosystems, 20(11), 5556–5564. https://doi.org/10.1029/2019GC008515
 - Wessel, P., Esteban, F., & Delaviel-Anger, G. (2024). The Generic Mapping Tools and animations for the masses. Geochemistry, Geophysics, Geosystems, 25, e2024GC011545. https://doi.org/10.1029/2024GC011545.
