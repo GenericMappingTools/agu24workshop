@@ -192,7 +192,7 @@ Here's the instructions to install the `agu24workshop` environment:
 
    This should open up a page in your default browser. If not, you can click and open
    the 🔗 link that says `http://localhost:8888/lab?token=...` in your command-line
-   terminal and this will will take you to the Jupyter Lab page.
+   terminal and this will take you to the Jupyter Lab page.
 
 6. Download the Jupyter notebook(s) you want to run (e.g.
    https://www.generic-mapping-tools.org/agu24workshop/tut01_firstfigure.html) using
