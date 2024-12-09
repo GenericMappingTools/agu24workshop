@@ -501,6 +501,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pygmt</span>
 
 <span class="c1"># Use a resolution of only 150 dpi for the images within the Jupyter notebook, to keep the file small</span>
@@ -514,11 +515,14 @@ document.write(`
 <h2>1️⃣ <code class="docutils literal notranslate"><span class="pre">pandas</span></code><a class="headerlink" href="#pandas" title="Link to this heading">#</a></h2>
 <section id="tabular-data-pandas-dataframe">
 <h3>1.1 Tabular data - <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code><a class="headerlink" href="#tabular-data-pandas-dataframe" title="Link to this heading">#</a></h3>
-<p>Use an example dataset with tabular data provided by <code class="docutils literal notranslate"><span class="pre">PyGMT</span></code> and load it into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. This dataset contains earthquakes in the area of Japan.</p>
+<p>Use an example dataset with tabular data provided by <code class="docutils literal notranslate"><span class="pre">PyGMT</span></code> and load it into a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. This dataset contains earthquakes in the area of Japan.
+You can read your own dataset into a <code class="docutils literal notranslate"><span class="pre">pandas.Dataframe</span></code> using <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html"><code class="docutils literal notranslate"><span class="pre">pandas.read_csv</span></code></a> and use it in the same way to make the following plots; of course you have to adjust the column names accordantly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_jp_eqs</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;japan_quakes&quot;</span><span class="p">)</span>
 <span class="n">df_jp_eqs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+<span class="c1"># df_your_dataset = pd.read_csv(&quot;your_dataset.csv&quot;)</span>
 </pre></div>
 </div>
 </div>
@@ -708,6 +712,12 @@ document.write(`
 <section id="spatial-data-geopandas-geodataframe-with-line-geometry">
 <h4>2.1.1 Spatial Data - <code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code> with line geometry<a class="headerlink" href="#spatial-data-geopandas-geodataframe-with-line-geometry" title="Link to this heading">#</a></h4>
 <p>First we download some data into in a <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.html"><code class="docutils literal notranslate"><span class="pre">geopandas.GeoDataFrame</span></code></a>. This dataset contains European rivers with their lengths and names.</p>
+<p>In case you face issues with downloading these data:</p>
+<ol class="arabic simple">
+<li><p>Copy the URL “<a class="reference external" href="https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/at_download/file/wise_large_rivers.zip">https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/at_download/file/wise_large_rivers.zip</a>” into your browser.</p></li>
+<li><p>Download the zip file and place it into <code class="docutils literal notranslate"><span class="pre">~/agu24workshop/book</span></code>. Do not unpack the ZIP file.</p></li>
+<li><p>Replace the URL with the filename of the ZIP file “wise_large_rivers.zip” in <a class="reference external" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_file.html"><code class="docutils literal notranslate"><span class="pre">geopandas.read_file</span></code></a>.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
@@ -715,6 +725,7 @@ document.write(`
     <span class="o">+</span> <span class="s2">&quot;zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/&quot;</span>
     <span class="o">+</span> <span class="s2">&quot;at_download/file/wise_large_rivers.zip&quot;</span>
 <span class="p">)</span>
+<span class="c1"># gpd_rivers_org = pd.read_file(&quot;wise_large_rivers.zip&quot;)</span>
 <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
