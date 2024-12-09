@@ -440,7 +440,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">1️⃣ Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">1.1 Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">1.2 Coloring and add map element (frame and ticks)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.3 Stacking approach of GMT / PyGMT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-a-figure-to-a-file-pygmt-figure-savefig">1.3 Saving a figure to a file – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.savefig</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.4 Stacking approach of GMT / PyGMT</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">2️⃣ Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
@@ -596,8 +597,19 @@ document.write(`
 </div>
 </div>
 </section>
+<section id="saving-a-figure-to-a-file-pygmt-figure-savefig">
+<h3>1.3 Saving a figure to a file – <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.savefig"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.savefig</span></code></a><a class="headerlink" href="#saving-a-figure-to-a-file-pygmt-figure-savefig" title="Link to this heading">#</a></h3>
+<p>To save the figure to a file you can use the <a class="reference external" href="https://www.pygmt.org/v0.13.0/api/generated/pygmt.Figure.savefig"><code class="docutils literal notranslate"><span class="pre">pygmt.Figure.savefig</span></code></a> method, and pass the desired file name and extension to the <code class="docutils literal notranslate"><span class="pre">fname</span></code> parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="s2">&quot;my_first_figure.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="stacking-approach-of-gmt-pygmt">
-<h3>1.3 Stacking approach of GMT / PyGMT<a class="headerlink" href="#stacking-approach-of-gmt-pygmt" title="Link to this heading">#</a></h3>
+<h3>1.4 Stacking approach of GMT / PyGMT<a class="headerlink" href="#stacking-approach-of-gmt-pygmt" title="Link to this heading">#</a></h3>
 <ol class="arabic simple">
 <li><p>In GMT/PyGMT, plotting is achieved by layering new elements, meaning that each new element is stacked on top of the previous layers.
 Therefore, if you draw a black line in an earlier layer and then add a new layer (such as color filling), these new layers might cover the original black line, making it invisible.</p></li>
@@ -939,7 +951,8 @@ By default, PyGMT will use an equidistant cylindrical projection if the region s
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-your-first-figure-pygmt-figure">1️⃣ Starting your first figure – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawing-coastline-pygmt-figure-coast">1.1 Drawing coastline – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.coast</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coloring-and-add-map-element-frame-and-ticks">1.2 Coloring and add map element (frame and ticks)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.3 Stacking approach of GMT / PyGMT</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-a-figure-to-a-file-pygmt-figure-savefig">1.3 Saving a figure to a file – <code class="docutils literal notranslate"><span class="pre">pygmt.Figure.savefig</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacking-approach-of-gmt-pygmt">1.4 Stacking approach of GMT / PyGMT</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-global-dataset-pygmt-datasets">2️⃣ Downloading global dataset – <code class="docutils literal notranslate"><span class="pre">pygmt.datasets</span></code></a></li>
