@@ -70,3 +70,9 @@ and/or any of the workshop presenters.
     <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="">
   </a>
 </p>
+
+## Funding
+
+Wei Ji Leong, Yvonne Fröhlich, Jing-Hui Tong, Federico Esteban, and Max Jones received travel support from NSF grant
+[EAR-1948602](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1948602) for an in-person participation at the AGU24
+Annual Meeting in Washington, D.C., 08-13 December 2024.
