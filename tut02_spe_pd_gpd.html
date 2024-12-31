@@ -720,13 +720,20 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers_org</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span>
     <span class="s2">&quot;https://www.eea.europa.eu/data-and-maps/data/wise-large-rivers-and-large-lakes/&quot;</span>
     <span class="o">+</span> <span class="s2">&quot;zipped-shapefile-with-wise-large-rivers-vector-line/zipped-shapefile-with-wise-large-rivers-vector-line/&quot;</span>
     <span class="o">+</span> <span class="s2">&quot;at_download/file/wise_large_rivers.zip&quot;</span>
 <span class="p">)</span>
-<span class="c1"># gpd_rivers_org = pd.read_file(&quot;wise_large_rivers.zip&quot;)</span>
-<span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># gdf_rivers_org = gpd.read_file(&quot;wise_large_rivers.zip&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Have a look at the data and especially at the values in the geometry column:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers_org</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -789,12 +796,65 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </table>
 </div></div></div>
 </div>
-<p>Have a look at the values in the geometry column. The coordinates are currently not given in the geographic coordinate reference system (longitude/latitude) and have to be converted. This can be done directly with <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>.</p>
+<p>The coordinates are currently not given in the geographic coordinate reference system (longitude/latitude):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">crs</span>
-<span class="n">gpd_rivers</span> <span class="o">=</span> <span class="n">gpd_rivers_org</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
-<span class="n">gpd_rivers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers_org</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: PROJCS[&quot;ETRS_1989_LAEA_52N_10E&quot;,GEOGCS[&quot;ETRS89&quot;,DA ...&gt;
+Name: ETRS_1989_LAEA_52N_10E
+Axis Info [cartesian]:
+- [east]: Easting (metre)
+- [north]: Northing (metre)
+Area of Use:
+- undefined
+Coordinate Operation:
+- name: unnamed
+- method: Lambert Azimuthal Equal Area
+Datum: European Terrestrial Reference System 1989
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, they have to be converted which can be done directly with <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers</span> <span class="o">=</span> <span class="n">gdf_rivers_org</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again have a look at the coordinate system and the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -873,7 +933,7 @@ You can read your own dataset into a <code class="docutils literal notranslate">
     <span class="n">frame</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,steelblue,solid&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gdf_rivers</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,steelblue,solid&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
@@ -893,8 +953,8 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the dataset into two subsets of shorter and longer rivers</span>
 <span class="c1"># Feel free to play around with the limit</span>
 <span class="n">len_limit</span> <span class="o">=</span> <span class="mi">700000</span>  <span class="c1"># in meters</span>
-<span class="n">gpd_rivers_short</span> <span class="o">=</span> <span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">len_limit</span><span class="p">]</span>
-<span class="n">gpd_rivers_long</span> <span class="o">=</span> <span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">len_limit</span><span class="p">]</span>
+<span class="n">gdf_rivers_short</span> <span class="o">=</span> <span class="n">gdf_rivers</span><span class="p">[</span><span class="n">gdf_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">len_limit</span><span class="p">]</span>
+<span class="n">gdf_rivers_long</span> <span class="o">=</span> <span class="n">gdf_rivers</span><span class="p">[</span><span class="n">gdf_rivers</span><span class="p">[</span><span class="s2">&quot;Shape_Leng&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">len_limit</span><span class="p">]</span>
 
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -909,11 +969,11 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 
 <span class="c1"># Plot the subsets differently and specify the text for the legend entries</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_short</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">gdf_rivers_short</span><span class="p">,</span>
     <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,orange&quot;</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;shorter </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m+Hriver length+f9p&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers_long</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,darkred&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;longer </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">gdf_rivers_long</span><span class="p">,</span> <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p,darkred&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;longer </span><span class="si">{</span><span class="n">len_limit</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
 
 <span class="c1"># Place the legend at the Top Left corner with an offset of 0.1 centimeters from the map frame</span>
 <span class="c1"># Add a box with semi-transparent (@30) white fill (+g) and a 0.1-points thick gray outline (+p)</span>
@@ -1203,14 +1263,14 @@ This time we are lucky and the data is directly provided in the geographic coord
 <span class="p">)</span>
 
 <span class="n">pygmt</span><span class="o">.</span><span class="n">makecpt</span><span class="p">(</span>
-    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oslo&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">Shape_Leng</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1500000</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;SCM/oslo&quot;</span><span class="p">,</span> <span class="n">series</span><span class="o">=</span><span class="p">[</span><span class="n">gdf_rivers</span><span class="o">.</span><span class="n">Shape_Leng</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">1500000</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;x+lriver length&quot;</span><span class="p">,</span> <span class="s2">&quot;y+lm&quot;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;+ef0.2c&quot;</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i_river</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gpd_rivers</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">i_river</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gdf_rivers</span><span class="p">)):</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="p">[</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">i_river</span><span class="p">],</span>
-        <span class="n">zvalue</span><span class="o">=</span><span class="n">gpd_rivers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_river</span><span class="p">,</span> <span class="s2">&quot;Shape_Leng&quot;</span><span class="p">],</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">gdf_rivers</span><span class="p">[</span><span class="n">gdf_rivers</span><span class="o">.</span><span class="n">index</span> <span class="o">==</span> <span class="n">i_river</span><span class="p">],</span>
+        <span class="n">zvalue</span><span class="o">=</span><span class="n">gdf_rivers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i_river</span><span class="p">,</span> <span class="s2">&quot;Shape_Leng&quot;</span><span class="p">],</span>
         <span class="n">pen</span><span class="o">=</span><span class="s2">&quot;0.5p&quot;</span><span class="p">,</span>
         <span class="n">cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
