@@ -1,0 +1,39 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://citation-file-format.github.io/cff-initializer-javascript to generate yours today!
+
+cff-version: 1.2.0
+title: Mastering Geospatial Visualizations with GMT/PyGMT
+message: >-
+  If you use these workshop materials, please cite it using
+  the metadata from this file
+type: software
+authors:
+  - given-names: Wei Ji
+    family-names: Leong
+    affiliation: 'Development Seed, USA'
+    orcid: 'https://orcid.org/0000-0003-2354-1988'
+  - given-names: Yvonne
+    family-names: Fröhlich
+    affiliation: 'Karlsruhe Institute of Technology, Germany'
+  - given-names: Jing-Hui
+    family-names: Tong
+    affiliation: 'Department of Earth Sciences, National Central University, Taiwan'
+    orcid: 'https://orcid.org/0009-0002-7195-3071'
+  - family-names: Esteban
+    given-names: Federico
+    orcid: 'https://orcid.org/0000-0002-0641-7371'
+    affiliation: 'Instituto de Geociencias Básicas, Aplicadas y Ambientales de Buenos Aires - IGEBA, Argentina'
+  - given-names: Max
+    family-names: Jones
+    affiliation: 'University of Hawaiʻi at Mānoa, USA'
+    orcid: 'https://orcid.org/0000-0003-0180-8928'
+  - given-names: Andre
+    family-names: Belém
+    affiliation: 'Universidade Federal Fluminense, Brazil'
+    orcid: 'https://orcid.org/0000-0002-8865-6180'
+date-released: '2024-12-08'
+doi: 10.5281/zenodo.15809717
+license: CC-BY-4.0
+repository-code: 'https://github.com/GenericMappingTools/agu24workshop'
+url: 'https://www.generic-mapping-tools.org/agu24workshop'
+version: 1.0.0
