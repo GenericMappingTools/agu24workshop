@@ -34,6 +34,10 @@ authors:
 date-released: '2024-12-08'
 doi: 10.5281/zenodo.15809717
 license: CC-BY-4.0
+references:
+  - conference:
+      name: "AGU Annual Meeting 2024"
+      country: US
 repository-code: 'https://github.com/GenericMappingTools/agu24workshop'
 url: 'https://www.generic-mapping-tools.org/agu24workshop'
 version: 1.0.0
