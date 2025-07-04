@@ -6,7 +6,7 @@
 Material for the
 [GMT](https://www.generic-mapping-tools.org)/[PyGMT](https://www.pygmt.org)
 pre-conference workshop (PREWS9) at the
-[AGU24 Annual Meeting](https://www.agu.org/annual-meeting).
+[AGU24 Annual Meeting](https://www.agu.org/annual-meeting-2024).
 
 **Presenters**
 
