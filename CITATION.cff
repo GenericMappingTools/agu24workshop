@@ -15,14 +15,15 @@ authors:
   - given-names: Yvonne
     family-names: Fröhlich
     affiliation: 'Karlsruhe Institute of Technology, Germany'
+    orcid: 'https://orcid.org/0000-0002-8566-0619'
   - given-names: Jing-Hui
     family-names: Tong
     affiliation: 'Department of Earth Sciences, National Central University, Taiwan'
     orcid: 'https://orcid.org/0009-0002-7195-3071'
   - family-names: Esteban
     given-names: Federico
-    orcid: 'https://orcid.org/0000-0002-0641-7371'
     affiliation: 'Instituto de Geociencias Básicas, Aplicadas y Ambientales de Buenos Aires - IGEBA, Argentina'
+    orcid: 'https://orcid.org/0000-0002-0641-7371'
   - given-names: Max
     family-names: Jones
     affiliation: 'University of Hawaiʻi at Mānoa, USA'
