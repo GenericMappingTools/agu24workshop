@@ -15,7 +15,7 @@ tutorials for making maps 🗺️ and animations 🎦
 :gutter: 1
 
 :::{grid-item-card} Tutorial 1 - First figure 🚀 and Subplots / layout
-:img-top: \_images/595c695c25a21e4711d8c268a368ef6fee13a6d9d7918e1ebdb92d8b0bbd4475.png
+:img-top: \_images/c602786bf752e87289f43caedf9bfc40090944d450f721a51d8c952235fcc313.png
 :link: ./tut01_firstfigure.html
 by [Jing-Hui Tong](https://orcid.org/0009-0002-7195-3071)
 +++
