@@ -7,7 +7,7 @@ parts:
   - caption: 🔗 Details
     chapters:
       - title: AGU24 Homepage
-        url: https://www.agu.org/annual-meeting
+        url: https://www.agu.org/annual-meeting-2024
       - title: Course materials on GitHub
         url: https://github.com/GenericMappingTools/agu24workshop
   - caption: 🧑‍🏫 Tutorials
