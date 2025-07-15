@@ -639,13 +639,83 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Remote download is currently deactivated
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]: SRTM15 Earth Relief v2.7 at 03x03 arc minutes reduced by Gaussian Cartesian filtering (15.7 km fullwidth) [Tozer et al., 2019].
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Unable to obtain remote file @earth_relief_03m_g
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grdblend [NOTICE]:   -&gt; Download 90x90 degree grid tile (earth_relief_03m_g): N00W180
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Remote download is currently deactivated
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Unable to obtain remote file @earth_relief_03m_g
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Remote download is currently deactivated
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: Unable to obtain remote file @earth_relief_03m_g
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [ERROR]: File @earth_relief_03m_g not found
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Session pygmt-session (12)]: Error returned from GMT API: GMT_FILE_NOT_FOUND (16)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">GMTCLibError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">grid</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_earth_relief</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;03m&quot;</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># You also can access then cut the grid</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># and this way can save grid (outgrid) as a file in your folder.</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># https://www.generic-mapping-tools.org/remote-datasets/</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1">#    grid=&quot;@earth_relief_03m&quot;, region=region, outgrid=&quot;Alaska.grd&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># )</span>
+
+<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/datasets/earth_relief.py:176,</span> in <span class="ni">load_earth_relief</span><span class="nt">(resolution, region, registration, data_source, use_srtm)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="k">case</span> <span class="s2">&quot;gebco&quot;</span> <span class="o">|</span> <span class="s2">&quot;gebcosi&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;earth_gebco&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">176</span> <span class="n">grid</span> <span class="o">=</span> <span class="n">_load_remote_dataset</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>     <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>     <span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span>     <span class="n">registration</span><span class="o">=</span><span class="n">registration</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span> <span class="k">return</span> <span class="n">grid</span>
+
+<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/helpers/decorators.py:773,</span> in <span class="ni">kwargs_to_strings.&lt;locals&gt;.converter.&lt;locals&gt;.new_module</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">770</span>             <span class="n">bound</span><span class="o">.</span><span class="n">arguments</span><span class="p">[</span><span class="s2">&quot;kwargs&quot;</span><span class="p">][</span><span class="n">arg</span><span class="p">]</span> <span class="o">=</span> <span class="n">newvalue</span>
+<span class="g g-Whitespace">    </span><span class="mi">772</span> <span class="c1"># Execute the original function and return its output</span>
+<span class="ne">--&gt; </span><span class="mi">773</span> <span class="k">return</span> <span class="n">module_func</span><span class="p">(</span><span class="o">*</span><span class="n">bound</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">bound</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/datasets/load_remote_dataset.py:416,</span> in <span class="ni">_load_remote_dataset</span><span class="nt">(name, prefix, resolution, region, registration)</span>
+<span class="g g-Whitespace">    </span><span class="mi">414</span> <span class="k">with</span> <span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">lib</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">415</span>     <span class="k">with</span> <span class="n">lib</span><span class="o">.</span><span class="n">virtualfile_out</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">voutgrd</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">416</span>         <span class="n">lib</span><span class="o">.</span><span class="n">call_module</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">417</span>             <span class="n">module</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">418</span>             <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">fname</span><span class="p">,</span> <span class="n">voutgrd</span><span class="p">,</span> <span class="o">*</span><span class="n">build_arg_list</span><span class="p">(</span><span class="n">kwdict</span><span class="p">)],</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>         <span class="n">grid</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">virtualfile_to_raster</span><span class="p">(</span><span class="n">outgrid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vfname</span><span class="o">=</span><span class="n">voutgrd</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span> <span class="c1"># Full path to the grid if not tiled grids.</span>
+
+<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/clib/session.py:656,</span> in <span class="ni">Session.call_module</span><span class="nt">(self, module, args)</span>
+<span class="g g-Whitespace">    </span><span class="mi">654</span> <span class="n">status</span> <span class="o">=</span> <span class="n">c_call_module</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">session_pointer</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="n">encode</span><span class="p">(),</span> <span class="n">mode</span><span class="p">,</span> <span class="n">argv</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">655</span> <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">656</span>     <span class="k">raise</span> <span class="n">GMTCLibError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">657</span>         <span class="sa">f</span><span class="s2">&quot;Module &#39;</span><span class="si">{</span><span class="n">module</span><span class="si">}</span><span class="s2">&#39; failed with status code </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_error_message</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">658</span>     <span class="p">)</span>
+
+<span class="ne">GMTCLibError</span>: Module &#39;read&#39; failed with status code 16:
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Remote</span> <span class="n">download</span> <span class="ow">is</span> <span class="n">currently</span> <span class="n">deactivated</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">remote</span> <span class="n">file</span> <span class="nd">@earth_relief_03m_g</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Remote</span> <span class="n">download</span> <span class="ow">is</span> <span class="n">currently</span> <span class="n">deactivated</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">remote</span> <span class="n">file</span> <span class="nd">@earth_relief_03m_g</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Remote</span> <span class="n">download</span> <span class="ow">is</span> <span class="n">currently</span> <span class="n">deactivated</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">Unable</span> <span class="n">to</span> <span class="n">obtain</span> <span class="n">remote</span> <span class="n">file</span> <span class="nd">@earth_relief_03m_g</span>
+<span class="n">gmtread</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]:</span> <span class="n">File</span> <span class="nd">@earth_relief_03m_g</span> <span class="ow">not</span> <span class="n">found</span>
 </pre></div>
 </div>
 </div>
@@ -654,21 +724,6 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pygmt</span><span class="o">.</span><span class="n">grdinfo</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>: Title: 
-: Command: 
-: Remark: 
-: Gridline node registration used [Geographic grid]
-: Grid file format: nf = GMT netCDF format (32-bit float), CF-1.7
-: x_min: -180 x_max: -150 x_inc: 0.05 (3 min) name: x n_columns: 601
-: y_min: 50 y_max: 65 y_inc: 0.05 (3 min) name: y n_rows: 301
-: v_min: -7511.5 v_max: 4634 name: z
-: scale_factor: 1 add_offset: 0
-: format: classic
-: Default CPT: 
 </pre></div>
 </div>
 </div>
@@ -693,9 +748,6 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/f39e94d94af1f4936e71128fa7fa7b97c0f8c9a3e7ce8bbf6951c3ac4b0802b5.png"><img alt="_images/f39e94d94af1f4936e71128fa7fa7b97c0f8c9a3e7ce8bbf6951c3ac4b0802b5.png" src="_images/f39e94d94af1f4936e71128fa7fa7b97c0f8c9a3e7ce8bbf6951c3ac4b0802b5.png" style="width: 500px;" /></a>
 </div>
 </div>
 <section id="customizing-colorbar-pygmt-makecpt">
@@ -777,9 +829,6 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/3a091671624a4dd517a853b0fd71bccc80764289bf1f53401e0f23340ade0116.png"><img alt="_images/3a091671624a4dd517a853b0fd71bccc80764289bf1f53401e0f23340ade0116.png" src="_images/3a091671624a4dd517a853b0fd71bccc80764289bf1f53401e0f23340ade0116.png" style="width: 500px;" /></a>
-</div>
 </div>
 </section>
 </section>
@@ -840,18 +889,6 @@ Therefore, if you draw a black line in an earlier layer and then add a new layer
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]: Remote data courtesy of GMT data server oceania [http://oceania.generic-mapping-tools.org]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]: EarthByte Earth Seafloor Age at 30x30 arc minutes reduced by Gaussian Cartesian filtering (157.3 km fullwidth) [Seton et al., 2020].
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtread [NOTICE]:   -&gt; Download grid file [205K]: earth_age_30m_g.grd
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="_images/c602786bf752e87289f43caedf9bfc40090944d450f721a51d8c952235fcc313.png"><img alt="_images/c602786bf752e87289f43caedf9bfc40090944d450f721a51d8c952235fcc313.png" src="_images/c602786bf752e87289f43caedf9bfc40090944d450f721a51d8c952235fcc313.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
