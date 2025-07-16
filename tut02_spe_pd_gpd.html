@@ -527,62 +527,87 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtwhich [ERROR]: Remote download is currently deactivated
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtwhich [ERROR]: Unable to obtain remote file @tut_quakes.ngdc
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gmtwhich [ERROR]: File @tut_quakes.ngdc not found!
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df_jp_eqs</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">load_sample_data</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;japan_quakes&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df_jp_eqs</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># df_your_dataset = pd.read_csv(&quot;your_dataset.csv&quot;)</span>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/datasets/samples.py:351,</span> in <span class="ni">load_sample_data</span><span class="nt">(name)</span>
-<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">350</span>     <span class="k">raise</span> <span class="n">GMTInvalidInput</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid dataset name &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">351</span> <span class="k">return</span> <span class="n">datasets</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">func</span><span class="p">()</span>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/datasets/samples.py:27,</span> in <span class="ni">_load_japan_quakes</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">def</span> <span class="nf">_load_japan_quakes</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span><span class="sd">     Load a table of earthquakes around Japan.</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span><span class="sd">         &quot;longitude&quot;, &quot;depth_km&quot;, and &quot;magnitude&quot; of the earthquakes.</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">27</span>     <span class="n">fname</span> <span class="o">=</span> <span class="n">which</span><span class="p">(</span><span class="s2">&quot;@tut_quakes.ngdc&quot;</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span>         <span class="n">fname</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span>         <span class="n">header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>         <span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="p">)</span>
-
-<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/helpers/decorators.py:609,</span> in <span class="ni">use_alias.&lt;locals&gt;.alias_decorator.&lt;locals&gt;.new_module</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span>     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">604</span>         <span class="s2">&quot;Parameters &#39;Y&#39; and &#39;yshift&#39; are no longer supported since v0.12.0. &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">605</span>         <span class="s2">&quot;Use Figure.shift_origin(yshift=...) instead.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span>     <span class="k">raise</span> <span class="n">GMTInvalidInput</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">609</span> <span class="k">return</span> <span class="n">module_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~/micromamba/envs/agu24workshop/lib/python3.12/site-packages/pygmt/src/which.py:71,</span> in <span class="ni">which</span><span class="nt">(fname, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="n">_fname</span> <span class="o">=</span> <span class="s2">&quot;&#39;, &#39;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">if</span> <span class="n">is_nonstr_iter</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">else</span> <span class="n">fname</span>
-<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File(s) &#39;</span><span class="si">{</span><span class="n">_fname</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">73</span>     <span class="k">return</span> <span class="n">paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="ne">FileNotFoundError</span>: File(s) &#39;@tut_quakes.ngdc&#39; not found.
-</pre></div>
-</div>
-</div>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>latitude</th>
+      <th>longitude</th>
+      <th>depth_km</th>
+      <th>magnitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>4</td>
+      <td>49.77</td>
+      <td>149.29</td>
+      <td>489</td>
+      <td>4.1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>9</td>
+      <td>39.90</td>
+      <td>141.68</td>
+      <td>67</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>9</td>
+      <td>39.82</td>
+      <td>141.64</td>
+      <td>84</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>14</td>
+      <td>42.56</td>
+      <td>142.85</td>
+      <td>102</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1987</td>
+      <td>1</td>
+      <td>16</td>
+      <td>42.79</td>
+      <td>145.10</td>
+      <td>54</td>
+      <td>5.1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="create-a-cartesian-histogram">
@@ -594,6 +619,12 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 <span class="nb">print</span><span class="p">(</span><span class="n">mag_min</span><span class="p">)</span>
 <span class="n">mag_max</span> <span class="o">=</span> <span class="n">df_jp_eqs</span><span class="p">[</span><span class="s2">&quot;magnitude&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mag_max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.0
+6.8
 </pre></div>
 </div>
 </div>
@@ -625,6 +656,9 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png"><img alt="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png" src="_images/874f28600e9bef5e0c2434c4512f149282202993569ce8dbee97fc509c790c92.png" style="width: 500px;" /></a>
 </div>
 </div>
 <p>Use code example above as orientation, and create a similar histogram showing the hypocentral depth distribution for all earthquakes in the dataset.</p>
@@ -664,6 +698,9 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/6490a9cc6f3c559f889bee8616741ddfbb8d4b83c962e9acfe501a254add9aed.png"><img alt="_images/6490a9cc6f3c559f889bee8616741ddfbb8d4b83c962e9acfe501a254add9aed.png" src="_images/6490a9cc6f3c559f889bee8616741ddfbb8d4b83c962e9acfe501a254add9aed.png" style="width: 500px;" /></a>
+</div>
 </div>
 </section>
 </section>
@@ -700,11 +737,86 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NAME</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Danube</td>
+      <td>2.770357e+06</td>
+      <td>MULTILINESTRING ((4185683.29 2775788.04, 41861...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Douro</td>
+      <td>8.162452e+05</td>
+      <td>MULTILINESTRING ((2764963.81 2199037.624, 2766...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ebro</td>
+      <td>8.269909e+05</td>
+      <td>MULTILINESTRING ((3178371.814 2315100.781, 317...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elbe</td>
+      <td>1.087288e+06</td>
+      <td>MULTILINESTRING ((4235352.373 3422319.986, 423...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Guadalquivir</td>
+      <td>5.997583e+05</td>
+      <td>MULTILINESTRING ((2859329.283 1682737.074, 286...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 <p>The coordinates are currently not given in the geographic coordinate reference system (longitude/latitude):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_rivers_org</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: PROJCS[&quot;ETRS_1989_LAEA_52N_10E&quot;,GEOGCS[&quot;ETRS89&quot;,DA ...&gt;
+Name: ETRS_1989_LAEA_52N_10E
+Axis Info [cartesian]:
+- [east]: Easting (metre)
+- [north]: Northing (metre)
+Area of Use:
+- undefined
+Coordinate Operation:
+- name: unnamed
+- method: Lambert Azimuthal Equal Area
+Datum: European Terrestrial Reference System 1989
+- Ellipsoid: GRS 1980
+- Prime Meridian: Greenwich
 </pre></div>
 </div>
 </div>
@@ -724,6 +836,21 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- name: World.
+- bounds: (-180.0, -90.0, 180.0, 90.0)
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -731,6 +858,64 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>NAME</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Danube</td>
+      <td>2.770357e+06</td>
+      <td>MULTILINESTRING ((8.1846 48.0807, 8.19049 48.0...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Douro</td>
+      <td>8.162452e+05</td>
+      <td>MULTILINESTRING ((-8.67141 41.14934, -8.64362 ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ebro</td>
+      <td>8.269909e+05</td>
+      <td>MULTILINESTRING ((-4.05971 42.97715, -4.06841 ...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elbe</td>
+      <td>1.087288e+06</td>
+      <td>MULTILINESTRING ((8.69715 53.90109, 8.72716 53...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Guadalquivir</td>
+      <td>5.997583e+05</td>
+      <td>MULTILINESTRING ((-6.37899 36.80363, -6.34806 ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <section id="create-a-geographical-map-of-the-rivers">
@@ -753,6 +938,9 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png"><img alt="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png" src="_images/cf588072815c329d79c2052d16069ba2989dfee2076edded906502f6a9816ee2.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
@@ -795,6 +983,9 @@ You can read your own dataset into a <code class="docutils literal notranslate">
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png"><img alt="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png" src="_images/3844bc04880f1c0b3a90179cd789cde13ad0d25aff650d43fd9d840114d063fe.png" style="width: 500px;" /></a>
+</div>
 </div>
 </section>
 <section id="plot-the-rivers-with-color-coding-for-the-river-length">
@@ -823,6 +1014,173 @@ This time we are lucky and the data is directly provided in the geographic coord
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>community</th>
+      <th>shape_area</th>
+      <th>shape_len</th>
+      <th>AREAID</th>
+      <th>response_r</th>
+      <th>accept_r</th>
+      <th>rev_rating</th>
+      <th>price_pp</th>
+      <th>room_type</th>
+      <th>num_spots</th>
+      <th>...</th>
+      <th>crowded</th>
+      <th>dependency</th>
+      <th>without_hs</th>
+      <th>unemployed</th>
+      <th>income_pc</th>
+      <th>harship_in</th>
+      <th>num_crimes</th>
+      <th>num_theft</th>
+      <th>population</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>DOUGLAS</td>
+      <td>46004621.1581</td>
+      <td>31027.0545098</td>
+      <td>35</td>
+      <td>98.771429</td>
+      <td>94.514286</td>
+      <td>87.777778</td>
+      <td>78.157895</td>
+      <td>1.789474</td>
+      <td>38</td>
+      <td>...</td>
+      <td>1.8</td>
+      <td>30.7</td>
+      <td>14.3</td>
+      <td>18.2</td>
+      <td>23791</td>
+      <td>47</td>
+      <td>5013</td>
+      <td>1241</td>
+      <td>18238</td>
+      <td>POLYGON ((-87.60914 41.84469, -87.60915 41.844...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>OAKLAND</td>
+      <td>16913961.0408</td>
+      <td>19565.5061533</td>
+      <td>36</td>
+      <td>99.200000</td>
+      <td>90.105263</td>
+      <td>88.812500</td>
+      <td>53.775000</td>
+      <td>1.850000</td>
+      <td>20</td>
+      <td>...</td>
+      <td>1.3</td>
+      <td>40.4</td>
+      <td>18.4</td>
+      <td>28.7</td>
+      <td>19252</td>
+      <td>78</td>
+      <td>1306</td>
+      <td>311</td>
+      <td>5918</td>
+      <td>POLYGON ((-87.59215 41.81693, -87.59231 41.816...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>FULLER PARK</td>
+      <td>19916704.8692</td>
+      <td>None</td>
+      <td>37</td>
+      <td>68.000000</td>
+      <td>NaN</td>
+      <td>91.750000</td>
+      <td>84.000000</td>
+      <td>1.833333</td>
+      <td>6</td>
+      <td>...</td>
+      <td>3.2</td>
+      <td>44.9</td>
+      <td>26.6</td>
+      <td>33.9</td>
+      <td>10432</td>
+      <td>97</td>
+      <td>1764</td>
+      <td>383</td>
+      <td>2876</td>
+      <td>POLYGON ((-87.6288 41.80189, -87.62879 41.8017...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>GRAND BOULEVARD</td>
+      <td>48492503.1554</td>
+      <td>28196.8371573</td>
+      <td>38</td>
+      <td>94.037037</td>
+      <td>83.615385</td>
+      <td>92.750000</td>
+      <td>119.533333</td>
+      <td>1.533333</td>
+      <td>30</td>
+      <td>...</td>
+      <td>3.3</td>
+      <td>39.5</td>
+      <td>15.9</td>
+      <td>24.3</td>
+      <td>23472</td>
+      <td>57</td>
+      <td>6416</td>
+      <td>1428</td>
+      <td>21929</td>
+      <td>POLYGON ((-87.60671 41.81681, -87.6067 41.8165...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KENWOOD</td>
+      <td>29071741.9283</td>
+      <td>23325.1679062</td>
+      <td>39</td>
+      <td>92.542857</td>
+      <td>88.142857</td>
+      <td>90.656250</td>
+      <td>77.991453</td>
+      <td>1.615385</td>
+      <td>39</td>
+      <td>...</td>
+      <td>2.4</td>
+      <td>35.4</td>
+      <td>11.3</td>
+      <td>15.7</td>
+      <td>35911</td>
+      <td>26</td>
+      <td>2713</td>
+      <td>654</td>
+      <td>17841</td>
+      <td>POLYGON ((-87.59215 41.81693, -87.59215 41.816...</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
 </div>
 </section>
 <section id="create-a-choropleth-map">
@@ -834,6 +1192,12 @@ This time we are lucky and the data is directly provided in the geographic coord
 <span class="nb">print</span><span class="p">(</span><span class="n">popul_min</span><span class="p">)</span>
 <span class="n">popul_max</span> <span class="o">=</span> <span class="n">gdf_airbnb</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">popul_max</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2876
+98514
 </pre></div>
 </div>
 </div>
@@ -864,6 +1228,9 @@ This time we are lucky and the data is directly provided in the geographic coord
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png"><img alt="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png" src="_images/7f18327908c8dd210197cc51845e45a933f356b9fd12bd029a4a8cbda080eb2b.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
@@ -911,6 +1278,9 @@ This time we are lucky and the data is directly provided in the geographic coord
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">img_dpi</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png"><img alt="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png" src="_images/fde4e75320e490f1f57c57564f4ac1cda80a392ed98715c482199e892dd16701.png" style="width: 500px;" /></a>
 </div>
 </div>
 </section>
