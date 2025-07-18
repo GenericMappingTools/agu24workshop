@@ -2,6 +2,7 @@
 
 [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://www.generic-mapping-tools.org/agu24workshop)
 [![deploy-book](https://github.com/GenericMappingTools/agu24workshop/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/GenericMappingTools/agu24workshop/actions/workflows/deploy-book.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15809716.svg)](https://doi.org/10.5281/zenodo.15809716)
 
 Material for the
 [GMT](https://www.generic-mapping-tools.org)/[PyGMT](https://www.pygmt.org)
